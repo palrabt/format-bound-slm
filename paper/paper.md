@@ -5,7 +5,7 @@ affiliation: Roska Tamás Doctoral School of Sciences and Technology, Faculty of
 email: [e-mail]
 abstract: Small language models with low-rank adapters are candidate negotiating agents on edge devices. Three recent models, each with and without an adapter trained on a rule-based teacher, were evaluated under four prompt styles in a three-player trading card game, on 992 fixed states and in 30 seeded games. In the training format, 68–90% of the adapted models' decisions followed a rule-based reference, 16–29 points above a verbose prompt, and in play their coins did not differ significantly from a rule-based player's. Under other prompts, two adapters fell to the level of random play. Grammar-constrained base models were 97–100% valid, yet only 24–41% of their decisions were correct. Two prompts rarely led a model to the same decision. An earlier model generation showed the same main patterns.
 keywords: small language models, low-rank adaptation, prompt format, negotiation, game-based evaluation, decision quality
-data: Code, prompts, answer schemas, the decoding grammar, seeds, run logs and the scripts behind every number are available at https://github.com/palrabt/llm-network.
+data: Code, prompts, answer schemas, the decoding grammar, seeds, run logs and the scripts behind every number are available at https://github.com/palrabt/format-bound-slm.git.
 ---
 
 # Introduction
