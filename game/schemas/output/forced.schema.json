@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NewCardPlantingAction",
+  "description": "Plant every one of your new cards: each appears exactly once, and several may go to the same field. A field holds one bean type. Planting a different bean harvests the field first: its cards go back for coins, and a short stack earns nothing. Cards for one field are planted in the order listed, so if you list different beans for one field, each change harvests the field and only the last bean type stays. An empty field or one with the same bean keeps your progress.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "field1",
+    "field2",
+    "field3"
+  ],
+  "properties": {
+    "field1": {
+      "$ref": "#/definitions/cards"
+    },
+    "field2": {
+      "$ref": "#/definitions/cards"
+    },
+    "field3": {
+      "$ref": "#/definitions/cards"
+    }
+  },
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    }
+  }
+}

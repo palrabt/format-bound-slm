@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReplyInput",
+  "description": "Another player offers you cards. You see the offered cards, who offers them (\"0\" or \"1\"), their message, your hand, your fields and your penalty points.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "phase",
+    "offered_cards",
+    "from_player",
+    "asking_for",
+    "hand",
+    "fields",
+    "penalty"
+  ],
+  "properties": {
+    "phase": {
+      "const": "REPLY"
+    },
+    "offered_cards": {
+      "$ref": "#/definitions/cards"
+    },
+    "from_player": {
+      "$ref": "#/definitions/peer"
+    },
+    "asking_for": {
+      "type": "string",
+      "description": "The message the offering player sent with this offer, usually the beans they want from you in return and why. It can be empty or unclear."
+    },
+    "hand": {
+      "$ref": "#/definitions/cards"
+    },
+    "fields": {
+      "$ref": "#/definitions/fields"
+    },
+    "penalty": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cards",
+        "value"
+      ],
+      "properties": {
+        "cards": {
+          "$ref": "#/definitions/cards",
+          "description": "The beans in the field, all of one type."
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Coins the field would pay if harvested now."
+        }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field1",
+        "field2",
+        "field3"
+      ],
+      "properties": {
+        "field1": {
+          "$ref": "#/definitions/field"
+        },
+        "field2": {
+          "$ref": "#/definitions/field"
+        },
+        "field3": {
+          "$ref": "#/definitions/field"
+        }
+      }
+    },
+    "peer": {
+      "type": "string",
+      "enum": [
+        "0",
+        "1"
+      ],
+      "description": "One of the two other players."
+    }
+  }
+}

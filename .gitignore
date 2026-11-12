@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Scratch: paper/paper_numbers.py --rescore unpacks and re-scores the runs here
+work/
+
+# Written by the pipeline: model files (see weights.json), new runs, server state
+artifacts/
+logs/
+.game_pids
+*.log
+
+# Built by paper/build_docx.py
+paper/pollack_paper.docx
+paper/pollack_paper_anonymous.docx

@@ -1,0 +1,3171 @@
+{
+ "run": "suite_20261030_gen2_vsrandom",
+ "kind": "tournament",
+ "evaluated_at": "2026-11-12T13:12:08",
+ "training_corpus": "training/corpus/training_data_synct_15000_llm.txt",
+ "slices": {
+  "games": {
+   "conditions": {
+    "base_verbose": {
+     "Alpha": {
+      "answers": 1390,
+      "schema_validity": {
+       "n": 1390,
+       "valid": 756,
+       "phases": {
+        "PLANTING": {
+         "n": 283,
+         "valid": 278
+        },
+        "FORCED": {
+         "n": 314,
+         "valid": 302
+        },
+        "TRADING": {
+         "n": 426,
+         "valid": 47
+        },
+        "REPLY": {
+         "n": 223,
+         "valid": 124
+        },
+        "CONSIDERING": {
+         "n": 144,
+         "valid": 5
+        }
+       },
+       "failures": {
+        "wrapped": 617,
+        "schema:enum": 17
+       }
+      },
+      "legality": {
+       "n": 1390,
+       "legal": 1321,
+       "valid_and_legal": 724,
+       "phases": {
+        "PLANTING": {
+         "n": 283,
+         "legal": 270,
+         "valid_and_legal": 270
+        },
+        "FORCED": {
+         "n": 314,
+         "legal": 279,
+         "valid_and_legal": 279
+        },
+        "TRADING": {
+         "n": 426,
+         "legal": 426,
+         "valid_and_legal": 47
+        },
+        "REPLY": {
+         "n": 223,
+         "legal": 223,
+         "valid_and_legal": 124
+        },
+        "CONSIDERING": {
+         "n": 144,
+         "legal": 123,
+         "valid_and_legal": 4
+        }
+       },
+       "reasons": {
+        "rules": 31,
+        "cards_not_held": 21,
+        "parser": 17
+       }
+      },
+      "reference": {
+       "n": 1390,
+       "correct": 618,
+       "phases": {
+        "PLANTING": {
+         "n": 283,
+         "correct": 55,
+         "rules": {
+          "first card placed": 55,
+          "second card without harvest": 267
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 314,
+         "correct": 17,
+         "rules": {
+          "no avoidable harvest": 27,
+          "least valuable stack lost": 269
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 426,
+         "correct": 390,
+         "rules": {
+          "keeps growing beans": 390
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 223,
+         "correct": 148,
+         "rules": {
+          "accepts iff useful": 151,
+          "keeps growing beans": 212
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 144,
+         "correct": 8,
+         "rules": {
+          "accepts iff useful": 8
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 37,
+        "useful_accepted": 9,
+        "useless": 186,
+        "useless_accepted": 44
+       },
+       "CONSIDERING": {
+        "useful": 8,
+        "useful_accepted": 8,
+        "useless": 115,
+        "useless_accepted": 115
+       },
+       "PLANTING": {
+        "n": 270,
+        "avoidable_harvest": 215
+       },
+       "FORCED": {
+        "n": 279,
+        "avoidable_harvest": 252
+       },
+       "TRADING": {
+        "n": 426,
+        "pass": 0,
+        "offers": 426,
+        "gives_own_type": 36
+       }
+      }
+     },
+     "Beta": {
+      "answers": 1067,
+      "schema_validity": {
+       "n": 1067,
+       "valid": 1067,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "valid": 280
+        },
+        "FORCED": {
+         "n": 293,
+         "valid": 293
+        },
+        "TRADING": {
+         "n": 277,
+         "valid": 277
+        },
+        "REPLY": {
+         "n": 217,
+         "valid": 217
+        },
+        "CONSIDERING": {
+         "n": 0,
+         "valid": 0
+        }
+       },
+       "failures": {}
+      },
+      "legality": {
+       "n": 1067,
+       "legal": 1032,
+       "valid_and_legal": 1032,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "legal": 276,
+         "valid_and_legal": 276
+        },
+        "FORCED": {
+         "n": 293,
+         "legal": 274,
+         "valid_and_legal": 274
+        },
+        "TRADING": {
+         "n": 277,
+         "legal": 277,
+         "valid_and_legal": 277
+        },
+        "REPLY": {
+         "n": 217,
+         "legal": 205,
+         "valid_and_legal": 205
+        },
+        "CONSIDERING": {
+         "n": 0,
+         "legal": 0,
+         "valid_and_legal": 0
+        }
+       },
+       "reasons": {
+        "rules": 23,
+        "cards_not_held": 12
+       }
+      },
+      "reference": {
+       "n": 1067,
+       "correct": 491,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "correct": 60,
+         "rules": {
+          "first card placed": 60,
+          "second card without harvest": 276
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 293,
+         "correct": 7,
+         "rules": {
+          "no avoidable harvest": 23,
+          "least valuable stack lost": 258
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 277,
+         "correct": 277,
+         "rules": {
+          "keeps growing beans": 277
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 217,
+         "correct": 147,
+         "rules": {
+          "accepts iff useful": 168,
+          "keeps growing beans": 180
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 0,
+         "correct": 0,
+         "rules": {
+          "accepts iff useful": 0
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 29,
+        "useful_accepted": 3,
+        "useless": 176,
+        "useless_accepted": 11
+       },
+       "CONSIDERING": {
+        "useful": 0,
+        "useful_accepted": 0,
+        "useless": 0,
+        "useless_accepted": 0
+       },
+       "PLANTING": {
+        "n": 276,
+        "avoidable_harvest": 216
+       },
+       "FORCED": {
+        "n": 274,
+        "avoidable_harvest": 251
+       },
+       "TRADING": {
+        "n": 277,
+        "pass": 277,
+        "offers": 0,
+        "gives_own_type": 0
+       }
+      }
+     },
+     "Gamma": {
+      "answers": 1843,
+      "schema_validity": {
+       "n": 1843,
+       "valid": 1838,
+       "phases": {
+        "PLANTING": {
+         "n": 281,
+         "valid": 276
+        },
+        "FORCED": {
+         "n": 320,
+         "valid": 320
+        },
+        "TRADING": {
+         "n": 659,
+         "valid": 659
+        },
+        "REPLY": {
+         "n": 244,
+         "valid": 244
+        },
+        "CONSIDERING": {
+         "n": 339,
+         "valid": 339
+        }
+       },
+       "failures": {
+        "schema:maxItems": 5
+       }
+      },
+      "legality": {
+       "n": 1843,
+       "legal": 1774,
+       "valid_and_legal": 1774,
+       "phases": {
+        "PLANTING": {
+         "n": 281,
+         "legal": 269,
+         "valid_and_legal": 269
+        },
+        "FORCED": {
+         "n": 320,
+         "legal": 276,
+         "valid_and_legal": 276
+        },
+        "TRADING": {
+         "n": 659,
+         "legal": 659,
+         "valid_and_legal": 659
+        },
+        "REPLY": {
+         "n": 244,
+         "legal": 233,
+         "valid_and_legal": 233
+        },
+        "CONSIDERING": {
+         "n": 339,
+         "legal": 337,
+         "valid_and_legal": 337
+        }
+       },
+       "reasons": {
+        "rules": 56,
+        "cards_not_held": 13
+       }
+      },
+      "reference": {
+       "n": 1843,
+       "correct": 977,
+       "phases": {
+        "PLANTING": {
+         "n": 281,
+         "correct": 39,
+         "rules": {
+          "first card placed": 48,
+          "second card without harvest": 187
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 320,
+         "correct": 19,
+         "rules": {
+          "no avoidable harvest": 154,
+          "least valuable stack lost": 141
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 659,
+         "correct": 460,
+         "rules": {
+          "keeps growing beans": 460
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 244,
+         "correct": 162,
+         "rules": {
+          "accepts iff useful": 175,
+          "keeps growing beans": 216
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 339,
+         "correct": 297,
+         "rules": {
+          "accepts iff useful": 297
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 60,
+        "useful_accepted": 28,
+        "useless": 173,
+        "useless_accepted": 26
+       },
+       "CONSIDERING": {
+        "useful": 27,
+        "useful_accepted": 7,
+        "useless": 310,
+        "useless_accepted": 20
+       },
+       "PLANTING": {
+        "n": 269,
+        "avoidable_harvest": 228
+       },
+       "FORCED": {
+        "n": 276,
+        "avoidable_harvest": 122
+       },
+       "TRADING": {
+        "n": 659,
+        "pass": 0,
+        "offers": 659,
+        "gives_own_type": 199
+       }
+      }
+     }
+    },
+    "lora_verbose": {
+     "Alpha": {
+      "answers": 1696,
+      "schema_validity": {
+       "n": 1696,
+       "valid": 1696,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "valid": 280
+        },
+        "FORCED": {
+         "n": 379,
+         "valid": 379
+        },
+        "TRADING": {
+         "n": 524,
+         "valid": 524
+        },
+        "REPLY": {
+         "n": 226,
+         "valid": 226
+        },
+        "CONSIDERING": {
+         "n": 287,
+         "valid": 287
+        }
+       },
+       "failures": {}
+      },
+      "legality": {
+       "n": 1696,
+       "legal": 1645,
+       "valid_and_legal": 1645,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "legal": 278,
+         "valid_and_legal": 278
+        },
+        "FORCED": {
+         "n": 379,
+         "legal": 330,
+         "valid_and_legal": 330
+        },
+        "TRADING": {
+         "n": 524,
+         "legal": 524,
+         "valid_and_legal": 524
+        },
+        "REPLY": {
+         "n": 226,
+         "legal": 226,
+         "valid_and_legal": 226
+        },
+        "CONSIDERING": {
+         "n": 287,
+         "legal": 287,
+         "valid_and_legal": 287
+        }
+       },
+       "reasons": {
+        "rules": 51
+       }
+      },
+      "reference": {
+       "n": 1696,
+       "correct": 895,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "correct": 58,
+         "rules": {
+          "first card placed": 58,
+          "second card without harvest": 276
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 379,
+         "correct": 21,
+         "rules": {
+          "no avoidable harvest": 38,
+          "least valuable stack lost": 313
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 524,
+         "correct": 486,
+         "rules": {
+          "keeps growing beans": 486
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 226,
+         "correct": 148,
+         "rules": {
+          "accepts iff useful": 148,
+          "keeps growing beans": 226
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 287,
+         "correct": 182,
+         "rules": {
+          "accepts iff useful": 182
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 37,
+        "useful_accepted": 32,
+        "useless": 189,
+        "useless_accepted": 73
+       },
+       "CONSIDERING": {
+        "useful": 11,
+        "useful_accepted": 11,
+        "useless": 276,
+        "useless_accepted": 105
+       },
+       "PLANTING": {
+        "n": 278,
+        "avoidable_harvest": 220
+       },
+       "FORCED": {
+        "n": 330,
+        "avoidable_harvest": 292
+       },
+       "TRADING": {
+        "n": 524,
+        "pass": 0,
+        "offers": 524,
+        "gives_own_type": 38
+       }
+      }
+     },
+     "Beta": {
+      "answers": 1435,
+      "schema_validity": {
+       "n": 1435,
+       "valid": 1431,
+       "phases": {
+        "PLANTING": {
+         "n": 281,
+         "valid": 277
+        },
+        "FORCED": {
+         "n": 342,
+         "valid": 342
+        },
+        "TRADING": {
+         "n": 425,
+         "valid": 425
+        },
+        "REPLY": {
+         "n": 222,
+         "valid": 222
+        },
+        "CONSIDERING": {
+         "n": 165,
+         "valid": 165
+        }
+       },
+       "failures": {
+        "schema:maxItems": 4
+       }
+      },
+      "legality": {
+       "n": 1435,
+       "legal": 1371,
+       "valid_and_legal": 1371,
+       "phases": {
+        "PLANTING": {
+         "n": 281,
+         "legal": 264,
+         "valid_and_legal": 264
+        },
+        "FORCED": {
+         "n": 342,
+         "legal": 295,
+         "valid_and_legal": 295
+        },
+        "TRADING": {
+         "n": 425,
+         "legal": 425,
+         "valid_and_legal": 425
+        },
+        "REPLY": {
+         "n": 222,
+         "legal": 222,
+         "valid_and_legal": 222
+        },
+        "CONSIDERING": {
+         "n": 165,
+         "legal": 165,
+         "valid_and_legal": 165
+        }
+       },
+       "reasons": {
+        "rules": 64
+       }
+      },
+      "reference": {
+       "n": 1435,
+       "correct": 1038,
+       "phases": {
+        "PLANTING": {
+         "n": 281,
+         "correct": 141,
+         "rules": {
+          "first card placed": 192,
+          "second card without harvest": 178
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 342,
+         "correct": 216,
+         "rules": {
+          "no avoidable harvest": 294,
+          "least valuable stack lost": 217
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 425,
+         "correct": 407,
+         "rules": {
+          "keeps growing beans": 407
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 222,
+         "correct": 217,
+         "rules": {
+          "accepts iff useful": 217,
+          "keeps growing beans": 222
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 165,
+         "correct": 57,
+         "rules": {
+          "accepts iff useful": 57
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 87,
+        "useful_accepted": 83,
+        "useless": 135,
+        "useless_accepted": 1
+       },
+       "CONSIDERING": {
+        "useful": 22,
+        "useful_accepted": 22,
+        "useless": 143,
+        "useless_accepted": 108
+       },
+       "PLANTING": {
+        "n": 264,
+        "avoidable_harvest": 81
+       },
+       "FORCED": {
+        "n": 295,
+        "avoidable_harvest": 1
+       },
+       "TRADING": {
+        "n": 425,
+        "pass": 0,
+        "offers": 425,
+        "gives_own_type": 18
+       }
+      }
+     },
+     "Gamma": {
+      "answers": 1320,
+      "schema_validity": {
+       "n": 1320,
+       "valid": 1320,
+       "phases": {
+        "PLANTING": {
+         "n": 296,
+         "valid": 296
+        },
+        "FORCED": {
+         "n": 174,
+         "valid": 174
+        },
+        "TRADING": {
+         "n": 391,
+         "valid": 391
+        },
+        "REPLY": {
+         "n": 241,
+         "valid": 241
+        },
+        "CONSIDERING": {
+         "n": 218,
+         "valid": 218
+        }
+       },
+       "failures": {}
+      },
+      "legality": {
+       "n": 1320,
+       "legal": 1139,
+       "valid_and_legal": 1139,
+       "phases": {
+        "PLANTING": {
+         "n": 296,
+         "legal": 163,
+         "valid_and_legal": 163
+        },
+        "FORCED": {
+         "n": 174,
+         "legal": 126,
+         "valid_and_legal": 126
+        },
+        "TRADING": {
+         "n": 391,
+         "legal": 391,
+         "valid_and_legal": 391
+        },
+        "REPLY": {
+         "n": 241,
+         "legal": 241,
+         "valid_and_legal": 241
+        },
+        "CONSIDERING": {
+         "n": 218,
+         "legal": 218,
+         "valid_and_legal": 218
+        }
+       },
+       "reasons": {
+        "rules": 181
+       }
+      },
+      "reference": {
+       "n": 1320,
+       "correct": 747,
+       "phases": {
+        "PLANTING": {
+         "n": 296,
+         "correct": 70,
+         "rules": {
+          "first card placed": 91,
+          "second card without harvest": 121
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 174,
+         "correct": 47,
+         "rules": {
+          "no avoidable harvest": 121,
+          "least valuable stack lost": 52
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 391,
+         "correct": 267,
+         "rules": {
+          "keeps growing beans": 267
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 241,
+         "correct": 174,
+         "rules": {
+          "accepts iff useful": 174,
+          "keeps growing beans": 240
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 218,
+         "correct": 189,
+         "rules": {
+          "accepts iff useful": 189
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 71,
+        "useful_accepted": 5,
+        "useless": 170,
+        "useless_accepted": 1
+       },
+       "CONSIDERING": {
+        "useful": 29,
+        "useful_accepted": 1,
+        "useless": 189,
+        "useless_accepted": 1
+       },
+       "PLANTING": {
+        "n": 163,
+        "avoidable_harvest": 59
+       },
+       "FORCED": {
+        "n": 126,
+        "avoidable_harvest": 5
+       },
+       "TRADING": {
+        "n": 391,
+        "pass": 28,
+        "offers": 363,
+        "gives_own_type": 124
+       }
+      }
+     }
+    },
+    "lora_compact": {
+     "Alpha": {
+      "answers": 1735,
+      "schema_validity": {
+       "n": 1735,
+       "valid": 1733,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "valid": 280
+        },
+        "FORCED": {
+         "n": 344,
+         "valid": 342
+        },
+        "TRADING": {
+         "n": 579,
+         "valid": 579
+        },
+        "REPLY": {
+         "n": 222,
+         "valid": 222
+        },
+        "CONSIDERING": {
+         "n": 310,
+         "valid": 310
+        }
+       },
+       "failures": {
+        "schema:enum": 2
+       }
+      },
+      "legality": {
+       "n": 1735,
+       "legal": 1715,
+       "valid_and_legal": 1715,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "legal": 276,
+         "valid_and_legal": 276
+        },
+        "FORCED": {
+         "n": 344,
+         "legal": 328,
+         "valid_and_legal": 328
+        },
+        "TRADING": {
+         "n": 579,
+         "legal": 579,
+         "valid_and_legal": 579
+        },
+        "REPLY": {
+         "n": 222,
+         "legal": 222,
+         "valid_and_legal": 222
+        },
+        "CONSIDERING": {
+         "n": 310,
+         "legal": 310,
+         "valid_and_legal": 310
+        }
+       },
+       "reasons": {
+        "rules": 18,
+        "parser": 2
+       }
+      },
+      "reference": {
+       "n": 1735,
+       "correct": 1488,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "correct": 195,
+         "rules": {
+          "first card placed": 197,
+          "second card without harvest": 272
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 344,
+         "correct": 259,
+         "rules": {
+          "no avoidable harvest": 327,
+          "least valuable stack lost": 260
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 579,
+         "correct": 575,
+         "rules": {
+          "keeps growing beans": 575
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 222,
+         "correct": 210,
+         "rules": {
+          "accepts iff useful": 212,
+          "keeps growing beans": 220
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 310,
+         "correct": 249,
+         "rules": {
+          "accepts iff useful": 249
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 81,
+        "useful_accepted": 81,
+        "useless": 141,
+        "useless_accepted": 10
+       },
+       "CONSIDERING": {
+        "useful": 23,
+        "useful_accepted": 23,
+        "useless": 287,
+        "useless_accepted": 61
+       },
+       "PLANTING": {
+        "n": 276,
+        "avoidable_harvest": 4
+       },
+       "FORCED": {
+        "n": 328,
+        "avoidable_harvest": 1
+       },
+       "TRADING": {
+        "n": 579,
+        "pass": 0,
+        "offers": 579,
+        "gives_own_type": 4
+       }
+      }
+     },
+     "Beta": {
+      "answers": 1939,
+      "schema_validity": {
+       "n": 1939,
+       "valid": 1939,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "valid": 280
+        },
+        "FORCED": {
+         "n": 364,
+         "valid": 364
+        },
+        "TRADING": {
+         "n": 681,
+         "valid": 681
+        },
+        "REPLY": {
+         "n": 213,
+         "valid": 213
+        },
+        "CONSIDERING": {
+         "n": 401,
+         "valid": 401
+        }
+       },
+       "failures": {}
+      },
+      "legality": {
+       "n": 1939,
+       "legal": 1930,
+       "valid_and_legal": 1930,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "legal": 280,
+         "valid_and_legal": 280
+        },
+        "FORCED": {
+         "n": 364,
+         "legal": 356,
+         "valid_and_legal": 356
+        },
+        "TRADING": {
+         "n": 681,
+         "legal": 680,
+         "valid_and_legal": 680
+        },
+        "REPLY": {
+         "n": 213,
+         "legal": 213,
+         "valid_and_legal": 213
+        },
+        "CONSIDERING": {
+         "n": 401,
+         "legal": 401,
+         "valid_and_legal": 401
+        }
+       },
+       "reasons": {
+        "rules": 8,
+        "cards_not_held": 1
+       }
+      },
+      "reference": {
+       "n": 1939,
+       "correct": 1812,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "correct": 197,
+         "rules": {
+          "first card placed": 211,
+          "second card without harvest": 262
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 364,
+         "correct": 332,
+         "rules": {
+          "no avoidable harvest": 356,
+          "least valuable stack lost": 332
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 681,
+         "correct": 677,
+         "rules": {
+          "keeps growing beans": 677
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 213,
+         "correct": 205,
+         "rules": {
+          "accepts iff useful": 213,
+          "keeps growing beans": 205
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 401,
+         "correct": 401,
+         "rules": {
+          "accepts iff useful": 401
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 86,
+        "useful_accepted": 86,
+        "useless": 127,
+        "useless_accepted": 0
+       },
+       "CONSIDERING": {
+        "useful": 29,
+        "useful_accepted": 29,
+        "useless": 372,
+        "useless_accepted": 0
+       },
+       "PLANTING": {
+        "n": 280,
+        "avoidable_harvest": 18
+       },
+       "FORCED": {
+        "n": 356,
+        "avoidable_harvest": 0
+       },
+       "TRADING": {
+        "n": 680,
+        "pass": 0,
+        "offers": 680,
+        "gives_own_type": 3
+       }
+      }
+     },
+     "Gamma": {
+      "answers": 1820,
+      "schema_validity": {
+       "n": 1820,
+       "valid": 1820,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "valid": 280
+        },
+        "FORCED": {
+         "n": 480,
+         "valid": 480
+        },
+        "TRADING": {
+         "n": 577,
+         "valid": 577
+        },
+        "REPLY": {
+         "n": 199,
+         "valid": 199
+        },
+        "CONSIDERING": {
+         "n": 284,
+         "valid": 284
+        }
+       },
+       "failures": {}
+      },
+      "legality": {
+       "n": 1820,
+       "legal": 1820,
+       "valid_and_legal": 1820,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "legal": 280,
+         "valid_and_legal": 280
+        },
+        "FORCED": {
+         "n": 480,
+         "legal": 480,
+         "valid_and_legal": 480
+        },
+        "TRADING": {
+         "n": 577,
+         "legal": 577,
+         "valid_and_legal": 577
+        },
+        "REPLY": {
+         "n": 199,
+         "legal": 199,
+         "valid_and_legal": 199
+        },
+        "CONSIDERING": {
+         "n": 284,
+         "legal": 284,
+         "valid_and_legal": 284
+        }
+       },
+       "reasons": {}
+      },
+      "reference": {
+       "n": 1820,
+       "correct": 1480,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "correct": 202,
+         "rules": {
+          "first card placed": 209,
+          "second card without harvest": 265
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 480,
+         "correct": 416,
+         "rules": {
+          "no avoidable harvest": 477,
+          "least valuable stack lost": 419
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 577,
+         "correct": 577,
+         "rules": {
+          "keeps growing beans": 577
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 199,
+         "correct": 72,
+         "rules": {
+          "accepts iff useful": 75,
+          "keeps growing beans": 195
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 284,
+         "correct": 213,
+         "rules": {
+          "accepts iff useful": 213
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 68,
+        "useful_accepted": 68,
+        "useless": 131,
+        "useless_accepted": 124
+       },
+       "CONSIDERING": {
+        "useful": 23,
+        "useful_accepted": 23,
+        "useless": 261,
+        "useless_accepted": 71
+       },
+       "PLANTING": {
+        "n": 280,
+        "avoidable_harvest": 15
+       },
+       "FORCED": {
+        "n": 480,
+        "avoidable_harvest": 3
+       },
+       "TRADING": {
+        "n": 577,
+        "pass": 0,
+        "offers": 577,
+        "gives_own_type": 0
+       }
+      }
+     }
+    },
+    "base_grammar": {
+     "Alpha": {
+      "answers": 1334,
+      "schema_validity": {
+       "n": 1334,
+       "valid": 1316,
+       "phases": {
+        "PLANTING": {
+         "n": 285,
+         "valid": 284
+        },
+        "FORCED": {
+         "n": 323,
+         "valid": 323
+        },
+        "TRADING": {
+         "n": 406,
+         "valid": 389
+        },
+        "REPLY": {
+         "n": 201,
+         "valid": 201
+        },
+        "CONSIDERING": {
+         "n": 119,
+         "valid": 119
+        }
+       },
+       "failures": {
+        "schema:minItems": 17,
+        "schema:maxItems": 1
+       }
+      },
+      "legality": {
+       "n": 1334,
+       "legal": 1092,
+       "valid_and_legal": 1092,
+       "phases": {
+        "PLANTING": {
+         "n": 285,
+         "legal": 246,
+         "valid_and_legal": 246
+        },
+        "FORCED": {
+         "n": 323,
+         "legal": 266,
+         "valid_and_legal": 266
+        },
+        "TRADING": {
+         "n": 406,
+         "legal": 359,
+         "valid_and_legal": 359
+        },
+        "REPLY": {
+         "n": 201,
+         "legal": 135,
+         "valid_and_legal": 135
+        },
+        "CONSIDERING": {
+         "n": 119,
+         "legal": 86,
+         "valid_and_legal": 86
+        }
+       },
+       "reasons": {
+        "cards_not_held": 129,
+        "rules": 96,
+        "no_cards": 17
+       }
+      },
+      "reference": {
+       "n": 1334,
+       "correct": 316,
+       "phases": {
+        "PLANTING": {
+         "n": 285,
+         "correct": 35,
+         "rules": {
+          "first card placed": 101,
+          "second card without harvest": 64
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 323,
+         "correct": 47,
+         "rules": {
+          "no avoidable harvest": 183,
+          "least valuable stack lost": 130
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 406,
+         "correct": 215,
+         "rules": {
+          "keeps growing beans": 215
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 201,
+         "correct": 6,
+         "rules": {
+          "accepts iff useful": 36,
+          "keeps growing beans": 56
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 119,
+         "correct": 13,
+         "rules": {
+          "accepts iff useful": 13
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 36,
+        "useful_accepted": 36,
+        "useless": 99,
+        "useless_accepted": 99
+       },
+       "CONSIDERING": {
+        "useful": 11,
+        "useful_accepted": 11,
+        "useless": 75,
+        "useless_accepted": 73
+       },
+       "PLANTING": {
+        "n": 246,
+        "avoidable_harvest": 202
+       },
+       "FORCED": {
+        "n": 266,
+        "avoidable_harvest": 83
+       },
+       "TRADING": {
+        "n": 359,
+        "pass": 0,
+        "offers": 359,
+        "gives_own_type": 144
+       }
+      }
+     },
+     "Beta": {
+      "answers": 1090,
+      "schema_validity": {
+       "n": 1090,
+       "valid": 1090,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "valid": 280
+        },
+        "FORCED": {
+         "n": 280,
+         "valid": 280
+        },
+        "TRADING": {
+         "n": 280,
+         "valid": 280
+        },
+        "REPLY": {
+         "n": 250,
+         "valid": 250
+        },
+        "CONSIDERING": {
+         "n": 0,
+         "valid": 0
+        }
+       },
+       "failures": {}
+      },
+      "legality": {
+       "n": 1090,
+       "legal": 1084,
+       "valid_and_legal": 1084,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "legal": 280,
+         "valid_and_legal": 280
+        },
+        "FORCED": {
+         "n": 280,
+         "legal": 280,
+         "valid_and_legal": 280
+        },
+        "TRADING": {
+         "n": 280,
+         "legal": 280,
+         "valid_and_legal": 280
+        },
+        "REPLY": {
+         "n": 250,
+         "legal": 244,
+         "valid_and_legal": 244
+        },
+        "CONSIDERING": {
+         "n": 0,
+         "legal": 0,
+         "valid_and_legal": 0
+        }
+       },
+       "reasons": {
+        "cards_not_held": 6
+       }
+      },
+      "reference": {
+       "n": 1090,
+       "correct": 426,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "correct": 33,
+         "rules": {
+          "first card placed": 62,
+          "second card without harvest": 71
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 280,
+         "correct": 20,
+         "rules": {
+          "no avoidable harvest": 160,
+          "least valuable stack lost": 140
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 280,
+         "correct": 280,
+         "rules": {
+          "keeps growing beans": 280
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 250,
+         "correct": 93,
+         "rules": {
+          "accepts iff useful": 170,
+          "keeps growing beans": 141
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 0,
+         "correct": 0,
+         "rules": {
+          "accepts iff useful": 0
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 74,
+        "useful_accepted": 0,
+        "useless": 170,
+        "useless_accepted": 0
+       },
+       "CONSIDERING": {
+        "useful": 0,
+        "useful_accepted": 0,
+        "useless": 0,
+        "useless_accepted": 0
+       },
+       "PLANTING": {
+        "n": 280,
+        "avoidable_harvest": 243
+       },
+       "FORCED": {
+        "n": 280,
+        "avoidable_harvest": 120
+       },
+       "TRADING": {
+        "n": 280,
+        "pass": 280,
+        "offers": 0,
+        "gives_own_type": 0
+       }
+      }
+     },
+     "Gamma": {
+      "answers": 1934,
+      "schema_validity": {
+       "n": 1934,
+       "valid": 1934,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "valid": 280
+        },
+        "FORCED": {
+         "n": 298,
+         "valid": 298
+        },
+        "TRADING": {
+         "n": 718,
+         "valid": 718
+        },
+        "REPLY": {
+         "n": 228,
+         "valid": 228
+        },
+        "CONSIDERING": {
+         "n": 410,
+         "valid": 410
+        }
+       },
+       "failures": {}
+      },
+      "legality": {
+       "n": 1934,
+       "legal": 1877,
+       "valid_and_legal": 1877,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "legal": 280,
+         "valid_and_legal": 280
+        },
+        "FORCED": {
+         "n": 298,
+         "legal": 291,
+         "valid_and_legal": 291
+        },
+        "TRADING": {
+         "n": 718,
+         "legal": 718,
+         "valid_and_legal": 718
+        },
+        "REPLY": {
+         "n": 228,
+         "legal": 220,
+         "valid_and_legal": 220
+        },
+        "CONSIDERING": {
+         "n": 410,
+         "legal": 368,
+         "valid_and_legal": 368
+        }
+       },
+       "reasons": {
+        "cards_not_held": 50,
+        "rules": 7
+       }
+      },
+      "reference": {
+       "n": 1934,
+       "correct": 1088,
+       "phases": {
+        "PLANTING": {
+         "n": 280,
+         "correct": 41,
+         "rules": {
+          "first card placed": 69,
+          "second card without harvest": 69
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "FORCED": {
+         "n": 298,
+         "correct": 20,
+         "rules": {
+          "no avoidable harvest": 171,
+          "least valuable stack lost": 140
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "TRADING": {
+         "n": 718,
+         "correct": 554,
+         "rules": {
+          "keeps growing beans": 554
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "REPLY": {
+         "n": 228,
+         "correct": 130,
+         "rules": {
+          "accepts iff useful": 153,
+          "keeps growing beans": 192
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        },
+        "CONSIDERING": {
+         "n": 410,
+         "correct": 343,
+         "rules": {
+          "accepts iff useful": 343
+         },
+         "teacher": {
+          "n": 0,
+          "match": 0
+         }
+        }
+       },
+       "teacher": {
+        "n": 0,
+        "match": 0
+       }
+      },
+      "state_sensitivity": {
+       "REPLY": {
+        "useful": 66,
+        "useful_accepted": 10,
+        "useless": 154,
+        "useless_accepted": 11
+       },
+       "CONSIDERING": {
+        "useful": 25,
+        "useful_accepted": 2,
+        "useless": 343,
+        "useless_accepted": 2
+       },
+       "PLANTING": {
+        "n": 280,
+        "avoidable_harvest": 239
+       },
+       "FORCED": {
+        "n": 291,
+        "avoidable_harvest": 120
+       },
+       "TRADING": {
+        "n": 718,
+        "pass": 0,
+        "offers": 718,
+        "gives_own_type": 164
+       }
+      }
+     }
+    }
+   },
+   "agreement": {},
+   "effects": {}
+  }
+ },
+ "teacher": {
+  "state_sensitivity": {
+   "REPLY": {
+    "useful": 1155,
+    "useful_accepted": 1155,
+    "useless": 1845,
+    "useless_accepted": 754
+   },
+   "CONSIDERING": {
+    "useful": 466,
+    "useful_accepted": 466,
+    "useless": 2534,
+    "useless_accepted": 1129
+   },
+   "PLANTING": {
+    "n": 3000,
+    "avoidable_harvest": 26
+   },
+   "FORCED": {
+    "n": 3000,
+    "avoidable_harvest": 9
+   },
+   "TRADING": {
+    "n": 3000,
+    "pass": 691,
+    "offers": 2309,
+    "gives_own_type": 132
+   }
+  },
+  "reference": {
+   "n": 15000,
+   "correct": 12510,
+   "phases": {
+    "PLANTING": {
+     "n": 3000,
+     "correct": 2655,
+     "rules": {
+      "first card placed": 2665,
+      "second card without harvest": 2974
+     },
+     "teacher": {
+      "n": 0,
+      "match": 0
+     }
+    },
+    "FORCED": {
+     "n": 3000,
+     "correct": 2982,
+     "rules": {
+      "no avoidable harvest": 2991,
+      "least valuable stack lost": 2991
+     },
+     "teacher": {
+      "n": 0,
+      "match": 0
+     }
+    },
+    "TRADING": {
+     "n": 3000,
+     "correct": 2897,
+     "rules": {
+      "keeps growing beans": 2897
+     },
+     "teacher": {
+      "n": 0,
+      "match": 0
+     }
+    },
+    "REPLY": {
+     "n": 3000,
+     "correct": 2105,
+     "rules": {
+      "accepts iff useful": 2246,
+      "keeps growing beans": 2859
+     },
+     "teacher": {
+      "n": 0,
+      "match": 0
+     }
+    },
+    "CONSIDERING": {
+     "n": 3000,
+     "correct": 1871,
+     "rules": {
+      "accepts iff useful": 1871
+     },
+     "teacher": {
+      "n": 0,
+      "match": 0
+     }
+    }
+   },
+   "teacher": {
+    "n": 0,
+    "match": 0
+   }
+  }
+ },
+ "games": {
+  "base_verbose": {
+   "format": "players",
+   "players": {
+    "Alpha": {
+     "games": 30,
+     "finished": 30,
+     "coins": 1.5,
+     "coins_ci": [
+      1.1666666666666667,
+      1.8333333333333333
+     ],
+     "opponents": 2.1333333333333333,
+     "wins": 2,
+     "penalty": 1.2,
+     "by_seed": {
+      "1": 2,
+      "4": 3,
+      "7": 2,
+      "10": 3,
+      "13": 1,
+      "16": 2,
+      "19": 2,
+      "22": 2,
+      "25": 0,
+      "28": 2,
+      "2": 1,
+      "5": 3,
+      "8": 2,
+      "11": 2,
+      "14": 0,
+      "17": 1,
+      "20": 2,
+      "23": 1,
+      "26": 0,
+      "29": 1,
+      "3": 0,
+      "6": 0,
+      "9": 1,
+      "12": 3,
+      "15": 2,
+      "18": 2,
+      "21": 1,
+      "24": 1,
+      "27": 1,
+      "30": 2
+     }
+    },
+    "Beta": {
+     "games": 30,
+     "finished": 30,
+     "coins": 1.6333333333333333,
+     "coins_ci": [
+      1.2666666666666666,
+      2.0
+     ],
+     "opponents": 1.8666666666666667,
+     "wins": 5,
+     "penalty": 1.1,
+     "by_seed": {
+      "1": 3,
+      "4": 4,
+      "7": 0,
+      "10": 2,
+      "13": 1,
+      "16": 2,
+      "19": 0,
+      "22": 2,
+      "25": 2,
+      "28": 3,
+      "2": 1,
+      "5": 1,
+      "8": 2,
+      "11": 2,
+      "14": 1,
+      "17": 1,
+      "20": 2,
+      "23": 4,
+      "26": 1,
+      "29": 2,
+      "3": 0,
+      "6": 0,
+      "9": 1,
+      "12": 0,
+      "15": 2,
+      "18": 2,
+      "21": 2,
+      "24": 1,
+      "27": 3,
+      "30": 2
+     }
+    },
+    "Gamma": {
+     "games": 30,
+     "finished": 30,
+     "coins": 1.9333333333333333,
+     "coins_ci": [
+      1.5666666666666667,
+      2.3333333333333335
+     ],
+     "opponents": 1.8833333333333333,
+     "wins": 7,
+     "penalty": 2.2333333333333334,
+     "by_seed": {
+      "1": 3,
+      "4": 3,
+      "7": 2,
+      "10": 2,
+      "13": 0,
+      "16": 3,
+      "19": 1,
+      "22": 2,
+      "25": 2,
+      "28": 2,
+      "2": 1,
+      "5": 2,
+      "8": 2,
+      "11": 2,
+      "14": 2,
+      "17": 2,
+      "20": 2,
+      "23": 5,
+      "26": 0,
+      "29": 2,
+      "3": 2,
+      "6": 0,
+      "9": 2,
+      "12": 1,
+      "15": 3,
+      "18": 2,
+      "21": 4,
+      "24": 1,
+      "27": 1,
+      "30": 2
+     }
+    }
+   }
+  },
+  "lora_verbose": {
+   "format": "players",
+   "players": {
+    "Alpha": {
+     "games": 30,
+     "finished": 30,
+     "coins": 2.033333333333333,
+     "coins_ci": [
+      1.7,
+      2.3666666666666667
+     ],
+     "opponents": 2.05,
+     "wins": 7,
+     "penalty": 1.7,
+     "by_seed": {
+      "1": 3,
+      "4": 3,
+      "7": 2,
+      "10": 2,
+      "13": 0,
+      "16": 2,
+      "19": 2,
+      "22": 1,
+      "25": 2,
+      "28": 2,
+      "2": 1,
+      "5": 3,
+      "8": 3,
+      "11": 3,
+      "14": 0,
+      "17": 1,
+      "20": 3,
+      "23": 2,
+      "26": 2,
+      "29": 3,
+      "3": 4,
+      "6": 0,
+      "9": 1,
+      "12": 2,
+      "15": 2,
+      "18": 2,
+      "21": 2,
+      "24": 3,
+      "27": 2,
+      "30": 3
+     }
+    },
+    "Beta": {
+     "games": 30,
+     "finished": 30,
+     "coins": 4.633333333333334,
+     "coins_ci": [
+      4.033333333333333,
+      5.266666666666667
+     ],
+     "opponents": 2.066666666666667,
+     "wins": 20,
+     "penalty": 2.033333333333333,
+     "by_seed": {
+      "1": 4,
+      "4": 5,
+      "7": 4,
+      "10": 5,
+      "13": 5,
+      "16": 9,
+      "19": 7,
+      "22": 4,
+      "25": 8,
+      "28": 5,
+      "2": 2,
+      "5": 5,
+      "8": 6,
+      "11": 4,
+      "14": 3,
+      "17": 3,
+      "20": 7,
+      "23": 7,
+      "26": 3,
+      "29": 2,
+      "3": 3,
+      "6": 4,
+      "9": 2,
+      "12": 3,
+      "15": 6,
+      "18": 4,
+      "21": 4,
+      "24": 5,
+      "27": 4,
+      "30": 6
+     }
+    },
+    "Gamma": {
+     "games": 30,
+     "finished": 30,
+     "coins": 1.6,
+     "coins_ci": [
+      1.1333333333333333,
+      2.1333333333333333
+     ],
+     "opponents": 2.033333333333333,
+     "wins": 7,
+     "penalty": 5.9,
+     "by_seed": {
+      "1": 3,
+      "4": 2,
+      "7": 2,
+      "10": 2,
+      "13": 2,
+      "16": 1,
+      "19": 0,
+      "22": 0,
+      "25": 1,
+      "28": 4,
+      "2": 0,
+      "5": 2,
+      "8": 2,
+      "11": 4,
+      "14": 2,
+      "17": 3,
+      "20": 0,
+      "23": 4,
+      "26": 0,
+      "29": 4,
+      "3": 0,
+      "6": 1,
+      "9": 3,
+      "12": 0,
+      "15": 2,
+      "18": 2,
+      "21": 1,
+      "24": 0,
+      "27": 1,
+      "30": 0
+     }
+    }
+   }
+  },
+  "lora_compact": {
+   "format": "players",
+   "players": {
+    "Alpha": {
+     "games": 30,
+     "finished": 30,
+     "coins": 4.8,
+     "coins_ci": [
+      4.166666666666667,
+      5.367499999999995
+     ],
+     "opponents": 2.066666666666667,
+     "wins": 23,
+     "penalty": 0.6,
+     "by_seed": {
+      "1": 4,
+      "4": 6,
+      "7": 6,
+      "10": 6,
+      "13": 3,
+      "16": 2,
+      "19": 4,
+      "22": 7,
+      "25": 7,
+      "28": 2,
+      "2": 3,
+      "5": 6,
+      "8": 4,
+      "11": 4,
+      "14": 7,
+      "17": 5,
+      "20": 6,
+      "23": 6,
+      "26": 5,
+      "29": 5,
+      "3": 4,
+      "6": 5,
+      "9": 4,
+      "12": 5,
+      "15": 4,
+      "18": 8,
+      "21": 5,
+      "24": 0,
+      "27": 5,
+      "30": 6
+     }
+    },
+    "Beta": {
+     "games": 30,
+     "finished": 30,
+     "coins": 5.433333333333334,
+     "coins_ci": [
+      4.733333333333333,
+      6.2
+     ],
+     "opponents": 2.033333333333333,
+     "wins": 26,
+     "penalty": 0.3,
+     "by_seed": {
+      "1": 4,
+      "4": 7,
+      "7": 8,
+      "10": 3,
+      "13": 4,
+      "16": 6,
+      "19": 4,
+      "22": 5,
+      "25": 9,
+      "28": 4,
+      "2": 6,
+      "5": 6,
+      "8": 2,
+      "11": 6,
+      "14": 4,
+      "17": 4,
+      "20": 6,
+      "23": 7,
+      "26": 3,
+      "29": 5,
+      "3": 6,
+      "6": 6,
+      "9": 4,
+      "12": 5,
+      "15": 6,
+      "18": 11,
+      "21": 5,
+      "24": 2,
+      "27": 9,
+      "30": 6
+     }
+    },
+    "Gamma": {
+     "games": 30,
+     "finished": 30,
+     "coins": 5.6,
+     "coins_ci": [
+      4.966666666666667,
+      6.233333333333333
+     ],
+     "opponents": 2.4,
+     "wins": 22,
+     "penalty": 0.0,
+     "by_seed": {
+      "1": 4,
+      "4": 6,
+      "7": 8,
+      "10": 6,
+      "13": 7,
+      "16": 5,
+      "19": 2,
+      "22": 8,
+      "25": 6,
+      "28": 4,
+      "2": 5,
+      "5": 6,
+      "8": 7,
+      "11": 7,
+      "14": 10,
+      "17": 5,
+      "20": 4,
+      "23": 5,
+      "26": 3,
+      "29": 3,
+      "3": 4,
+      "6": 6,
+      "9": 6,
+      "12": 9,
+      "15": 6,
+      "18": 7,
+      "21": 3,
+      "24": 6,
+      "27": 6,
+      "30": 4
+     }
+    }
+   }
+  },
+  "base_grammar": {
+   "format": "players",
+   "players": {
+    "Alpha": {
+     "games": 30,
+     "finished": 30,
+     "coins": 1.9,
+     "coins_ci": [
+      1.4666666666666666,
+      2.433333333333333
+     ],
+     "opponents": 2.4,
+     "wins": 5,
+     "penalty": 6.4,
+     "by_seed": {
+      "1": 1,
+      "4": 4,
+      "7": 2,
+      "10": 3,
+      "13": 0,
+      "16": 3,
+      "19": 2,
+      "22": 2,
+      "25": 2,
+      "28": 1,
+      "2": 1,
+      "5": 3,
+      "8": 1,
+      "11": 3,
+      "14": 1,
+      "17": 2,
+      "20": 1,
+      "23": 3,
+      "26": 1,
+      "29": 3,
+      "3": 0,
+      "6": 0,
+      "9": 1,
+      "12": 2,
+      "15": 6,
+      "18": 1,
+      "21": 0,
+      "24": 3,
+      "27": 3,
+      "30": 2
+     }
+    },
+    "Beta": {
+     "games": 30,
+     "finished": 30,
+     "coins": 2.533333333333333,
+     "coins_ci": [
+      2.066666666666667,
+      3.066666666666667
+     ],
+     "opponents": 1.9166666666666667,
+     "wins": 13,
+     "penalty": 0.2,
+     "by_seed": {
+      "1": 4,
+      "4": 3,
+      "7": 3,
+      "10": 1,
+      "13": 1,
+      "16": 3,
+      "19": 3,
+      "22": 3,
+      "25": 3,
+      "28": 4,
+      "2": 2,
+      "5": 2,
+      "8": 7,
+      "11": 3,
+      "14": 3,
+      "17": 3,
+      "20": 2,
+      "23": 4,
+      "26": 2,
+      "29": 2,
+      "3": 1,
+      "6": 1,
+      "9": 1,
+      "12": 1,
+      "15": 5,
+      "18": 3,
+      "21": 2,
+      "24": 1,
+      "27": 1,
+      "30": 2
+     }
+    },
+    "Gamma": {
+     "games": 30,
+     "finished": 30,
+     "coins": 2.5,
+     "coins_ci": [
+      2.1,
+      2.933333333333333
+     ],
+     "opponents": 1.8666666666666667,
+     "wins": 12,
+     "penalty": 0.4666666666666667,
+     "by_seed": {
+      "1": 4,
+      "4": 3,
+      "7": 3,
+      "10": 1,
+      "13": 2,
+      "16": 3,
+      "19": 2,
+      "22": 3,
+      "25": 4,
+      "28": 2,
+      "2": 2,
+      "5": 3,
+      "8": 5,
+      "11": 2,
+      "14": 3,
+      "17": 2,
+      "20": 2,
+      "23": 4,
+      "26": 2,
+      "29": 3,
+      "3": 0,
+      "6": 1,
+      "9": 1,
+      "12": 1,
+      "15": 5,
+      "18": 3,
+      "21": 2,
+      "24": 4,
+      "27": 1,
+      "30": 2
+     }
+    }
+   }
+  },
+  "bot_random": {
+   "format": "players",
+   "players": {
+    "bot_random": {
+     "games": 30,
+     "finished": 30,
+     "coins": 2.4,
+     "coins_ci": [
+      2.033333333333333,
+      2.8
+     ],
+     "opponents": 1.9666666666666666,
+     "wins": 11,
+     "penalty": 0.0,
+     "by_seed": {
+      "1": 3,
+      "4": 5,
+      "7": 2,
+      "10": 3,
+      "13": 1,
+      "16": 4,
+      "19": 2,
+      "22": 2,
+      "25": 3,
+      "28": 2,
+      "2": 2,
+      "5": 3,
+      "8": 3,
+      "11": 2,
+      "14": 4,
+      "17": 2,
+      "20": 3,
+      "23": 4,
+      "26": 3,
+      "29": 2,
+      "3": 0,
+      "6": 1,
+      "9": 1,
+      "12": 2,
+      "15": 4,
+      "18": 3,
+      "21": 2,
+      "24": 1,
+      "27": 1,
+      "30": 2
+     }
+    }
+   }
+  },
+  "bot_reference": {
+   "format": "players",
+   "players": {
+    "bot_reference": {
+     "games": 30,
+     "finished": 30,
+     "coins": 5.566666666666666,
+     "coins_ci": [
+      5.0,
+      6.134166666666663
+     ],
+     "opponents": 2.2666666666666666,
+     "wins": 25,
+     "penalty": 0.0,
+     "by_seed": {
+      "1": 6,
+      "4": 4,
+      "7": 5,
+      "10": 7,
+      "13": 7,
+      "16": 5,
+      "19": 5,
+      "22": 5,
+      "25": 6,
+      "28": 10,
+      "2": 2,
+      "5": 5,
+      "8": 9,
+      "11": 7,
+      "14": 4,
+      "17": 6,
+      "20": 5,
+      "23": 4,
+      "26": 5,
+      "29": 6,
+      "3": 7,
+      "6": 5,
+      "9": 3,
+      "12": 6,
+      "15": 7,
+      "18": 5,
+      "21": 5,
+      "24": 6,
+      "27": 3,
+      "30": 7
+     }
+    }
+   }
+  }
+ },
+ "game_comparisons": [
+  {
+   "condition": "base_verbose",
+   "player": "Alpha",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -4.066666666666666,
+     "ci": [
+      -4.7,
+      -3.4991666666666714
+     ],
+     "p": 1.5420773746302326e-06,
+     "holm": 2.5566314538689655e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": -0.9,
+     "ci": [
+      -1.3333333333333333,
+      -0.5
+     ],
+     "p": 0.0005699485103485257,
+     "holm": 0.0056994851034852575
+    }
+   }
+  },
+  {
+   "condition": "base_verbose",
+   "player": "Beta",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.933333333333333,
+     "ci": [
+      -4.600833333333333,
+      -3.2
+     ],
+     "p": 4.8230969780691715e-06,
+     "holm": 3.456717418980259e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": -0.7666666666666667,
+     "ci": [
+      -1.1666666666666667,
+      -0.3991666666666712
+     ],
+     "p": 0.001953378598272788,
+     "holm": 0.017580407384455092
+    }
+   }
+  },
+  {
+   "condition": "base_verbose",
+   "player": "Gamma",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.6333333333333333,
+     "ci": [
+      -4.333333333333333,
+      -2.9
+     ],
+     "p": 2.1262672309876415e-06,
+     "holm": 2.5566314538689655e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": -0.4666666666666667,
+     "ci": [
+      -0.8666666666666667,
+      -0.1
+     ],
+     "p": 0.033654209299018946,
+     "holm": 0.23557946509313263
+    }
+   }
+  },
+  {
+   "condition": "lora_verbose",
+   "player": "Alpha",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.533333333333333,
+     "ci": [
+      -4.133333333333334,
+      -2.966666666666667
+     ],
+     "p": 1.5039008552170386e-06,
+     "holm": 2.5566314538689655e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": -0.36666666666666664,
+     "ci": [
+      -0.8666666666666667,
+      0.13333333333333333
+     ],
+     "p": 0.10870673499842895,
+     "holm": 0.4348269399937158
+    }
+   }
+  },
+  {
+   "condition": "lora_verbose",
+   "player": "Beta",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -0.9333333333333333,
+     "ci": [
+      -1.6666666666666667,
+      -0.16666666666666666
+     ],
+     "p": 0.030283346322507575,
+     "holm": 0.15141673161253788
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": 2.2333333333333334,
+     "ci": [
+      1.6666666666666667,
+      2.8
+     ],
+     "p": 1.1163289737432981e-05,
+     "holm": 0.00014512276658662875
+    }
+   }
+  },
+  {
+   "condition": "lora_verbose",
+   "player": "Gamma",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.966666666666667,
+     "ci": [
+      -4.6,
+      -3.3
+     ],
+     "p": 3.394379170647713e-06,
+     "holm": 3.456717418980259e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": -0.8,
+     "ci": [
+      -1.3666666666666667,
+      -0.23333333333333334
+     ],
+     "p": 0.015572353652959368,
+     "holm": 0.12457882922367494
+    }
+   }
+  },
+  {
+   "condition": "lora_compact",
+   "player": "Alpha",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -0.7666666666666667,
+     "ci": [
+      -1.7333333333333334,
+      0.13333333333333333
+     ],
+     "p": 0.233269280145597,
+     "holm": 0.933077120582388
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": 2.4,
+     "ci": [
+      1.8,
+      3.0
+     ],
+     "p": 1.129049978594331e-05,
+     "holm": 0.00014512276658662875
+    }
+   }
+  },
+  {
+   "condition": "lora_compact",
+   "player": "Beta",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -0.13333333333333333,
+     "ci": [
+      -1.2333333333333334,
+      0.9333333333333333
+     ],
+     "p": 0.7612664985777589,
+     "holm": 1.0
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": 3.033333333333333,
+     "ci": [
+      2.2666666666666666,
+      3.8666666666666667
+     ],
+     "p": 6.179489573949815e-06,
+     "holm": 9.109928191621049e-05
+    }
+   }
+  },
+  {
+   "condition": "lora_compact",
+   "player": "Gamma",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": 0.03333333333333333,
+     "ci": [
+      -0.9,
+      0.9333333333333333
+     ],
+     "p": 0.870241086549831,
+     "holm": 1.0
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": 3.2,
+     "ci": [
+      2.466666666666667,
+      3.9
+     ],
+     "p": 3.4879251180572407e-06,
+     "holm": 5.580680188891585e-05
+    }
+   }
+  },
+  {
+   "condition": "base_grammar",
+   "player": "Alpha",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.6666666666666665,
+     "ci": [
+      -4.466666666666667,
+      -2.9
+     ],
+     "p": 3.4270076617458148e-06,
+     "holm": 3.456717418980259e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": -0.5,
+     "ci": [
+      -0.9666666666666667,
+      -0.06666666666666667
+     ],
+     "p": 0.06058954304338066,
+     "holm": 0.30294771521690333
+    }
+   }
+  },
+  {
+   "condition": "base_grammar",
+   "player": "Beta",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.033333333333333,
+     "ci": [
+      -3.6341666666666668,
+      -2.433333333333333
+     ],
+     "p": 3.2278581206595072e-06,
+     "holm": 3.456717418980259e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": 0.13333333333333333,
+     "ci": [
+      -0.26666666666666666,
+      0.5666666666666667
+     ],
+     "p": 0.6949637052268565,
+     "holm": 1.0
+    }
+   }
+  },
+  {
+   "condition": "base_grammar",
+   "player": "Gamma",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.066666666666667,
+     "ci": [
+      -3.7666666666666666,
+      -2.4
+     ],
+     "p": 3.142470380891145e-06,
+     "holm": 3.456717418980259e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": 0.1,
+     "ci": [
+      -0.26666666666666666,
+      0.43416666666666215
+     ],
+     "p": 0.6832023366507505,
+     "holm": 1.0
+    }
+   }
+  },
+  {
+   "condition": "bot_random",
+   "player": "bot_random",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.1666666666666665,
+     "ci": [
+      -3.9,
+      -2.433333333333333
+     ],
+     "p": 6.073285461080699e-06,
+     "holm": 3.6439712766484196e-05
+    },
+    "bot_random": null
+   }
+  },
+  {
+   "condition": "bot_reference",
+   "player": "bot_reference",
+   "vs": {
+    "bot_reference": null,
+    "bot_random": {
+     "n": 30,
+     "delta": 3.1666666666666665,
+     "ci": [
+      2.433333333333333,
+      3.9
+     ],
+     "p": 6.073285461080699e-06,
+     "holm": 9.109928191621049e-05
+    }
+   }
+  },
+  {
+   "condition": "base_verbose",
+   "player": "all models",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.8777777777777778,
+     "ci": [
+      -4.51111111111111,
+      -3.244444444444445
+     ],
+     "p": 1.6869333328939244e-06,
+     "holm": 2.5566314538689655e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": -0.711111111111111,
+     "ci": [
+      -1.0444444444444445,
+      -0.4111111111111111
+     ],
+     "p": 0.0002563527118034817,
+     "holm": 0.0028198798298382987
+    }
+   }
+  },
+  {
+   "condition": "lora_verbose",
+   "player": "all models",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -2.811111111111111,
+     "ci": [
+      -3.344444444444444,
+      -2.2777777777777777
+     ],
+     "p": 1.8982593306757239e-06,
+     "holm": 2.5566314538689655e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": 0.3555555555555555,
+     "ci": [
+      -0.033333333333333284,
+      0.7
+     ],
+     "p": 0.03672534367629948,
+     "holm": 0.23557946509313263
+    }
+   }
+  },
+  {
+   "condition": "lora_compact",
+   "player": "all models",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -0.2888888888888889,
+     "ci": [
+      -1.1888888888888889,
+      0.5777777777777777
+     ],
+     "p": 0.7032420950297082,
+     "holm": 1.0
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": 2.8777777777777773,
+     "ci": [
+      2.3441666666666663,
+      3.4444444444444446
+     ],
+     "p": 1.711606992411454e-06,
+     "holm": 2.909731887099472e-05
+    }
+   }
+  },
+  {
+   "condition": "base_grammar",
+   "player": "all models",
+   "vs": {
+    "bot_reference": {
+     "n": 30,
+     "delta": -3.255555555555555,
+     "ci": [
+      -3.877777777777778,
+      -2.622222222222222
+     ],
+     "p": 1.7235135468062213e-06,
+     "holm": 2.5566314538689655e-05
+    },
+    "bot_random": {
+     "n": 30,
+     "delta": -0.08888888888888889,
+     "ci": [
+      -0.4002777777777779,
+      0.18888888888888883
+     ],
+     "p": 0.5439420762442484,
+     "holm": 1.0
+    }
+   }
+  }
+ ]
+}

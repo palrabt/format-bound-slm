@@ -1,0 +1,41 @@
+{
+  "adapter": "tinyllama-1.1b-fp32-bs4-seq768_synct15k_llm_alllinear_r32_lora",
+  "base_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "epochs": 2.0,
+  "batch_size": 4,
+  "seq_len": 768,
+  "dtype": "torch.float32",
+  "lora": {
+    "r": 32,
+    "alpha": 64,
+    "dropout": 0.05,
+    "target_modules": [
+      "down_proj",
+      "gate_proj",
+      "k_proj",
+      "o_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ],
+    "trainable_parameters": 25231360
+  },
+  "training": {
+    "learning_rate": 0.0001,
+    "lr_scheduler": "cosine",
+    "warmup_ratio": 0.05,
+    "gradient_accumulation_steps": 16,
+    "effective_batch_size": 64,
+    "bf16_mixed_precision": true,
+    "optimizer_steps": 422
+  },
+  "train_file": "../corpus/training_data_synct_15000_llm.txt",
+  "train_sequences": 13500,
+  "eval_sequences": 1500,
+  "split_seed": 0,
+  "logging_steps": 50,
+  "eval_steps": 200,
+  "logged_points": 62,
+  "final_train_loss": 0.3178,
+  "final_eval_loss": 0.34023478627204895
+}

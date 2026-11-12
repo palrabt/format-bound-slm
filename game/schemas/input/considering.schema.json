@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ConsideringInput",
+  "description": "The player you made an offer to has answered. You see what you offered and your message, what they offer in return and their message, who they are (\"0\" or \"1\"), your hand, new cards and fields, their fields, and your penalty points.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "phase",
+    "my_offers",
+    "my_reason",
+    "their_offers",
+    "their_reason",
+    "from_player",
+    "hand",
+    "new_cards",
+    "my_fields",
+    "penalty",
+    "their_fields"
+  ],
+  "properties": {
+    "phase": {
+      "const": "CONSIDERING"
+    },
+    "my_offers": {
+      "$ref": "#/definitions/cards"
+    },
+    "my_reason": {
+      "type": "string"
+    },
+    "their_offers": {
+      "$ref": "#/definitions/cards"
+    },
+    "their_reason": {
+      "type": "string"
+    },
+    "from_player": {
+      "$ref": "#/definitions/peer"
+    },
+    "hand": {
+      "$ref": "#/definitions/cards"
+    },
+    "new_cards": {
+      "$ref": "#/definitions/cards"
+    },
+    "my_fields": {
+      "$ref": "#/definitions/fields"
+    },
+    "penalty": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "their_fields": {
+      "$ref": "#/definitions/fields"
+    }
+  },
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cards",
+        "value"
+      ],
+      "properties": {
+        "cards": {
+          "$ref": "#/definitions/cards",
+          "description": "The beans in the field, all of one type."
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Coins the field would pay if harvested now."
+        }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field1",
+        "field2",
+        "field3"
+      ],
+      "properties": {
+        "field1": {
+          "$ref": "#/definitions/field"
+        },
+        "field2": {
+          "$ref": "#/definitions/field"
+        },
+        "field3": {
+          "$ref": "#/definitions/field"
+        }
+      }
+    },
+    "peer": {
+      "type": "string",
+      "enum": [
+        "0",
+        "1"
+      ],
+      "description": "One of the two other players."
+    }
+  }
+}

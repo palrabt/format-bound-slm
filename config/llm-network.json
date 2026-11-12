@@ -1,0 +1,4 @@
+{
+  "default_ollama_model": "llama3.2",
+  "default_gguf": "artifacts/tinyllama-1.1b-chat-v1.0.gguf"
+}

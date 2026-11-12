@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PlantingAction",
+  "description": "Choose where to plant the first card of your hand, and optionally the second. A field holds one bean type. Planting a different bean harvests the field first: its cards go back for coins, and a short stack earns nothing. An empty field or one with the same bean keeps your progress.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "field1",
+    "field2",
+    "field3"
+  ],
+  "properties": {
+    "field1": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      },
+      "maxItems": 2
+    },
+    "field2": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      },
+      "maxItems": 2
+    },
+    "field3": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      },
+      "maxItems": 2
+    }
+  },
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    }
+  }
+}

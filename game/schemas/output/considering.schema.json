@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ConsideringReply",
+  "description": "Decide on the other player's answer: accept to complete the trade, or reject, optionally proposing other cards, with a short message.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "accepted",
+    "offer",
+    "reason"
+  ],
+  "properties": {
+    "accepted": {
+      "type": "boolean"
+    },
+    "offer": {
+      "$ref": "#/definitions/cards",
+      "description": "Other cards you would give instead; [] for none."
+    },
+    "reason": {
+      "type": "string",
+      "description": "One short sentence to the other player: whether you take their offer, and what you would rather have instead."
+    }
+  },
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    }
+  }
+}

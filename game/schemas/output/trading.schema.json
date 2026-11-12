@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TradeOffer",
+  "description": "Offer cards to one other player. If no trade is worthwhile, answer null or {\"offered_cards\": [], \"to\": \"\", \"ask\": \"\"}. offered_cards come from your hand or new cards, to names the player (\"0\"/\"1\", or their address when the prompt shows addresses), and ask is a short message to them.",
+  "anyOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "offered_cards",
+        "to",
+        "ask"
+      ],
+      "properties": {
+        "offered_cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/card"
+          },
+          "minItems": 1
+        },
+        "to": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/peer"
+            },
+            {
+              "$ref": "#/definitions/address"
+            }
+          ]
+        },
+        "ask": {
+          "type": "string",
+          "description": "One short sentence to that player: which beans you want in return and why your offer is worth it."
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "offered_cards",
+        "to",
+        "ask"
+      ],
+      "properties": {
+        "offered_cards": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "to": {
+          "const": ""
+        },
+        "ask": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "type": "null"
+    }
+  ],
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "peer": {
+      "type": "string",
+      "enum": [
+        "0",
+        "1"
+      ],
+      "description": "One of the two other players."
+    },
+    "address": {
+      "type": "string",
+      "pattern": "^(https?://.*|\\d{1,3}(\\.\\d{1,3}){3}(:\\d+)?)$"
+    }
+  }
+}

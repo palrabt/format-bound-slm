@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OfferReply",
+  "description": "Answer an offer: accept or reject the offered cards, optionally offering cards of your own in return, with a short message to the other player. Consider what they ask for in asking_for.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "accepted",
+    "offer",
+    "reason"
+  ],
+  "properties": {
+    "accepted": {
+      "type": "boolean"
+    },
+    "offer": {
+      "$ref": "#/definitions/cards",
+      "description": "Cards from your hand that you give in return; [] for none. The offered cards are not yours yet, so you cannot give them back. If you accept, these are what you give in exchange; if you reject, they are your counter-offer"
+    },
+    "reason": {
+      "type": "string",
+      "description": "One short sentence to the other player: why you accept or reject, and which beans you want from them instead."
+    }
+  },
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# LoRA training stack. Install on the training machine:
+#   pip install -r training/requirements.txt
+#
+# jinja2 is NOT pulled in by transformers, but apply_chat_template needs it to
+# render each model's chat template — without it training dies on the first
+# corpus entry, after the base model has already been downloaded.
+torch
+transformers>=4.41          # `eval_strategy`; the old `evaluation_strategy` was removed in 4.46
+peft
+datasets
+jinja2>=3.1.0
+accelerate
+
+# Tested versions. Main study (LFM2.5, Granite 4.2, Gemma 4; Gemma 4 needs transformers 5.6):
+#   torch 2.9.0+cu128, transformers 5.6.2, peft 0.21.2, datasets 5.1.0, accelerate 1.15.0, jinja2 3.1.6
+# Earlier generation (TinyLlama, Qwen2.5, Gemma-2B):
+#   torch 2.9.0, transformers 4.57.1, peft 0.17.1, accelerate 1.11.0

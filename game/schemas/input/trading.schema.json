@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TradingInput",
+  "description": "You may offer cards to one of the two other players. You see your new cards and your hand (you can offer from both), your fields, coins and penalty points, what you already offered this turn, the other player's counter-offer and their reason for turning your offer down, and the fields of both other players, keyed \"0\" and \"1\".",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "phase",
+    "new_cards",
+    "hand",
+    "fields",
+    "coins",
+    "penalty",
+    "previous_offers",
+    "counter_offer",
+    "reason",
+    "other_players"
+  ],
+  "properties": {
+    "phase": {
+      "const": "TRADING"
+    },
+    "new_cards": {
+      "$ref": "#/definitions/cards"
+    },
+    "hand": {
+      "$ref": "#/definitions/cards"
+    },
+    "fields": {
+      "$ref": "#/definitions/fields"
+    },
+    "coins": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "penalty": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "previous_offers": {
+      "$ref": "#/definitions/cards",
+      "description": "Cards you already offered this turn. These cards must be in your hand or among the new_cards"
+    },
+    "counter_offer": {
+      "$ref": "#/definitions/cards",
+      "description": "Cards the other player offered back."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The other player's reason for turning your last offer down."
+    },
+    "other_players": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "0",
+        "1"
+      ],
+      "properties": {
+        "0": {
+          "$ref": "#/definitions/fields"
+        },
+        "1": {
+          "$ref": "#/definitions/fields"
+        }
+      },
+      "description": "The fields of the two other players."
+    }
+  },
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cards",
+        "value"
+      ],
+      "properties": {
+        "cards": {
+          "$ref": "#/definitions/cards",
+          "description": "The beans in the field, all of one type."
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Coins the field would pay if harvested now."
+        }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field1",
+        "field2",
+        "field3"
+      ],
+      "properties": {
+        "field1": {
+          "$ref": "#/definitions/field"
+        },
+        "field2": {
+          "$ref": "#/definitions/field"
+        },
+        "field3": {
+          "$ref": "#/definitions/field"
+        }
+      }
+    }
+  }
+}

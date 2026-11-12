@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ForcedInput",
+  "description": "Cards you must plant now: new_cards are the cards you drew or received in a trade, and every one of them has to go into a field. You also see your fields, your coins and your penalty points.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "phase",
+    "new_cards",
+    "fields",
+    "coins",
+    "penalty"
+  ],
+  "properties": {
+    "phase": {
+      "const": "FORCED"
+    },
+    "new_cards": {
+      "$ref": "#/definitions/cards"
+    },
+    "fields": {
+      "$ref": "#/definitions/fields"
+    },
+    "coins": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "penalty": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "definitions": {
+    "card": {
+      "type": "string",
+      "enum": [
+        "Black-eyed Bean",
+        "Blue Bean",
+        "Broad Bean",
+        "Chili Bean",
+        "Coffee Bean",
+        "Fire Bean",
+        "Garden Bean",
+        "Red Bean",
+        "Runner Bean",
+        "Soy Bean",
+        "Wax Bean"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/card"
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cards",
+        "value"
+      ],
+      "properties": {
+        "cards": {
+          "$ref": "#/definitions/cards",
+          "description": "The beans in the field, all of one type."
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Coins the field would pay if harvested now."
+        }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field1",
+        "field2",
+        "field3"
+      ],
+      "properties": {
+        "field1": {
+          "$ref": "#/definitions/field"
+        },
+        "field2": {
+          "$ref": "#/definitions/field"
+        },
+        "field3": {
+          "$ref": "#/definitions/field"
+        }
+      }
+    }
+  }
+}

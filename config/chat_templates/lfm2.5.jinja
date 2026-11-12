@@ -1,0 +1,14 @@
+{{- bos_token -}}
+{%- set loop_messages = messages -%}
+{%- if messages[0]['role'] == 'system' -%}
+    {%- if messages[0]['content'] -%}
+        {{- '<|im_start|>system\n' + messages[0]['content'] + '<|im_end|>\n' -}}
+    {%- endif -%}
+    {%- set loop_messages = messages[1:] -%}
+{%- endif -%}
+{%- for message in loop_messages -%}
+    {{- '<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>\n' -}}
+{%- endfor -%}
+{%- if add_generation_prompt -%}
+    {{- '<|im_start|>assistant\n' -}}
+{%- endif -%}
