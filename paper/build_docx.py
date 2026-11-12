@@ -173,10 +173,16 @@ def ieee_reference(e: dict) -> str:
         url = re.sub(r"\\url\{(.*)\}", r"\1", e.get("howpublished", ""))
         return (f"{authors}, “{title},” {year}. [Online]. Available: {url} "
                 f"(accessed {date.today():%d %B %Y}).")
-    if e["kind"] == "inproceedings":
-        venue = VENUES.get(e.get("booktitle", ""), e.get("booktitle", ""))
-        note = f", {e['note']}" if e.get("note") else ""
-        return f"{authors}, “{title},” in {venue}, {year}{note}."
+    if e["kind"] == "inproceedings":  # Pollack: Conference, City, Country, day–day Month year, pages
+        parts = [f"in {VENUES.get(e.get('booktitle', ''), e.get('booktitle', ''))}"]
+        if e.get("address"):
+            parts.append(e["address"])
+        parts.append(event_dates(e["eventdate"]) if e.get("eventdate") else year)
+        if e.get("pages"):
+            parts.append(f"pp. {_latex(e['pages'])}")
+        if e.get("note"):
+            parts.append(e["note"])
+        return f"{authors}, “{title},” {', '.join(parts)}."
     journal = e.get("journal", "")
     arxiv = re.fullmatch(r"arXiv preprint (arXiv:\S+)", journal)
     if arxiv:
@@ -186,13 +192,35 @@ def ieee_reference(e: dict) -> str:
     return f"{authors}, “{title},” {journal}{vol}{pages}, {year}."
 
 
+def event_dates(field: str) -> str:
+    """biblatex eventdate → Pollack's day–day Month year: 2024-11-12/2024-11-16 → 12–16 November 2024."""
+    start, _, end = field.partition("/")
+    a = date.fromisoformat(start)
+    b = date.fromisoformat(end) if end else a
+    if a == b:
+        return f"{a.day} {a:%B %Y}"
+    if (a.year, a.month) == (b.year, b.month):
+        return f"{a.day}–{b.day} {b:%B %Y}"
+    if a.year == b.year:
+        return f"{a.day} {a:%B} – {b.day} {b:%B %Y}"
+    return f"{a.day} {a:%B %Y} – {b.day} {b:%B %Y}"
+
+
+NO_PAGES = {"Proceedings of ICLR", "NeurIPS Datasets and Benchmarks Track"}  # proceedings without page numbers
+
+
 def incomplete(e: dict) -> list[str]:
     """What Pollack's reference rules ask for that the entry lacks."""
     gaps = []
     if "others" in e["author"]:
         gaps.append("all author names")
     if e["kind"] == "inproceedings":
-        gaps.append("city, country, dates and pages of the conference")
+        if not e.get("address"):
+            gaps.append("city and country")
+        if not e.get("eventdate"):
+            gaps.append("dates")
+        if not e.get("pages") and e.get("booktitle") not in NO_PAGES:
+            gaps.append("pages")
     return gaps
 
 
