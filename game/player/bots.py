@@ -1,7 +1,7 @@
 """Rule-based players: the opponents and baselines of the tournament.
 
 A bot answers the same five calls as llm.py and human.py (state.decision_module picks it by
-llm.type): "bot_reference" plays the reference rules of eval/reference.py — the training teacher's
+llm.type): "bot_reference" plays the reference rules below — the adapters' teacher, an earlier teacher's
 deterministic rules with its random parts replaced by value rules — and "bot_random" plays a
 uniformly random legal move, the floor. A bot needs no LLM server and writes no LLM log.
 
@@ -57,7 +57,7 @@ def llm_log_path() -> str:
 
 
 class Reference:
-    """The reference rules (eval/reference.py), deterministic."""
+    """The reference rules (the module docstring), deterministic: the adapters' teacher."""
 
     llm_log_path = staticmethod(llm_log_path)
 

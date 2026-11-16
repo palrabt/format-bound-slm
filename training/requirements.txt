@@ -11,7 +11,5 @@ datasets
 jinja2>=3.1.0
 accelerate
 
-# Tested versions. Main study (LFM2.5, Granite 4.2, Gemma 4; Gemma 4 needs transformers 5.6):
+# Tested versions (Gemma 4 needs transformers 5.6):
 #   torch 2.9.0+cu128, transformers 5.6.2, peft 0.21.2, datasets 5.1.0, accelerate 1.15.0, jinja2 3.1.6
-# Earlier generation (TinyLlama, Qwen2.5, Gemma-2B):
-#   torch 2.9.0, transformers 4.57.1, peft 0.17.1, accelerate 1.11.0

@@ -15,8 +15,8 @@ after the config's "adapters":
     artifacts/<name>/<name>_<adapters>.gguf      what replay.py and tournament.py load
 
 A model whose .gguf already exists is skipped — delete it, or name a new set in "adapters", to
-train again. Building a corpus is separate: training/generate_data/synth.py (and llm_text.py for
-varied wording). Needs: pip install -r training/requirements.txt.
+train again. Building a corpus is separate: training/generate_data/bot_corpus.py. Needs:
+pip install -r training/requirements.txt.
 """
 
 import os

@@ -4,7 +4,8 @@ All conditions of a replay answer the same items, so an effect is a paired diffe
 of items where an outcome holds in one condition minus another, for one model —
     adapter effect   lora_<prompt> − base_<prompt>, for each prompt style
     prompt effect    <prompt> − verbose, for each of base model and adapter
-for three outcomes: schema-valid (valid@1), legal, and reference-correct (reference.py). Each
+for four outcomes: schema-valid (valid@1), legal, valid play (valid_play.py) and reference-correct
+(reference.py). Each
 difference comes with a 95% paired-bootstrap interval (resampling items), the exact McNemar p of
 the items where the two conditions disagree, and that p Holm-adjusted over its table (one family:
 one outcome, one slice, all models and contrasts).
@@ -13,7 +14,7 @@ one outcome, one slice, all models and contrasts).
 from eval.stats import holm, mcnemar, paired_bootstrap
 from eval.tables import markdown, pct
 
-OUTCOMES = ("schema-valid", "legal", "reference-correct")
+OUTCOMES = ("schema-valid", "legal", "valid-play", "reference-correct")
 BASELINE_PROMPT = "verbose"
 
 

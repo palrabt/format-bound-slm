@@ -8,7 +8,9 @@
 Metrics, one file each in eval/:
     schema_validity.py    the whole answer matches the message type's JSON schema (valid@1)
     legality.py           the game would carry out the answer as written
-    reference.py          the decision a value-aware rule set makes; the teacher's own answer
+    valid_play.py         the answer keeps every rule the teacher plays by
+    reference.py          the answer makes the decision the reference bot, the adapters' teacher, makes
+                          in the same state
     state_sensitivity.py  the decision depends on the state; the teacher's decisions as reference
     agreement.py          the same item gets the same decision across conditions and runs
     effects.py            adapter and prompt effects on paired items, with intervals and tests (stats.py)
@@ -45,7 +47,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 import tournament as T  # noqa: E402  (the experiment config)
 from eval import (agreement, corpus, effects, game_outcomes, legality, reference,  # noqa: E402
-                  schema_validity, state_sensitivity)
+                  schema_validity, state_sensitivity, valid_play)
 from eval.stats import mcnemar  # noqa: E402
 from eval.tables import ci, markdown, pct  # noqa: E402
 
@@ -161,8 +163,8 @@ def answer_files(cond_dir: Path, identity: str) -> list[Path]:
 
 
 def replay_items(run: Run) -> dict[str, dict]:
-    """The replay corpus's items, keyed by state: id, slice, the peers the prompts showed, and for
-    held-out training states the teacher's answer."""
+    """The replay corpus's items, keyed by state: id, slice and the peers the prompts showed. (The
+    training slice's items also carry the earlier teacher's answers, which nothing here uses.)"""
     path = REPO_ROOT / run.experiment.get("replay", {}).get("corpus", T.EXPERIMENT["replay"]["corpus"])
     if run.kind != "replay" or not path.exists():
         return {}
@@ -173,8 +175,7 @@ def replay_items(run: Run) -> dict[str, dict]:
 # ── Scoring ────────────────────────────────────────────────────────────────────
 
 def score_answers(entries, player: Player, items: dict, kind: str) -> list[dict]:
-    """Per answer: its item and slice, schema failure, legality verdict, reference check and teacher
-    match."""
+    """Per answer: its item and slice, schema failure, legality verdict, valid play and reference check."""
     answers, seen, previous = [], Counter(), None
     for e in entries:
         key = corpus.state_key(e.state)
@@ -189,13 +190,10 @@ def score_answers(entries, player: Player, items: dict, kind: str) -> list[dict]
         else:
             seen[key] += 1
             slice_, item_key = ("games" if kind == "tournament" else "unmatched"), f"{key}#{seen[key]}"
-        teacher_match = None
-        if item and item.get("teacher"):
-            taught = legality.check(e.state, item["teacher"], TEACHER_STYLE, peers)
-            teacher_match = verdict.decision is not None and verdict.decision == taught.decision
         answers.append({"state": e.state, "peers": peers, "phase": e.phase, "item": item_key, "slice": slice_,
                         "schema": schema_validity.check(e.phase, e.raw), "verdict": verdict,
-                        "reference": reference.check(e.state, verdict), "teacher_match": teacher_match})
+                        "valid_play": valid_play.check(e.state, verdict),
+                        "reference": reference.check(e.state, peers, verdict)})
     return answers
 
 
@@ -206,7 +204,8 @@ def summaries(answers: list[dict]) -> dict:
         "answers": len(answers),
         "schema_validity": schema_validity.summarize([(a["phase"], a["schema"]) for a in answers]),
         "legality": legality.summarize([(a["phase"], a["verdict"], a["schema"] is None) for a in answers]),
-        "reference": reference.summarize([(a["phase"], a["reference"], a["teacher_match"]) for a in answers]),
+        "valid_play": valid_play.summarize([(a["phase"], a["valid_play"]) for a in answers]),
+        "reference": reference.summarize([(a["phase"], a["reference"]) for a in answers]),
         "state_sensitivity": state_sensitivity.summarize(
             [(a["phase"], state_sensitivity.facts(a["state"], a["verdict"].message)) for a in legal]),
     }
@@ -216,18 +215,21 @@ def outcomes(answers: list[dict]) -> dict[str, dict[str, bool]]:
     """Per outcome, {item: holds?} — what effects.py and run-vs-run tests pair on."""
     return {"schema-valid": {a["item"]: a["schema"] is None for a in answers},
             "legal": {a["item"]: a["verdict"].legal for a in answers},
-            "reference-correct": {a["item"]: a["reference"]["correct"] for a in answers}}
+            "valid-play": {a["item"]: a["valid_play"]["valid"] for a in answers},
+            "reference-correct": {a["item"]: a["reference"] for a in answers}}
 
 
 def teacher_rows(corpus_path: Path) -> dict:
-    """State sensitivity and reference decisions of the training corpus's own answers."""
-    sensitivity, ref = [], []
+    """State sensitivity, valid play and reference-correctness of the training corpus's own answers."""
+    sensitivity, ref, valid = [], [], []
     for e in corpus.read(corpus_path):
         verdict = legality.check(e.state, e.raw, TEACHER_STYLE, TEACHER_PEERS)
-        ref.append((e.phase, reference.check(e.state, verdict), None))
+        ref.append((e.phase, reference.check(e.state, TEACHER_PEERS, verdict)))
+        valid.append((e.phase, valid_play.check(e.state, verdict)))
         if verdict.legal:
             sensitivity.append((e.phase, state_sensitivity.facts(e.state, verdict.message)))
-    return {"state_sensitivity": state_sensitivity.summarize(sensitivity), "reference": reference.summarize(ref)}
+    return {"state_sensitivity": state_sensitivity.summarize(sensitivity), "valid_play": valid_play.summarize(valid),
+            "reference": reference.summarize(ref)}
 
 
 # ── Report ─────────────────────────────────────────────────────────────────────
@@ -242,11 +244,12 @@ def _section(module) -> list[str]:
 def headline(s: dict) -> dict:
     """One model's headline numbers in one condition: a share as (part, whole), the accept gap in
     points (REPLY and CONSIDERING pooled)."""
-    sv, lg, rf, ss = s["schema_validity"], s["legality"], s["reference"], s["state_sensitivity"]
+    sv, lg, vp, rf, ss = s["schema_validity"], s["legality"], s["valid_play"], s["reference"], s["state_sensitivity"]
     pooled = {k: ss["REPLY"][k] + ss["CONSIDERING"][k] for k in ss["REPLY"]}
     return {
         "schema-valid": (sv["valid"], sv["n"]),
         "legal": (lg["legal"], lg["n"]),
+        "valid play": (vp["valid"], vp["n"]),
         "reference-correct": (rf["correct"], rf["n"]),
         "accept gap useful−useless": state_sensitivity.accept_gap(pooled),
         "avoidable harvests": (ss["PLANTING"]["avoidable_harvest"] + ss["FORCED"]["avoidable_harvest"],
@@ -254,7 +257,7 @@ def headline(s: dict) -> dict:
     }
 
 
-WITH_CI = ("schema-valid", "legal", "reference-correct")
+WITH_CI = ("schema-valid", "legal", "valid play", "reference-correct")
 
 
 def _shown(value, with_ci: bool = False) -> str:
@@ -288,12 +291,11 @@ def render_slice(run: Run, slice_: str, results: dict, teacher: dict | None, pai
     lines += [*_section(legality), *legality.table([(c, s["legality"]) for c, s in rows]), ""]
     ref_rows = [(c, s["reference"]) for c, s in rows] + ([(["teacher", "training corpus"], teacher["reference"])]
                                                          if teacher else [])
-    lines += [*_section(reference), *reference.table(ref_rows), "", "Each rule on its own (partial credit):", "",
-              *reference.rules_table(ref_rows), ""]
-    by_phase = reference.teacher_table([(c, s["reference"]) for c, s in rows])
-    if by_phase:
-        lines += ["Teacher match per message type (the decision equals the teacher's held-out answer):", "",
-                  *by_phase, ""]
+    valid_rows = [(c, s["valid_play"]) for c, s in rows] + ([(["teacher", "training corpus"], teacher["valid_play"])]
+                                                             if teacher else [])
+    lines += [*_section(valid_play), *valid_play.table(valid_rows), "", "Each rule on its own (partial credit):", "",
+              *valid_play.rules_table(valid_rows), ""]
+    lines += [*_section(reference), *reference.table(ref_rows), ""]
     sens_rows = [(c, s["state_sensitivity"]) for c, s in rows] + ([(["teacher", "training corpus"],
                                                                     teacher["state_sensitivity"])] if teacher else [])
     lines += [*_section(state_sensitivity), *state_sensitivity.table(sens_rows), ""]

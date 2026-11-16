@@ -2,10 +2,10 @@
 
 Code, data and run logs behind the paper of the same title (submitted to *Pollack Periodica*). Three
 small language models (LFM2.5-1.2B, Granite-4.2-3B, Gemma-4-E2B), each with and without a LoRA
-adapter trained on a rule-based teacher, play a simplified three-player Bohnanza under four prompt
-styles. They are scored on 992 fixed game states (the replay) and in 30 seeded games per player
-(the tournaments). An earlier generation (TinyLlama-1.1B, Qwen2.5-3B, Gemma-2B), trained and scored
-the same way, serves as the replication.
+adapter, play a simplified three-player Bohnanza under four prompt styles. The adapters are trained on
+the decisions of a deterministic rule-based teacher, the reference bot. The models are scored on 992
+fixed game states (the replay) and in 30 seeded games per player against reference bots and against
+random bots (the tournaments).
 
 ## Check the paper's numbers (no GPU, no model, about a minute)
 
@@ -17,14 +17,14 @@ python3 paper/paper_numbers.py --rescore
 `--rescore` does the following:
 
 1. Unpacks every run's raw logs (`runs/*.tar.xz`) into `work/`.
-2. Scores every logged answer again with `eval/evaluate.py`, checking each result
-   against the shipped `runs/<run>/metrics.json`.
-3. Rebuilds Tables 1–5 of `paper/paper.md`, together with the in-text numbers.
+2. Scores every logged answer again with `eval/evaluate.py`, checking each result against the
+   shipped `runs/<run>/metrics.json`.
+3. Rebuilds Tables 1–4 of `paper/paper.md`, together with the in-text numbers.
 4. Lists every cell or number that differs from the paper.
 
-It also scores the three baselines that need no model on the replay corpus: the reference bot, the
-random bot and the fixed rule. Without `--rescore` the script skips steps 1–2 and reads the
-shipped metrics. The exit status is 0 when everything matches.
+It also scores the two baselines that need no model on the replay corpus: the random bot and the
+fixed rule. Without `--rescore` the script skips steps 1–2 and reads the shipped metrics. The exit
+status is 0 when everything matches.
 
 ## Contents
 
@@ -36,15 +36,14 @@ shipped metrics. The exit status is 0 when everything matches.
 | `tournament.py` | The seeded tournaments: game g uses deck seed g and seat (g − 1) mod 3 |
 | `train_adapters.py` | Trains the LoRA adapters and converts them to GGUF |
 | `run_experiment.py` | Runs the steps above in order, unattended, and evaluates the results |
-| `eval/` | Scoring: schema validity, legality, the reference rules (`reference.py`), avoidable harvests (`state_sensitivity.py`), agreement, paired tests (`effects.py`, `stats.py`), coins (`game_outcomes.py`); `evaluate.py` runs them all |
-| `eval/replay_corpus.json` | The 992 replay states: 500 from earlier games, balanced per message type on what the decision turns on, and 492 held-out teacher states with the teacher's answers. The file is the record; the script that selected the states, and the game logs it drew on, are not included |
-| `training/generate_data/` | The teacher (`synth.py`, which shares its message rules with the hand-entry tool `cli.py`) and the Phi-4 rewording of the free text (`llm_text.py`) |
-| `training/corpus/` | The training corpus (15,000 examples), the held-out teacher states of the replay's training slice, and 445 human-written entries (`training_data.txt`) that `llm_text.py` shows Phi-4 as style examples |
+| `eval/` | Scoring: schema validity, legality, valid play (`valid_play.py`: the answer keeps every rule the teacher plays by), reference-correctness (`reference.py`: the reference bot's decision in the same state), avoidable harvests (`state_sensitivity.py`), agreement, paired tests (`effects.py`, `stats.py`), coins (`game_outcomes.py`); `evaluate.py` runs them all |
+| `eval/replay_corpus.json` | The 992 replay states: 500 from earlier games, balanced per message type on what the decision turns on, and 492 held-out states from the training corpus's generator. The file is the record. Its training-slice items also carry an earlier teacher's answers, which nothing here uses |
+| `training/generate_data/` | `bot_corpus.py` answers a corpus's states with the reference bot; `synth.py` holds the states' generator, the answer templates and the earlier, partly random teacher whose rules the reference bot cleans up; `cli.py` its shared message rules |
+| `training/corpus/training_data_reference_15000.txt` | The training corpus: 15,000 states, 3,000 per message type, each answered by the reference bot |
 | `training/records/` | Each adapter's training record: configuration, loss curve, trainer state, final losses |
 | `config/experiment.json` | The one configuration: models, adapters, the 2 × 4 conditions, the training recipe, the tournament |
-| `config/experiment_gen1.json` | The same configuration for the earlier generation |
 | `config/chat_templates/` | The chat template of each model, used both in training and by llama-server |
-| `runs/` | The six runs the paper reports, each as raw logs (`<run>.tar.xz`) plus their `metrics.md`, `metrics.json` and `run.json` |
+| `runs/` | The three runs the paper reports, each as raw logs (`<run>.tar.xz`) plus their `metrics.md`, `metrics.json` and `run.json` |
 | `weights.json` | Every model file the runs used, with Hugging Face source, size and sha256, and the data files' checksums |
 | `paper/` | The paper source (`paper.md`, `references.bib`), its Word build (`build_docx.py`, needing python-docx), and `paper_numbers.py` |
 
@@ -52,18 +51,18 @@ shipped metrics. The exit status is 0 when everything matches.
 
 | Run | What | Paper |
 |---|---|---|
-| `replay_20261029_gen2` | Replay, main study, 8 conditions × 3 models × 992 states | Tables 1, 2, 4, 5 |
-| `suite_20261029_gen2` | Tournament, main study, against two reference bots | Tables 3, 5 |
-| `suite_20261030_gen2_vsrandom` | Tournament, main study, against two random bots | Tables 3, 5 |
-| `replay_20261006_2x4` | Replay, earlier generation | Table 5 |
-| `suite_20261102_phase1_fixed` | Tournament, earlier generation, against two reference bots | Table 5 |
-| `suite_20261102_phase1_fixed_vsrandom` | Tournament, earlier generation, against two random bots | Table 5 |
+| `replay_20261115_ref` | Replay, 8 conditions × 3 models × 992 states | Tables 1, 2, 4 |
+| `suite_20261115_ref` | Tournament against two reference bots | Table 3 |
+| `suite_20261115_ref_vsrandom` | Tournament against two random bots | Table 3 |
+
+The conditions with the adapter were run on 2026-11-15. The conditions without it, and the two
+baseline bots in the tournaments, don't depend on the adapter. They were run once, on 2026-10-29/30,
+with the same code, models, prompts, states and seeds, and copied into these runs; each run's
+`run.json` names where every condition came from.
 
 The `metrics.*` files were written by this repository's `eval/evaluate.py` from the raw logs.
-Every metric in them equals the one written when the runs were made. The sections the paper
-doesn't use are left out: the free-text analysis, the trade counts and a comparison with bots
-outside this study.
-
+Reference-correctness compares every answer's decision with the one the reference bot, the adapters' teacher, makes in
+the same state.
 The free text the players write (their reasons and messages) is in the logs, but neither the paper
 nor this code analyzes it.
 
@@ -76,61 +75,52 @@ checkout at `../llama.cpp`, built with CUDA into `build-cuda/bin/llama-server`; 
 
 1. **Models.** Put the files listed in `weights.json` at their paths under `artifacts/`:
    - **Base models:** convert each from the Hugging Face model named in `weights.json` with
-     llama.cpp's `convert_hf_to_gguf.py`. The main study's models are Q8_0. In the earlier
-     generation, TinyLlama is F16, Qwen2.5 is Q4_K_M and Gemma-2B is F32.
+     llama.cpp's `convert_hf_to_gguf.py`, quantized to Q8_0.
    - **Adapters:** download them from the location given in `weights.json`, or retrain them
      (step 2).
 
    The sha256 values identify the exact files used. A fresh conversion may differ in its bytes.
 2. **Adapters (optional).** `pip install -r training/requirements.txt`, then
    `python3 train_adapters.py`. This trains the adapter of every model in `config/experiment.json`
-   on `training/corpus/training_data_synct_15000_llm.txt` and converts it to GGUF. An adapter that
+   on `training/corpus/training_data_reference_15000.txt` and converts it to GGUF. An adapter that
    already exists is skipped. The recipe:
    - rank 32, alpha 64, dropout 0.05, all linear layers;
    - 2 epochs, learning rate 1e-4 with a cosine schedule and 5% warm-up;
    - effective batch size 64, sequences of up to 768 tokens;
    - split seed 0.
 
-   `training/records/` holds the losses each adapter reached.
-3. **Main study.**
+   Training took 0.75 h for LFM2.5, 3.1 h for Granite and 6.2 h for Gemma 4. `training/records/`
+   holds the losses each adapter reached.
+3. **The experiment.**
 
    ```bash
-   python3 run_experiment.py --id gen2                    # adapters (if missing), replay, tournament vs reference bots, evaluation
-   python3 run_experiment.py --id gen2_vsrandom --tournament-only --opponents bot_random
+   python3 run_experiment.py --id ref                    # adapters (if missing), replay, tournament vs reference bots, evaluation
+   python3 run_experiment.py --id ref_vsrandom --tournament-only --opponents bot_random
    ```
 
-   The output goes to `logs/replay_gen2/`, `logs/suite_gen2/` and `logs/suite_gen2_vsrandom/`,
-   each with its `metrics.md`. To check the new runs with `paper/paper_numbers.py`, copy them into
-   `runs/` under the names in the table above.
-4. **Earlier generation.** Copy `config/experiment_gen1.json` over `config/experiment.json` and
-   repeat step 3.
+   The output goes to `logs/replay_ref/`, `logs/suite_ref/` and `logs/suite_ref_vsrandom/`, each
+   with its `metrics.md`. A fresh run plays every condition, including those without the adapter.
+   To check the new runs with `paper/paper_numbers.py`, copy them into `runs/` under the names in
+   the table above.
 
 Decoding is greedy (temperature 0). The random bot is seeded by the state it is asked about, and
 the tournaments by deck seed and seat, so reruns meet the same states and card sequences.
 Differences between GPU and CPU builds, or between llama.cpp versions, can still change individual
 answers.
 
-The earlier generation's replay was made on 2026-10-06. The phase-1 record of the original
-repository (commit `6e10a58` there) lists it as produced by that commit's code. The prompts,
-schemas, replay code, chat templates and replay corpus are unchanged since then, and re-scoring
-its raw logs with this code gives its logged metrics exactly. The earlier generation's
-tournaments were rerun on 2026-11-02 with this code.
-
 ## The training corpus
 
-The teacher is partly random:
-- it plants on field 1 when no field fits, and plants its second card at random;
-- it picks its trading partner, and whether to pass, at random;
-- it accepts about 40–45% of useless offers.
+The teacher is the reference bot (`game/player/bots.py`, which lists its rules): the deterministic
+rules of an earlier, partly random teacher (`synth.py`), with its random and arbitrary choices
+replaced by value rules. The corpus keeps the 15,000 states of that earlier teacher's corpus:
+synth.py's states, the free text a player receives in them reworded by Phi-4. Only the answers are
+the reference bot's, their free text worded with synth.py's templates. Every answer is legal and,
+by construction, valid play and reference-correct (`eval/evaluate.py` checks both on the corpus: 15,000 of
+15,000).
 
-The reference bot plays the teacher's deterministic rules, with the random and arbitrary choices
-replaced by value rules (`eval/reference.py`).
+The states are kept in the corpus itself, so it can be regenerated from them, byte for byte:
 
-To regenerate the corpus:
-1. `python3 -m training.generate_data.synth --count 3000` generates the decisions.
-2. `python3 -m training.generate_data.llm_text` rewords the free text with Phi-4, served by
-   llama-server, using the human-written lines of `training/corpus/training_data.txt` as style
-   examples.
-
-The exact seeds of the shipped corpus are not recorded. The shipped corpus is therefore the record;
-its checksum is in `weights.json`.
+```bash
+python3 -m training.generate_data.bot_corpus --states training/corpus/training_data_reference_15000.txt --output /tmp/check.txt
+cmp /tmp/check.txt training/corpus/training_data_reference_15000.txt
+```

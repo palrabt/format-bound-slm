@@ -9,13 +9,14 @@ again with eval/evaluate.py (no GPU, no model needed), checks that the result eq
 runs/<run>/metrics.json, and then builds the tables from the re-scored metrics.
 
 Sources:
-    runs/replay_20261029_gen2             replay, LFM2.5 / Granite / Gemma 4       Tables 1, 2, 4, 5
-    runs/suite_20261029_gen2              tournament, reference-bot opponents      Tables 3, 5
-    runs/suite_20261030_gen2_vsrandom     tournament, random-bot opponents         Tables 3, 5
-    runs/replay_20261006_2x4              replay, TinyLlama / Qwen2.5 / Gemma-2B   Table 5
-    runs/suite_20261102_phase1_fixed(_vsrandom)   the earlier generation's tournaments   Table 5
-    eval/replay_corpus.json               the baselines that need no model: the reference bot,
-                                          the random bot and the fixed rule (Tables 1, 4, 5)
+    runs/replay_20261115_ref              replay, LFM2.5 / Granite / Gemma 4       Tables 1, 2, 4
+    runs/suite_20261115_ref               tournament, reference-bot opponents      Table 3
+    runs/suite_20261115_ref_vsrandom      tournament, random-bot opponents         Table 3
+    eval/replay_corpus.json               the baselines that need no model: the random bot and the
+                                          fixed rule (Tables 1, 4)
+
+Reference-correctness is the decision the reference bot makes in the same state (eval/reference.py):
+the reference bot answered the adapters' training corpus.
 
 Shares of states and games are rounded as the metrics.md files round them (half to even);
 means, differences and p-values half up. Each table is printed in the paper's layout; a cell that differs
@@ -36,7 +37,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
-from eval import legality, reference, state_sensitivity  # noqa: E402
+from eval import legality, reference, state_sensitivity, valid_play  # noqa: E402
 from eval.evaluate import TEACHER_STYLE  # noqa: E402
 from game.player import bots  # noqa: E402
 from game.player import state as game_state  # noqa: E402
@@ -44,13 +45,11 @@ from replay import ASK, ask_arguments  # noqa: E402
 
 PAPER = REPO / "paper" / "paper.md"
 RUNS, WORK = REPO / "runs", REPO / "work"
-REPLAY, REPLAY_GEN1 = "replay_20261029_gen2", "replay_20261006_2x4"
-SUITES = {"reference": "suite_20261029_gen2", "random": "suite_20261030_gen2_vsrandom"}
-SUITES_GEN1 = {"reference": "suite_20261102_phase1_fixed", "random": "suite_20261102_phase1_fixed_vsrandom"}
-ALL_RUNS = [REPLAY, *SUITES.values(), REPLAY_GEN1, *SUITES_GEN1.values()]
+REPLAY = "replay_20261115_ref"
+SUITES = {"reference": "suite_20261115_ref", "random": "suite_20261115_ref_vsrandom"}
+ALL_RUNS = [REPLAY, *SUITES.values()]
 # identity -> the model name the metrics use, in the paper's order
-MODELS = {"gen2": {"Alpha": "LFM2.5-1.2B", "Beta": "granite-4.2-3b", "Gamma": "gemma-4-E2B"},
-          "gen1": {"Alpha": "TinyLlama-1.1B", "Beta": "Qwen2.5-3B", "Gamma": "gemma-2b"}}
+NAMES = {"Alpha": "LFM2.5-1.2B", "Beta": "granite-4.2-3b", "Gamma": "gemma-4-E2B"}
 IDS = ("Alpha", "Beta", "Gamma")
 PHASES = ("PLANTING", "FORCED", "TRADING", "REPLY", "CONSIDERING")
 FIELDS = ("field1", "field2", "field3")
@@ -63,6 +62,7 @@ TEACHER_ORDER = ("base_verbose", "lora_verbose", "base_verbose2", "lora_verbose2
 TOURNAMENT_ORDER = ("lora_compact", "bot_reference", "bot_random", "base_grammar", "lora_verbose", "base_verbose")
 MINUS = "−"
 problems: list[str] = []
+FACTS: dict = {}
 
 
 # ── formatting ────────────────────────────────────────────────────────────────
@@ -96,14 +96,6 @@ def p_text(p: float) -> str:
 
 def three(values) -> str:
     return " / ".join(str(v) for v in values)
-
-
-def p_note(ps: list[float], ns_words: bool) -> str:
-    if all(p < 0.001 for p in ps):
-        return "(p < 0.001)"
-    if ns_words and all(p >= 0.05 for p in ps):
-        return "(both n.s.)"
-    return "(p = " + ", ".join(p_text(p) for p in ps) + ")"
 
 
 # ── inputs ────────────────────────────────────────────────────────────────────
@@ -185,11 +177,12 @@ def bot_answer(message, phase: str, peers: dict) -> str:
 
 
 def baselines() -> dict:
-    """The fixed rule, the reference bot and the random bot on the replay corpus. The random bot is
-    seeded by the state and its identity ("Alpha"), so its score is one draw of a random player."""
+    """The fixed rule and the random bot on the replay corpus, per slice and per slice and message
+    type. The random bot is seeded by the state and its identity ("Alpha"), so its score is one draw
+    of a random player."""
     items = json.loads((REPO / "eval" / "replay_corpus.json").read_text())
     game_state.CONFIG["identity"] = "Alpha"
-    players = {"fixed rule": None, "reference bot": bots.Reference(), "random bot": bots.Random()}
+    players = {"fixed rule": None, "random bot": bots.Random()}
     out = {}
     for name, player in players.items():
         agg = defaultdict(lambda: defaultdict(int))
@@ -202,22 +195,15 @@ def baselines() -> dict:
                 game_state.CONFIG.update(peers)
                 message = getattr(player, ASK[phase])(*ask_arguments(state, peers))
                 verdict = legality.check(state, bot_answer(message, phase, peers), "compact", peers)
-            for key in (slice_, "all"):
+            for key in (slice_, "all", f"{slice_} {phase}"):
                 a = agg[key]
                 a["n"] += 1
                 a["legal"] += verdict.legal
-                a["correct"] += reference.check(state, verdict)["correct"]
+                a["valid"] += valid_play.check(state, verdict)["valid"]
+                a["correct"] += reference.check(state, peers, verdict)
                 if phase in ("PLANTING", "FORCED") and verdict.legal:
                     a["plantings"] += 1
                     a["avoidable"] += state_sensitivity.facts(state, verdict.message)["avoidable_harvest"]
-            if item.get("teacher"):
-                taught = legality.check(state, item["teacher"], TEACHER_STYLE, peers)
-                same = verdict.decision is not None and verdict.decision == taught.decision
-                a = agg["teacher"]
-                a[f"n {phase}"] += 1
-                a[f"match {phase}"] += same
-                a["n"] += 1
-                a["match"] += same
         out[name] = agg
     return out
 
@@ -258,8 +244,7 @@ def points(m: dict, slice_: str, contrast: str, model: str) -> int:
 
 def agreement(m: dict, slice_: str, model: str) -> dict[tuple[str, str], float]:
     """Pairwise agreement in %, over the states where both conditions give a readable decision;
-    base_compact is left out (it gives almost no readable decision), and so is a pair without any
-    such state (TinyLlama's base_verbose gives none)."""
+    base_compact is left out (it gives almost no readable decision)."""
     pairs = {}
     for key, v in m["slices"][slice_]["agreement"][model].items():
         a, b = key.split("|")
@@ -331,6 +316,11 @@ def show(tid: str, header: list[str], rows: list[tuple[str, list[str]]], paper: 
 
 # ── the tables ────────────────────────────────────────────────────────────────
 
+def hp(p: float) -> str:
+    """"Holm p < 0.001" or "Holm p = 0.017"."""
+    return "Holm p < 0.001" if p < 0.001 else f"Holm p = {p_text(p)}"
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--rescore", action="store_true", help="re-score every run from its raw logs first")
@@ -338,36 +328,46 @@ def main() -> None:
     if args.rescore:
         rescore()
     base = WORK if args.rescore else RUNS
-    rep, rep1 = load(REPLAY, base), load(REPLAY_GEN1, base)
+    rep = load(REPLAY, base)
     suites = {k: load(v, base) for k, v in SUITES.items()}
-    suites1 = {k: load(v, base) for k, v in SUITES_GEN1.items()}
-    names, names1 = MODELS["gen2"], MODELS["gen1"]
+    names = NAMES
     text = PAPER.read_text()
     paper = paper_tables(text)
     print("baselines on the replay corpus ...", flush=True)
     bl = baselines()
     claims: list[tuple[str, str]] = []  # (what, the text paper.md should contain)
 
+    # Methods — the adapters' final validation losses
+    losses = {json.loads(f.read_text())["adapter"].split("-")[0]: json.loads(f.read_text())["final_eval_loss"]
+              for f in (REPO / "training" / "records").glob("*/training_meta.json")}
+    claims.append(("validation losses", f"{half_up(losses['lfm2.5'], 3)} for LFM2.5, {half_up(losses['granite'], 3)} "
+                                        f"for Granite and {half_up(losses['gemma'], 3)} for Gemma 4"))
+
     # Table 1 — the replay
     rows = []
     for c in CONDITIONS:
         rows.append((c, [three(share(rep, c, i, "schema_validity", "valid") for i in IDS),
                          three(share(rep, c, i, "legality", "legal") for i in IDS),
+                         three(share(rep, c, i, "valid_play", "valid") for i in IDS),
                          three(correct(rep, c, i) for i in IDS),
                          "–" if all(avoidable(rep, c, i) == "–" for i in IDS) else three(avoidable(rep, c, i) for i in IDS)]))
     fr, rb = bl["fixed rule"], bl["random bot"]
     fixed_correct = pct(fr["game"]["correct"], fr["game"]["n"])
-    rows.append(("fixed rule", ["–", str(pct(fr["game"]["legal"], fr["game"]["n"])), str(fixed_correct),
+    random_correct = pct(rb["game"]["correct"], rb["game"]["n"])
+    fixed_valid = pct(fr["game"]["valid"], fr["game"]["n"])
+    rows.append(("fixed rule", ["–", str(pct(fr["game"]["legal"], fr["game"]["n"])), str(fixed_valid), str(fixed_correct),
                                 str(pct(fr["game"]["avoidable"], fr["game"]["plantings"]))]))
     rows.append(("random bot", ["–", str(pct(rb["game"]["legal"], rb["game"]["n"])),
-                                str(pct(rb["game"]["correct"], rb["game"]["n"])), "–"]))
-    show("replay", ["Player", "Schema-valid", "Legal", "Correct", "Avoidable harvests"], rows, paper)
+                                str(pct(rb["game"]["valid"], rb["game"]["n"])), str(random_correct), "–"]))
+    show("replay", ["Player", "Schema-valid", "Legal", "Valid play", "Correct", "Avoidable harvests"], rows, paper)
     print("   (every share is on the game slice, the 500 states)")
     print(f"   (the random bot's avoidable harvests, not in the table: "
           f"{pct(rb['game']['avoidable'], rb['game']['plantings'])}%)")
 
     lc = [correct(rep, "lora_compact", i) for i in IDS]
     lc_train = [correct(rep, "lora_compact", i, "training") for i in IDS]
+    lead = [x - fixed_correct for x in lc]
+    lv = [correct(rep, "lora_verbose", i) for i in IDS]
     cv = {s: [points(rep, s, "lora: compact vs verbose", names[i]) for i in IDS] for s in ("game", "training")}
     cv_p = [effect(rep, s, "reference-correct", "lora: compact vs verbose", names[i])["p_holm"]
             for s in ("game", "training") for i in IDS]
@@ -376,40 +376,63 @@ def main() -> None:
     claims += [
         ("lora_compact, game slice", f"{'/'.join(map(str, lc))}% of the game slice"),
         ("lora_compact, training slice", f"{'/'.join(map(str, lc_train))}% of the training slice"),
+        ("lead over the fixed rule", f"{min(lead)}–{max(lead)} points above the fixed rule's {fixed_correct}%"),
+        ("lora_verbose", f"verbose prompt reach {'/'.join(map(str, lv))}%"),
         ("compact over verbose, adapted, game", "/".join(signed(x) for x in cv["game"])),
         ("compact over verbose, adapted, training", "/".join(signed(x) for x in cv["training"])),
         ("... all six Holm p < 0.001" if max(cv_p) < 0.001 else f"... max Holm p {max(cv_p):.3g}",
          "p < 0.001 in all six comparisons" if max(cv_p) < 0.001 else "(not < 0.001 in all six)"),
-        ("adapter at verbose, LFM2.5 and Granite", f"LFM2.5 gains {av[0]} points and Granite {av[1]} "
-         f"({'both Holm p < 0.001' if max(av_p[:2]) < 0.001 else 'Holm p = ' + p_text(av_p[0]) + ', ' + p_text(av_p[1])})"),
-        ("adapter at verbose, Gemma 4", f"Gemma 4 gains {av[2]} (Holm p = {p_text(av_p[2])})"),
+        ("adapter at verbose", f"LFM2.5 gains {av[0]} points, Granite {av[1]} and Gemma 4 {av[2]} (all Holm p < 0.001)"
+         if max(av_p) < 0.001 else f"LFM2.5 gains {av[0]} points ({hp(av_p[0])}) and Granite {av[1]} ({hp(av_p[1])}), "
+                                   f"while Gemma 4 gains {av[2]} ({hp(av_p[2])})"),
         ("base_compact legal, Gemma 4", f"({share(rep, 'base_compact', 'Gamma', 'legality', 'legal')}%)"),
     ]
     others = {i: [correct(rep, c, i) for c in ("lora_verbose", "lora_verbose2", "lora_grammar")] for i in IDS}
     above = sum(x > fixed_correct for x in others["Beta"])
-    ag = effect(rep, "game", "reference-correct", "adapter at grammar", names["Gamma"])
+    weak = others["Alpha"] + others["Gamma"]
+    v2 = effect(rep, "game", "reference-correct", "adapter at verbose2", names["Gamma"])
+    v2_trading = cell(rep, "game", "lora_verbose2", "Gamma")["schema_validity"]["phases"]["TRADING"]
+    significant = [x for x, q in zip(av, av_p) if q < 0.05]
     claims += [
         ("Granite's adapter under the three other prompts", f"{min(others['Beta'])}–{max(others['Beta'])}% reference-correctness"),
         ("... above the fixed rule in", f"above the fixed rule's {fixed_correct}% in {['none', 'one', 'two', 'all three'][above]} of them"),
         ("LFM2.5 and Gemma 4 adapters under the other prompts",
-         f"{min(others['Alpha'])}–{max(others['Alpha'])}% and {min(others['Gamma'])}–{max(others['Gamma'])}%"),
-        ("adapter at grammar, Gemma 4", f"lowers Gemma 4 by {-points(rep, 'game', 'adapter at grammar', names['Gamma'])} "
-                                        f"points (Holm p = {p_text(ag['p_holm'])})"),
+         f"{min(others['Alpha'])}–{max(others['Alpha'])}% and {min(others['Gamma'])}–{max(others['Gamma'])}%"
+         + (", below the fixed rule" if max(weak) < fixed_correct else " (NOT below the fixed rule)")),
+        ("adapter effect at verbose, range", f"ranges from {'not significant' if len(significant) < 3 else min(av)} to {max(av)} points"),
+        ("adapter at verbose2, Gemma 4", f"the adapter of Gemma 4 gains {points(rep, 'game', 'adapter at verbose2', names['Gamma'])} "
+                                         f"points ({hp(v2['p_holm'])}), largely because "
+                                         f"{100 - pct(v2_trading['valid'], v2_trading['n'])}% of its TRADING answers"),
     ]
     bg_valid = [share(rep, "base_grammar", i, "schema_validity", "valid") for i in IDS]
     bg_correct = [correct(rep, "base_grammar", i) for i in IDS]
+    bg_play = [share(rep, "base_grammar", i, "valid_play", "valid") for i in IDS]
+    lc_play = [share(rep, "lora_compact", i, "valid_play", "valid") for i in IDS]
+    drop = [v - c for v, c in zip(lc_play, lc)]
     bg_avoid = [int(avoidable(rep, "base_grammar", i)) for i in IDS]
     gv = [-points(rep, "game", "base: grammar vs verbose", names[i]) for i in IDS]
     gv_p = [effect(rep, "game", "reference-correct", "base: grammar vs verbose", names[i])["p_holm"] for i in IDS]
     bg_rand = comparison(suites["random"], "base_grammar", "all models", "bot_random")
+    lg = cell(rep, "game", "lora_grammar", "Gamma")["schema_validity"]
+    short = lg.get("failures", {}).get("schema:minItems", 0)
     claims += [
         ("base_grammar schema-valid", f"{min(bg_valid)}–{max(bg_valid)}% schema-valid"),
-        ("base_grammar correct", f"only {min(bg_correct)}–{max(bg_correct)}% of its decisions are reference-correct"),
+        ("base_grammar valid play", f"only {min(bg_play)}–{max(bg_play)}% of its moves are valid play"),
+        ("fixed rule, valid play and reference-correct", f"the fixed rule plays validly on {fixed_valid}% of the game slice but "
+                                                        f"is reference-correct on only {fixed_correct}%"),
+        ("lora_compact, valid play against reference-correct",
+         f"`lora_compact` loses only {min(drop)} to {max(drop)} points between the two "
+         f"({'/'.join(map(str, lc_play))}% against {'/'.join(map(str, lc))}%)"),
+        ("base_grammar correct", f"only {min(bg_correct)}–{max(bg_correct)}% of its decisions are reference-correct"
+         + (f", less than the random bot's {random_correct}%" if max(bg_correct) < random_correct else " (NOT below the random bot)")),
         ("base_grammar avoidable harvests", f"{min(bg_avoid)}–{max(bg_avoid)}% of its plantings"),
-        ("lora_grammar Gemma 4 schema-valid", f"is {share(rep, 'lora_grammar', 'Gamma', 'schema_validity', 'valid')}% valid"),
-        ("grammar vs verbose, base models", f"by {'/'.join(map(str, gv))} points"),
-        ("... Holm p per model", f"significantly only for LFM2.5 (Holm p {p_text(gv_p[0]) if gv_p[0] < 0.001 else '= ' + p_text(gv_p[0])})"
-         if gv_p[0] < 0.05 and min(gv_p[1:]) >= 0.05 else f"Holm p = {', '.join(p_text(x) for x in gv_p)}"),
+        ("lora_grammar Gemma 4 schema-valid", f"is {share(rep, 'lora_grammar', 'Gamma', 'schema_validity', 'valid')}% valid, "
+                                              f"because {pct(short, lg['phases']['TRADING']['n'])}% of its TRADING answers fall short"),
+        ("grammar vs verbose, base models",
+         f"the grammar lowered the decisions of LFM2.5 and Granite by {gv[0]} and {gv[1]} points, significantly only for "
+         f"LFM2.5 ({hp(gv_p[0])})" if gv[0] > 0 and gv[1] > 0 and gv_p[0] < 0.05 and gv_p[1] >= 0.05
+         else f"(grammar vs verbose: {gv}, Holm p {gv_p})"),
+        ("... Gemma 4 unchanged", "and left Gemma 4 unchanged" if gv[2] == 0 else f"(Gemma 4 changed by {gv[2]})"),
         ("base_verbose LFM2.5 schema-valid", f"valid only {share(rep, 'base_verbose', 'Alpha', 'schema_validity', 'valid')}% of the time"),
         ("base_grammar vs random bot, random-bot opponents, pooled",
          f"pooled difference {signed(bg_rand['delta'], 2)} coins, Holm p = {p_text(bg_rand['holm'])}"),
@@ -451,98 +474,98 @@ def main() -> None:
     show("coins", ["Player", "Coins, reference-bot opponents", "Coins, random-bot opponents",
                    "Wins, reference-bot opponents", "Wins, random-bot opponents"], rows, paper)
     vs_ref = [comparison(suites[s], "lora_compact", "all models", "bot_reference") for s in ("reference", "random")]
+    interval = lambda x: f"{signed(x['delta'], 2)} [{signed(x['ci'][0], 2)}, {signed(x['ci'][1], 2)}]"
     claims += [
         ("lora_compact coins, reference-bot opponents", "/".join(mean_coins(suites["reference"], "lora_compact", IDS))),
         ("lora_compact coins, random-bot opponents", "/".join(mean_coins(suites["random"], "lora_compact", IDS))),
-        ("reference bot coins", f"{coins(player_games(suites['reference'], 'bot_reference', 'bot_reference')['coins'])} and "
+        ("reference bot coins", f"earns {coins(player_games(suites['reference'], 'bot_reference', 'bot_reference')['coins'])} and "
                                 f"{coins(player_games(suites['random'], 'bot_reference', 'bot_reference')['coins'])}"),
-        ("random bot coins", f"{coins(player_games(suites['reference'], 'bot_random', 'bot_random')['coins'])} and "
+        ("random bot coins", f"random bot {coins(player_games(suites['reference'], 'bot_random', 'bot_random')['coins'])} and "
                              f"{coins(player_games(suites['random'], 'bot_random', 'bot_random')['coins'])}"),
-        ("lora_compact vs reference bot, pooled", f"{signed(vs_ref[0]['delta'], 2)} and {signed(vs_ref[1]['delta'], 2)} coins, "
-                                                  f"Holm p = {p_text(max(x['holm'] for x in vs_ref))}"),
+        ("lora_compact vs reference bot, pooled",
+         f"(pooled differences of {interval(vs_ref[0])} and {interval(vs_ref[1])} coins, "
+         f"Holm p = {p_text(vs_ref[0]['holm'])} and {p_text(vs_ref[1]['holm'])})"
+         if all(x["holm"] >= 0.05 for x in vs_ref) else "(lora_compact DIFFERS significantly from the reference bot)"),
+        ("wins", f"wins {wins(suites['reference'], 'lora_compact')}% of its games against reference-bot opponents, against the "
+                 f"reference bot's {wins(suites['reference'], 'bot_reference')}%, and {wins(suites['random'], 'lora_compact')}% "
+                 f"against random-bot opponents, against {wins(suites['random'], 'bot_reference')}%"),
     ]
-    print("\n   95% bootstrap intervals, lora_compact minus the reference bot, pooled: " + "; ".join(
-        f"{s}-bot opponents {signed(x['delta'], 2)} [{signed(x['ci'][0], 2)}, {signed(x['ci'][1], 2)}]"
-        for s, x in zip(("reference", "random"), vs_ref)))
-    print("   Comparisons with Holm p >= 0.05 against the reference bot, and with Holm p < 0.05 against the random bot:")
-    for s, suite in suites.items():
-        for c in suite["game_comparisons"]:
-            if c["condition"] == "lora_compact" or c["condition"].startswith("bot_"):
-                continue
-            who = "pooled" if c["player"] == "all models" else names[c["player"]]
-            r, q = c["vs"].get("bot_reference"), c["vs"].get("bot_random")
-            if r and r["holm"] >= 0.05:
-                print(f"      {s}-bot opponents: {c['condition']} {who} vs reference bot "
-                      f"{signed(r['delta'], 2)}, Holm p = {p_text(r['holm'])}")
-            if q and q["holm"] < 0.05:
-                print(f"      {s}-bot opponents: {c['condition']} {who} vs random bot "
-                      f"{signed(q['delta'], 2)}, Holm p = {p_text(q['holm'])}")
+    others_vs = [(s, c) for s, suite in suites.items() for c in suite["game_comparisons"]
+                 if c["condition"] != "lora_compact" and not c["condition"].startswith("bot_")]
+    all_below_ref = all(c["vs"]["bot_reference"]["holm"] < 0.05 and c["vs"]["bot_reference"]["delta"] < 0 for _, c in others_vs)
+    none_above_random = not any(c["vs"]["bot_random"]["holm"] < 0.05 and c["vs"]["bot_random"]["delta"] > 0 for _, c in others_vs)
 
-    # Table 4 — teacher match on the training slice
-    def teacher(cond, identity, phase=None):
-        ref = cell(rep, "training", cond, identity)["reference"]
-        t = ref["phases"][phase]["teacher"] if phase else ref["teacher"]
-        return pct(t["match"], t["n"])
+    def below_random(suite, cond, player):
+        x = comparison(suites[suite], cond, player, "bot_random")
+        return x["delta"] if x["holm"] < 0.05 and x["delta"] < 0 else None
+
+    gemma_lv = [below_random(s, "lora_verbose", "Gamma") for s in ("reference", "random")]
+    pooled_lv, pooled_bv = below_random("random", "lora_verbose", "all models"), below_random("random", "base_verbose", "all models")
+    granite_lv = [comparison(suites[s], "lora_verbose", "Beta", "bot_random") for s in ("reference", "random")]
+    claims += [
+        ("every other player below the reference bot",
+         "Every other player earns significantly less than the reference bot" if all_below_ref else "(NOT every other player is below)"),
+        ("none above the random bot", "none of them earns significantly more than the random bot" if none_above_random
+         else "(SOME player earns significantly more than the random bot)"),
+        ("Gemma 4's lora_verbose below the random bot", f"in both suites ({signed(gemma_lv[0], 2)} and {signed(gemma_lv[1], 2)} coins)"
+         if None not in gemma_lv else "(Gemma 4's lora_verbose NOT significantly below in both suites)"),
+        ("pooled lora_verbose and base_verbose below the random bot",
+         f"the pooled `lora_verbose` ({signed(pooled_lv, 2)} coins) and the pooled `base_verbose` ({signed(pooled_bv, 2)} coins)"
+         if pooled_lv is not None and pooled_bv is not None else "(pooled lora_verbose / base_verbose NOT significantly below)"),
+        ("Granite's lora_verbose vs the random bot", f"({signed(granite_lv[0]['delta'], 2)} and {signed(granite_lv[1]['delta'], 2)} coins)"
+         if all(x["holm"] >= 0.05 for x in granite_lv) else "(Granite's lora_verbose DIFFERS significantly)"),
+    ]
+    print("\n   Comparisons with Holm p >= 0.05 against the reference bot, and with Holm p < 0.05 against the random bot:")
+    for s, c in others_vs:
+        who = "pooled" if c["player"] == "all models" else names[c["player"]]
+        r, q = c["vs"].get("bot_reference"), c["vs"].get("bot_random")
+        if r and r["holm"] >= 0.05:
+            print(f"      {s}-bot opponents: {c['condition']} {who} vs reference bot {signed(r['delta'], 2)}, Holm p = {p_text(r['holm'])}")
+        if q and q["holm"] < 0.05:
+            print(f"      {s}-bot opponents: {c['condition']} {who} vs random bot {signed(q['delta'], 2)}, Holm p = {p_text(q['holm'])}")
+
+    # Table 4 — reference-correctness by message type on the held-out training states
+    def teacher(cond, identity, phase=None, slice_="training"):
+        ref = cell(rep, slice_, cond, identity)["reference"]
+        t = ref["phases"][phase] if phase else ref
+        return pct(t["correct"], t["n"])
 
     rows = [(c, [three(teacher(c, i, ph) for i in IDS) for ph in PHASES] + [three(teacher(c, i) for i in IDS)])
             for c in TEACHER_ORDER]
-    for name in ("reference bot", "random bot"):
-        t = bl[name]["teacher"]
-        rows.append((name, [str(pct(t[f"match {ph}"], t[f"n {ph}"])) for ph in PHASES] + [str(pct(t["match"], t["n"]))]))
+    tb = {}
+    for name in ("fixed rule", "random bot"):
+        t = bl[name]
+        tb[name] = pct(t["training"]["correct"], t["training"]["n"])
+        rows.append((name, [str(pct(t[f"training {ph}"]["correct"], t[f"training {ph}"]["n"])) for ph in PHASES]
+                     + [str(tb[name])]))
     show("teacher", ["Condition", *PHASES, "Overall"], rows, paper)
-    t = bl["fixed rule"]["teacher"]
-    by_type = ", ".join(f"{ph} {pct(t['match ' + ph], t['n ' + ph])}" for ph in PHASES)
-    print(f"   (the fixed rule, not in the table: {by_type}, overall {pct(t['match'], t['n'])})")
-    rt = bl["reference bot"]["teacher"]
-    lcp = [teacher("lora_compact", i, "PLANTING") for i in IDS]
+    lct = [teacher("lora_compact", i) for i in IDS]
+    by = {ph: [teacher("lora_compact", i, ph) for i in IDS] for ph in PHASES}
+    other_lora = [teacher(c, i) for c in ("lora_verbose", "lora_verbose2", "lora_grammar") for i in IDS]
+    base_models = [teacher(c, i) for c in TEACHER_ORDER if c.startswith("base_") for i in IDS]
+    lowest = min(min(v) for v in by.values())
     claims += [
-        ("reference bot teacher match, overall", f"as often as the reference bot ({pct(rt['match'], rt['n'])}%)"),
-        ("lora_compact vs reference bot, PLANTING",
-         f"({min(lcp)}–{max(lcp)}% against {pct(rt['match PLANTING'], rt['n PLANTING'])}%)"),
+        ("lora_compact reference-correct, held-out", f"{'/'.join(map(str, lct))}% of the held-out training states"),
+        ("baselines' reference-correctness, held-out", f"the fixed rule ({tb['fixed rule']}%) and the random bot ({tb['random bot']}%)"),
+        ("TRADING and REPLY", f"{min(by['TRADING'] + by['REPLY'])}–{max(by['TRADING'] + by['REPLY'])}% of TRADING and REPLY states"),
+        ("FORCED", f"FORCED ({min(by['FORCED'])}–{max(by['FORCED'])}%)"),
+        ("lowest single cell", f"for LFM2.5, in CONSIDERING ({by['CONSIDERING'][0]}%)" if lowest == by["CONSIDERING"][0]
+         else f"(the lowest cell is {lowest}%, not LFM2.5's CONSIDERING)"),
+        ("other prompts, adapters", f"on only {min(other_lora)}–{max(other_lora)}% of these states"),
+        ("base models", f"the base models on {min(base_models)}–{max(base_models)}%"),
     ]
 
-    # Table 5 — the two generations
-    def gen_rows(m, nm, su):
-        cvg = [points(m, "game", "lora: compact vs verbose", nm[i]) for i in IDS]
-        avg = [points(m, "game", "adapter at verbose", nm[i]) for i in IDS]
-        agree = [int(half_up(mean_agreement(agreement(m, "game", nm[i]))[0])) for i in IDS]
-
-        def coin_row(cond, baseline, ns_words):
-            cs = [comparison(su[s], cond, "all models", baseline) for s in ("reference", "random")]
-            return f"{signed(cs[0]['delta'], 2)} / {signed(cs[1]['delta'], 2)} {p_note([c['holm'] for c in cs], ns_words)}"
-
-        return {
-            "Correct, `lora_compact`": three(correct(m, "lora_compact", i) for i in IDS),
-            "Correct, `lora_verbose`": three(correct(m, "lora_verbose", i) for i in IDS),
-            "Compact over verbose, adapted, points": three(signed(x) for x in cvg),
-            "Adapter at verbose, points": three(signed(x) for x in avg),
-            "Schema-valid, `base_grammar`": three(share(m, "base_grammar", i, "schema_validity", "valid") for i in IDS),
-            "Correct, `base_grammar`": three(correct(m, "base_grammar", i) for i in IDS),
-            "Agreement between conditions": three(agree),
-            "Lead over the fixed rule, points": three(signed(correct(m, "lora_compact", i) - fixed_correct) for i in IDS),
-            "`lora_compact` vs reference bot, coins": coin_row("lora_compact", "bot_reference", True),
-            "`lora_compact` vs random bot, coins": coin_row("lora_compact", "bot_random", False),
-            "`lora_verbose` vs random bot, coins": coin_row("lora_verbose", "bot_random", False),
-        }
-
-    g1, g2 = gen_rows(rep1, names1, suites1), gen_rows(rep, names, suites)
-    show("replication", ["Measure", "Earlier generation", "Main study"],
-         [(k.replace("`", ""), [g1[k], g2[k]]) for k in g1],
-         {"replication": {k.replace("`", ""): v for k, v in paper.get("replication", {}).items()}})
-    lv1 = [correct(rep1, "lora_verbose", i) for i in IDS]
+    # the abstract, the introduction and the conclusion
     claims += [
-        ("earlier generation, lora_verbose", f"stayed at {min(lv1)}–{max(lv1)}%"),
-        ("main study, Granite lora_verbose", f"Granite's adapter works at {correct(rep, 'lora_verbose', 'Beta')}%"),
-        ("Gemma 4 vs Gemma-2B, lora_compact", f"({correct(rep, 'lora_compact', 'Gamma')}% against "
-                                              f"{correct(rep1, 'lora_compact', 'Gamma')}%)"),
-    ]
-
-    # the abstract
-    claims += [
-        ("abstract: lora_compact correct", f"{min(lc)}–{max(lc)}% of the adapted models' decisions"),
-        ("abstract: compact over verbose", f"{min(cv['game'])}–{max(cv['game'])} points"),
-        ("abstract: base_grammar valid / correct", f"{min(bg_valid)}–{max(bg_valid)}% valid, yet only "
-                                                   f"{min(bg_correct)}–{max(bg_correct)}%"),
+        ("abstract and conclusion: reference-correct, held-out", f"{min(lct)}–{max(lct)}% of held-out states"),
+        ("abstract: reference-correct", f"{min(lc)}–{max(lc)}% of game states and {min(lct)}–{max(lct)}% of held-out states, "
+                                        f"{min(cv['game'])}–{max(cv['game'])} points more often than under a verbose prompt"),
+        ("abstract: base_grammar valid / correct", f"{min(bg_valid)}–{max(bg_valid)}% valid, yet matched the teacher on only "
+                                                   f"{min(bg_correct)}–{max(bg_correct)}% of game states"
+         + (", below random play" if max(bg_correct) < random_correct else " (NOT below random play)")),
+        ("conclusion: the two weaker adapters", f"only {min(weak)}–{max(weak)}% of states, below a trivial fixed rule"
+         if max(weak) < fixed_correct else "(the weaker adapters are NOT below the fixed rule)"),
+        ("introduction: lead over the fixed rule", f"lead the fixed rule by {min(lead)}–{max(lead)} points"),
     ]
 
     print("\nIn-text numbers (each is searched for in paper.md):")

@@ -1,194 +1,97 @@
 {
- "description": "The model files the runs used. None is in this repository: each is identified by its size and sha256, and is expected at its path (relative to the repository root) when replay.py, tournament.py or train_adapters.py run. Base models: the Hugging Face model in 'hf', converted to GGUF with llama.cpp's convert_hf_to_gguf.py (and llama-quantize where quantized); a converted file need not be byte-identical to these. Adapters: trained by train_adapters.py (adapter_safetensors) and converted by llama.cpp's convert_lora_to_gguf.py (adapter_gguf). The paper's numbers can be checked without any of them (paper/paper_numbers.py).",
+ "description": "The model files the runs used. None is in this repository: each is identified by its size and sha256, and is expected at its path (relative to the repository root) when replay.py, tournament.py or train_adapters.py run. Base models: the Hugging Face model in 'hf', converted to GGUF with llama.cpp's convert_hf_to_gguf.py and quantized to Q8_0; a converted file need not be byte-identical to these. Adapters: trained by train_adapters.py on training/corpus/training_data_reference_15000.txt (adapter_safetensors) and converted by llama.cpp's convert_lora_to_gguf.py (adapter_gguf). The paper's numbers can be checked without any of them (paper/paper_numbers.py).",
  "adapter_download": "TODO: where the adapters are published (Hugging Face or Zenodo)",
  "llama_cpp": {
   "commit": "e583f3b4f5dabf9a6e987772d4e4daf121858707",
   "version": "8918 (e583f3b4f)"
  },
- "main_study": {
-  "config": "config/experiment.json",
-  "models": [
-   {
-    "identity": "Alpha",
-    "hf": "LiquidAI/LFM2.5-1.2B-Instruct",
-    "served": "Q8_0",
-    "gguf": {
-     "path": "artifacts/lfm2.5-1.2b-instruct-q8_0.gguf",
-     "bytes": 1246257856,
-     "sha256": "48473aa8ec7b5cf6fd58a381623948457217efe16b5c9eb1543b50fe7796346c"
-    },
-    "adapter_gguf": {
-     "path": "artifacts/lfm2.5-1.2b-instruct-bf16-bs4-seq768/lfm2.5-1.2b-instruct-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora.gguf",
-     "bytes": 44447168,
-     "sha256": "450b44de1d60327fb2bc26d30818fabf1901a5947c13677848d10880c8536cdf"
-    },
-    "adapter_safetensors": {
-     "path": "artifacts/lfm2.5-1.2b-instruct-bf16-bs4-seq768/lfm2.5-1.2b-instruct-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora/adapter_model.safetensors",
-     "bytes": 88891320,
-     "sha256": "6a7769aa94d167ccd0001f64b902e6b6c39fb78f0c412507967bbfa0242c652c"
-    },
-    "training_record": "training/records/lfm2.5-1.2b-instruct-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora/"
+ "config": "config/experiment.json",
+ "adapters": "reference15k_alllinear_r32_lora",
+ "models": [
+  {
+   "identity": "Alpha",
+   "hf": "LiquidAI/LFM2.5-1.2B-Instruct",
+   "served": "Q8_0",
+   "gguf": {
+    "path": "artifacts/lfm2.5-1.2b-instruct-q8_0.gguf",
+    "bytes": 1246257856,
+    "sha256": "48473aa8ec7b5cf6fd58a381623948457217efe16b5c9eb1543b50fe7796346c"
    },
-   {
-    "identity": "Beta",
-    "hf": "ibm-granite/granite-4.2-3b",
-    "served": "Q8_0",
-    "gguf": {
-     "path": "artifacts/granite-4.2-3b-q8_0.gguf",
-     "bytes": 3892652192,
-     "sha256": "5da799759c5a0da470f271d0f6d6297592dad282748fb3281ee2d1bf500c611e"
-    },
-    "adapter_gguf": {
-     "path": "artifacts/granite-4.2-3b-bf16-bs2-seq768/granite-4.2-3b-bf16-bs2-seq768_synct15k_llm_alllinear_r32_lora.gguf",
-     "bytes": 124557376,
-     "sha256": "b623b417b78cdcb5b996bf75b5a9af49a5a56066dd25bb8247f933b29737d711"
-    },
-    "adapter_safetensors": {
-     "path": "artifacts/granite-4.2-3b-bf16-bs2-seq768/granite-4.2-3b-bf16-bs2-seq768_synct15k_llm_alllinear_r32_lora/adapter_model.safetensors",
-     "bytes": 249111968,
-     "sha256": "107f6d06712cb627dc777d116ae7814c0bba272ed3a31d0e08972bb2d2004a28"
-    },
-    "training_record": "training/records/granite-4.2-3b-bf16-bs2-seq768_synct15k_llm_alllinear_r32_lora/"
+   "adapter_gguf": {
+    "path": "artifacts/lfm2.5-1.2b-instruct-bf16-bs4-seq768/lfm2.5-1.2b-instruct-bf16-bs4-seq768_reference15k_alllinear_r32_lora.gguf",
+    "bytes": 44447168,
+    "sha256": "3c9dc4144ec3de9b0af172c70b209df2a3f22f77295fe70557094e8a3cda9f84"
    },
-   {
-    "identity": "Gamma",
-    "hf": "google/gemma-4-E2B-it",
-    "served": "Q8_0",
-    "gguf": {
-     "path": "artifacts/gemma-4-e2b-it-q8_0.gguf",
-     "bytes": 4954594848,
-     "sha256": "6dbeb53a43e28b175383d6519fc837be408a190162fdec239a836c27cebc913c"
-    },
-    "adapter_gguf": {
-     "path": "artifacts/gemma-4-e2b-it-bf16-bs1-seq768/gemma-4-e2b-it-bf16-bs1-seq768_synct15k_llm_alllinear_r32_lora.gguf",
-     "bytes": 96661632,
-     "sha256": "3fa9932687a35676bc9cfac6c7d7e2d07950948717ed385e0a219eefd51ea73e"
-    },
-    "adapter_safetensors": {
-     "path": "artifacts/gemma-4-e2b-it-bf16-bs1-seq768/gemma-4-e2b-it-bf16-bs1-seq768_synct15k_llm_alllinear_r32_lora/adapter_model.safetensors",
-     "bytes": 193326648,
-     "sha256": "298127cf66b8780f7a279ba1169199f6f8db90704fc7e7f4ba75d8ee10174a89"
-    },
-    "training_record": "training/records/gemma-4-e2b-it-bf16-bs1-seq768_synct15k_llm_alllinear_r32_lora/"
-   }
-  ]
- },
- "earlier_generation": {
-  "config": "config/experiment_gen1.json",
-  "models": [
-   {
-    "identity": "Alpha",
-    "hf": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
-    "served": "F16",
-    "gguf": {
-     "path": "artifacts/tinyllama-1.1b-chat-v1.0.gguf",
-     "bytes": 2201018624,
-     "sha256": "f033e27576f625549a90b29f7abe74dfa1204894b82964161444712d13cbc610"
-    },
-    "adapter_gguf": {
-     "path": "artifacts/tinyllama-1.1b-fp32-bs4-seq768/tinyllama-1.1b-fp32-bs4-seq768_synct15k_llm_alllinear_r32_lora.gguf",
-     "bytes": 100947296,
-     "sha256": "6eb1083394a5ae3fa207dfd1e5edb1fae0b519d915c0bffeef0e6b405af5dd53"
-    },
-    "adapter_safetensors": {
-     "path": "artifacts/tinyllama-1.1b-fp32-bs4-seq768/tinyllama-1.1b-fp32-bs4-seq768_synct15k_llm_alllinear_r32_lora/adapter_model.safetensors",
-     "bytes": 100966336,
-     "sha256": "4ffcec7b7824f55a6a76731ed35aa820b4228a8ab0bfb481dd7ab31ab5296e71"
-    },
-    "training_record": "training/records/tinyllama-1.1b-fp32-bs4-seq768_synct15k_llm_alllinear_r32_lora/"
+   "adapter_safetensors": {
+    "path": "artifacts/lfm2.5-1.2b-instruct-bf16-bs4-seq768/lfm2.5-1.2b-instruct-bf16-bs4-seq768_reference15k_alllinear_r32_lora/adapter_model.safetensors",
+    "bytes": 88891320,
+    "sha256": "30f9926fa2aad47ad874f5613148a1ecc687cb374508af4eadff66efab8fc291"
    },
-   {
-    "identity": "Beta",
-    "hf": "Qwen/Qwen2.5-3B-Instruct",
-    "served": "Q4_K_M",
-    "gguf": {
-     "path": "artifacts/qwen2.5-3b-instruct-q4_k_m.gguf",
-     "bytes": 2104932768,
-     "sha256": "626b4a6678b86442240e33df819e00132d3ba7dddfe1cdc4fbb18e0a9615c62d"
-    },
-    "adapter_gguf": {
-     "path": "artifacts/qwen2.5-3b-instruct-bf16-bs4-seq768/qwen2.5-3b-instruct-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora.gguf",
-     "bytes": 119769440,
-     "sha256": "9ae4661365afe1a915b6406d649c2339305ab24c68dfa86176a014ca2d240406"
-    },
-    "adapter_safetensors": {
-     "path": "artifacts/qwen2.5-3b-instruct-bf16-bs4-seq768/qwen2.5-3b-instruct-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora/adapter_model.safetensors",
-     "bytes": 239536272,
-     "sha256": "567bfff67ae0b492522fb34def8ec04865ce7129054d6904b45d228b75d4304c"
-    },
-    "training_record": "training/records/qwen2.5-3b-instruct-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora/"
+   "training_record": "training/records/lfm2.5-1.2b-instruct-bf16-bs4-seq768_reference15k_alllinear_r32_lora/"
+  },
+  {
+   "identity": "Beta",
+   "hf": "ibm-granite/granite-4.2-3b",
+   "served": "Q8_0",
+   "gguf": {
+    "path": "artifacts/granite-4.2-3b-q8_0.gguf",
+    "bytes": 3892652192,
+    "sha256": "5da799759c5a0da470f271d0f6d6297592dad282748fb3281ee2d1bf500c611e"
    },
-   {
-    "identity": "Gamma",
-    "hf": "google/gemma-2b-it",
-    "served": "F32",
-    "gguf": {
-     "path": "artifacts/gemma-2b-it.gguf",
-     "bytes": 10031780704,
-     "sha256": "e858f591abebb789508f8fa4f1982bb7c818d8f711050f24d6e27a66fd6794d0"
-    },
-    "adapter_gguf": {
-     "path": "artifacts/gemma-2b-it-bf16-bs4-seq768/gemma-2b-it-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora.gguf",
-     "bytes": 78464512,
-     "sha256": "a12d88bfd12d7a9c1a07a9be67fbe58f96e083bcda3a2800d6e9eb953bd961f3"
-    },
-    "adapter_safetensors": {
-     "path": "artifacts/gemma-2b-it-bf16-bs4-seq768/gemma-2b-it-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora/adapter_model.safetensors",
-     "bytes": 156926880,
-     "sha256": "144405c02bb731d15e8c72f09ce91db84cacbb76f0079fc7e8676b4ff0876546"
-    },
-    "training_record": "training/records/gemma-2b-it-bf16-bs4-seq768_synct15k_llm_alllinear_r32_lora/"
-   }
-  ]
- },
+   "adapter_gguf": {
+    "path": "artifacts/granite-4.2-3b-bf16-bs2-seq768/granite-4.2-3b-bf16-bs2-seq768_reference15k_alllinear_r32_lora.gguf",
+    "bytes": 124557376,
+    "sha256": "a992dd76883a3bb785b95a9f404b9006797a34aa29e7260bb10301ea2f8f5c16"
+   },
+   "adapter_safetensors": {
+    "path": "artifacts/granite-4.2-3b-bf16-bs2-seq768/granite-4.2-3b-bf16-bs2-seq768_reference15k_alllinear_r32_lora/adapter_model.safetensors",
+    "bytes": 249111968,
+    "sha256": "41b223521116de6da8928515b86d8a5728452877cc1afbc032cd0fddbda71fe1"
+   },
+   "training_record": "training/records/granite-4.2-3b-bf16-bs2-seq768_reference15k_alllinear_r32_lora/"
+  },
+  {
+   "identity": "Gamma",
+   "hf": "google/gemma-4-E2B-it",
+   "served": "Q8_0",
+   "gguf": {
+    "path": "artifacts/gemma-4-e2b-it-q8_0.gguf",
+    "bytes": 4954594848,
+    "sha256": "6dbeb53a43e28b175383d6519fc837be408a190162fdec239a836c27cebc913c"
+   },
+   "adapter_gguf": {
+    "path": "artifacts/gemma-4-e2b-it-bf16-bs1-seq768/gemma-4-e2b-it-bf16-bs1-seq768_reference15k_alllinear_r32_lora.gguf",
+    "bytes": 96661632,
+    "sha256": "a6d08c5fc41ae4bf6306b369527726850089e6ce1b708e426b0347fe38191223"
+   },
+   "adapter_safetensors": {
+    "path": "artifacts/gemma-4-e2b-it-bf16-bs1-seq768/gemma-4-e2b-it-bf16-bs1-seq768_reference15k_alllinear_r32_lora/adapter_model.safetensors",
+    "bytes": 193326648,
+    "sha256": "8a21e06cd9b0ffc517e2ad971ecea1595c963651dfa8d3fccb306672cf3f3d70"
+   },
+   "training_record": "training/records/gemma-4-e2b-it-bf16-bs1-seq768_reference15k_alllinear_r32_lora/"
+  }
+ ],
  "data": {
-  "training/corpus/training_data_synct_15000_llm.txt": {
-   "bytes": 10829359,
-   "sha256": "35a5f3eeca93ef10978a4c0c1d08f75e1fe39c300e7d6fd42075504e3fff8936"
-  },
-  "training/corpus/test_data_synct_1000_llm.txt": {
-   "bytes": 721161,
-   "sha256": "a1964207cab5486a3f0e946ad9501b2f2d50b41376cd4092f87b88fbb4979603"
-  },
-  "training/corpus/training_data.txt": {
-   "bytes": 272565,
-   "sha256": "fba02abfbfa34e4f6aafb966207e303b91053c506478447dfce53558b087d9e7"
+  "training/corpus/training_data_reference_15000.txt": {
+   "bytes": 10688987,
+   "sha256": "9025b3182121dcee9ca3df1fd606add51d750bc47d26f576ff059121fa3ce52f"
   },
   "eval/replay_corpus.json": {
    "bytes": 1063032,
    "sha256": "9c17f20c67ff6d6f6b4701def8b8d6fc6f553e793e980852cf8a1f3b5ee042af"
   },
-  "runs/replay_20261006_2x4.tar.xz": {
-   "bytes": 613996,
-   "sha256": "e4c475a798eadd050bfa1a5953660054028dcdfb745c75b6021e2f7d8ab53099"
+  "runs/replay_20261115_ref.tar.xz": {
+   "bytes": 601568,
+   "sha256": "b62444b42c7e7a21f1cb92d3f9be72bd8f2f098d23e65c2371d806b689e30c3e"
   },
-  "runs/replay_20261029_gen2.tar.xz": {
-   "bytes": 618028,
-   "sha256": "2c5144ee5dfc3c7384a2f044f737e1ac5cff0a3be68918ad5a0fbd6567bba9be"
+  "runs/suite_20261115_ref.tar.xz": {
+   "bytes": 879220,
+   "sha256": "f84a0d0620e9f7972e9a9251e48c4006ffaaf948f2608c6a9ce186d39115747f"
   },
-  "runs/suite_20261029_gen2.tar.xz": {
-   "bytes": 918892,
-   "sha256": "e399bf88f5afa9170a5a644e031a258eed6a34f95687ad15b3fa5200b4168996"
-  },
-  "runs/suite_20261030_gen2_vsrandom.tar.xz": {
-   "bytes": 986548,
-   "sha256": "5ab1d3541b1321ce20398166af186e5f3531f4c7ccd850de698b85ad7e1ea448"
-  },
-  "runs/suite_20261102_phase1_fixed.tar.xz": {
-   "bytes": 939644,
-   "sha256": "b4cdf540319db377e796527fffa5f7dc7609a1efe2a64466c20056b25187c839"
-  },
-  "runs/suite_20261102_phase1_fixed_vsrandom.tar.xz": {
-   "bytes": 1051752,
-   "sha256": "9635dae5a850378cfb0d5d15955bcffa970f18165c9c071fd6d7b9fe53e042af"
+  "runs/suite_20261115_ref_vsrandom.tar.xz": {
+   "bytes": 934216,
+   "sha256": "4161240c613eb2f515476583f06eb59a62776ba2f1b789f68a74e2acb1e48dd2"
   }
- },
- "rewording_model": {
-  "role": "the model that reworded the training corpus's free text (training/generate_data/llm_text.py); not needed to rerun or check the experiments",
-  "hf": "microsoft/phi-4",
-  "served": "Q4_K",
-  "path": "artifacts/phi-4-Q4_K.gguf",
-  "bytes": 9053114560,
-  "sha256": "5652b9be0ea4ae2842130d04fe31bc869fcb99a2b7106c53b4e754a343fd688f"
  }
 }
