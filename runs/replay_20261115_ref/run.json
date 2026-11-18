@@ -107,41 +107,169 @@
       "backend": "gpu",
       "finished": "2026-11-15T07:53:47",
       "reused_from": "logs/replay_20261029_gen2",
-      "originally_finished": "2026-10-29T10:56:45"
+      "originally_finished": "2026-10-29T10:56:45",
+      "top_up": {
+        "items": [
+          "train-considering-093",
+          "train-considering-094",
+          "train-considering-095",
+          "train-considering-096",
+          "train-considering-097",
+          "train-considering-098",
+          "train-considering-099",
+          "train-considering-100"
+        ],
+        "finished": "2026-11-17T09:21:06",
+        "backend": "gpu",
+        "run": "logs/replay_20261117_topup8",
+        "why": "8 CONSIDERING states added to the training slice (992 -> 1000 items); the other items' answers are unchanged"
+      }
     },
     "base_verbose2": {
       "backend": "gpu",
       "finished": "2026-11-15T07:53:47",
       "reused_from": "logs/replay_20261029_gen2",
-      "originally_finished": "2026-10-29T11:49:18"
+      "originally_finished": "2026-10-29T11:49:18",
+      "top_up": {
+        "items": [
+          "train-considering-093",
+          "train-considering-094",
+          "train-considering-095",
+          "train-considering-096",
+          "train-considering-097",
+          "train-considering-098",
+          "train-considering-099",
+          "train-considering-100"
+        ],
+        "finished": "2026-11-17T09:21:51",
+        "backend": "gpu",
+        "run": "logs/replay_20261117_topup8",
+        "why": "8 CONSIDERING states added to the training slice (992 -> 1000 items); the other items' answers are unchanged"
+      }
     },
     "base_compact": {
       "backend": "gpu",
       "finished": "2026-11-15T07:53:47",
       "reused_from": "logs/replay_20261029_gen2",
-      "originally_finished": "2026-10-29T14:40:51"
+      "originally_finished": "2026-10-29T14:40:51",
+      "top_up": {
+        "items": [
+          "train-considering-093",
+          "train-considering-094",
+          "train-considering-095",
+          "train-considering-096",
+          "train-considering-097",
+          "train-considering-098",
+          "train-considering-099",
+          "train-considering-100"
+        ],
+        "finished": "2026-11-17T09:23:38",
+        "backend": "gpu",
+        "run": "logs/replay_20261117_topup8",
+        "why": "8 CONSIDERING states added to the training slice (992 -> 1000 items); the other items' answers are unchanged"
+      }
     },
     "base_grammar": {
       "backend": "gpu",
       "finished": "2026-11-15T07:53:47",
       "reused_from": "logs/replay_20261029_gen2",
-      "originally_finished": "2026-10-29T15:32:02"
+      "originally_finished": "2026-10-29T15:32:02",
+      "top_up": {
+        "items": [
+          "train-considering-093",
+          "train-considering-094",
+          "train-considering-095",
+          "train-considering-096",
+          "train-considering-097",
+          "train-considering-098",
+          "train-considering-099",
+          "train-considering-100"
+        ],
+        "finished": "2026-11-17T09:24:20",
+        "backend": "gpu",
+        "run": "logs/replay_20261117_topup8",
+        "why": "8 CONSIDERING states added to the training slice (992 -> 1000 items); the other items' answers are unchanged"
+      }
     },
     "lora_verbose": {
       "backend": "gpu",
-      "finished": "2026-11-15T18:25:29"
+      "finished": "2026-11-15T18:25:29",
+      "top_up": {
+        "items": [
+          "train-considering-093",
+          "train-considering-094",
+          "train-considering-095",
+          "train-considering-096",
+          "train-considering-097",
+          "train-considering-098",
+          "train-considering-099",
+          "train-considering-100"
+        ],
+        "finished": "2026-11-17T09:21:25",
+        "backend": "gpu",
+        "run": "logs/replay_20261117_topup8",
+        "why": "8 CONSIDERING states added to the training slice (992 -> 1000 items); the other items' answers are unchanged"
+      }
     },
     "lora_verbose2": {
       "backend": "gpu",
-      "finished": "2026-11-15T18:52:29"
+      "finished": "2026-11-15T18:52:29",
+      "top_up": {
+        "items": [
+          "train-considering-093",
+          "train-considering-094",
+          "train-considering-095",
+          "train-considering-096",
+          "train-considering-097",
+          "train-considering-098",
+          "train-considering-099",
+          "train-considering-100"
+        ],
+        "finished": "2026-11-17T09:22:13",
+        "backend": "gpu",
+        "run": "logs/replay_20261117_topup8",
+        "why": "8 CONSIDERING states added to the training slice (992 -> 1000 items); the other items' answers are unchanged"
+      }
     },
     "lora_compact": {
       "backend": "gpu",
-      "finished": "2026-11-15T19:13:37"
+      "finished": "2026-11-15T19:13:37",
+      "top_up": {
+        "items": [
+          "train-considering-093",
+          "train-considering-094",
+          "train-considering-095",
+          "train-considering-096",
+          "train-considering-097",
+          "train-considering-098",
+          "train-considering-099",
+          "train-considering-100"
+        ],
+        "finished": "2026-11-17T09:23:56",
+        "backend": "gpu",
+        "run": "logs/replay_20261117_topup8",
+        "why": "8 CONSIDERING states added to the training slice (992 -> 1000 items); the other items' answers are unchanged"
+      }
     },
     "lora_grammar": {
       "backend": "gpu",
-      "finished": "2026-11-15T19:37:17"
+      "finished": "2026-11-15T19:37:17",
+      "top_up": {
+        "items": [
+          "train-considering-093",
+          "train-considering-094",
+          "train-considering-095",
+          "train-considering-096",
+          "train-considering-097",
+          "train-considering-098",
+          "train-considering-099",
+          "train-considering-100"
+        ],
+        "finished": "2026-11-17T09:24:40",
+        "backend": "gpu",
+        "run": "logs/replay_20261117_topup8",
+        "why": "8 CONSIDERING states added to the training slice (992 -> 1000 items); the other items' answers are unchanged"
+      }
     }
   }
 }

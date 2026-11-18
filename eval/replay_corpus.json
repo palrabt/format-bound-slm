@@ -62587,5 +62587,719 @@
    "player2_ip": "http://localhost:8768"
   },
   "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Great, let's do it; Runner Bean for Red Bean works for me.\"}"
+ },
+ {
+  "id": "train-considering-093",
+  "slice": "training",
+  "state": {
+   "phase": "CONSIDERING",
+   "my_offers": [
+    "Blue Bean",
+    "Chili Bean"
+   ],
+   "my_reason": "How about two Blue Beans and a Chili for one Runner? Happy to trade!",
+   "their_offers": [
+    "Black-eyed Bean",
+    "Red Bean",
+    "Coffee Bean",
+    "Coffee Bean",
+    "Coffee Bean"
+   ],
+   "their_reason": "I'll take Blue and Chili, give Black-eyed, Red, and three Coffee.",
+   "from_player": "1",
+   "hand": [
+    "Chili Bean",
+    "Runner Bean",
+    "Blue Bean",
+    "Wax Bean",
+    "Fire Bean",
+    "Fire Bean",
+    "Coffee Bean",
+    "Runner Bean",
+    "Coffee Bean"
+   ],
+   "new_cards": [
+    "Soy Bean",
+    "Black-eyed Bean"
+   ],
+   "my_fields": {
+    "field1": {
+     "cards": [
+      "Blue Bean",
+      "Blue Bean"
+     ],
+     "value": 0
+    },
+    "field2": {
+     "cards": [
+      "Coffee Bean",
+      "Coffee Bean",
+      "Coffee Bean"
+     ],
+     "value": 0
+    },
+    "field3": {
+     "cards": [
+      "Runner Bean",
+      "Runner Bean"
+     ],
+     "value": 0
+    }
+   },
+   "their_fields": {
+    "field1": {
+     "cards": [
+      "Garden Bean",
+      "Garden Bean"
+     ],
+     "value": 1
+    },
+    "field2": {
+     "cards": [
+      "Red Bean",
+      "Red Bean",
+      "Red Bean",
+      "Red Bean"
+     ],
+     "value": 3
+    },
+    "field3": {
+     "cards": [
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean"
+     ],
+     "value": 1
+    }
+   },
+   "penalty": 71
+  },
+  "peers": {
+   "player1_ip": "http://localhost:8767",
+   "player2_ip": "http://localhost:8768"
+  },
+  "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Apologies for the mix-up, but I'm happy with the Blue and Chili beans, and this trade works for my Coffee and Runner Beans!\"}"
+ },
+ {
+  "id": "train-considering-094",
+  "slice": "training",
+  "state": {
+   "phase": "CONSIDERING",
+   "my_offers": [
+    "Coffee Bean",
+    "Fire Bean"
+   ],
+   "my_reason": "Coffee and Fire for Chili.",
+   "their_offers": [
+    "Runner Bean",
+    "Blue Bean"
+   ],
+   "their_reason": "I accept, giving you Runner and Blue, thanks.",
+   "from_player": "0",
+   "hand": [
+    "Black-eyed Bean",
+    "Chili Bean",
+    "Chili Bean",
+    "Fire Bean",
+    "Black-eyed Bean",
+    "Garden Bean",
+    "Wax Bean",
+    "Broad Bean",
+    "Coffee Bean"
+   ],
+   "new_cards": [],
+   "my_fields": {
+    "field1": {
+     "cards": [
+      "Chili Bean",
+      "Chili Bean"
+     ],
+     "value": 0
+    },
+    "field2": {
+     "cards": [
+      "Blue Bean",
+      "Blue Bean",
+      "Blue Bean"
+     ],
+     "value": 0
+    },
+    "field3": {
+     "cards": [],
+     "value": 0
+    }
+   },
+   "their_fields": {
+    "field1": {
+     "cards": [
+      "Coffee Bean",
+      "Coffee Bean",
+      "Coffee Bean"
+     ],
+     "value": 0
+    },
+    "field2": {
+     "cards": [],
+     "value": 0
+    },
+    "field3": {
+     "cards": [],
+     "value": 0
+    }
+   },
+   "penalty": 10
+  },
+  "peers": {
+   "player1_ip": "http://localhost:8767",
+   "player2_ip": "http://localhost:8768"
+  },
+  "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Sweet, let's swap: Coffee and Fire for Runner and Blue. Let's do it!\"}"
+ },
+ {
+  "id": "train-considering-095",
+  "slice": "training",
+  "state": {
+   "phase": "CONSIDERING",
+   "my_offers": [
+    "Chili Bean",
+    "Runner Bean"
+   ],
+   "my_reason": "Maybe Chili and Runner for your Blue?",
+   "their_offers": [
+    "Blue Bean"
+   ],
+   "their_reason": "Thanks for the Chili and Runner, here's a Blue Bean.",
+   "from_player": "1",
+   "hand": [],
+   "new_cards": [
+    "Runner Bean",
+    "Chili Bean"
+   ],
+   "my_fields": {
+    "field1": {
+     "cards": [
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean"
+     ],
+     "value": 3
+    },
+    "field2": {
+     "cards": [
+      "Blue Bean"
+     ],
+     "value": 0
+    },
+    "field3": {
+     "cards": [
+      "Runner Bean",
+      "Runner Bean",
+      "Runner Bean",
+      "Runner Bean"
+     ],
+     "value": 1
+    }
+   },
+   "their_fields": {
+    "field1": {
+     "cards": [
+      "Blue Bean"
+     ],
+     "value": 0
+    },
+    "field2": {
+     "cards": [
+      "Fire Bean"
+     ],
+     "value": 0
+    },
+    "field3": {
+     "cards": [],
+     "value": 0
+    }
+   },
+   "penalty": 27
+  },
+  "peers": {
+   "player1_ip": "http://localhost:8767",
+   "player2_ip": "http://localhost:8768"
+  },
+  "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Exciting Blue Bean for Runner and Chili!\"}"
+ },
+ {
+  "id": "train-considering-096",
+  "slice": "training",
+  "state": {
+   "phase": "CONSIDERING",
+   "my_offers": [
+    "Red Bean",
+    "Wax Bean"
+   ],
+   "my_reason": "Red and Wax for a Runner Bean.",
+   "their_offers": [
+    "Chili Bean"
+   ],
+   "their_reason": "Sure thing, Chili for those!",
+   "from_player": "1",
+   "hand": [
+    "Red Bean",
+    "Wax Bean",
+    "Broad Bean",
+    "Black-eyed Bean",
+    "Wax Bean",
+    "Chili Bean",
+    "Chili Bean",
+    "Black-eyed Bean",
+    "Blue Bean",
+    "Wax Bean",
+    "Coffee Bean"
+   ],
+   "new_cards": [
+    "Garden Bean",
+    "Fire Bean",
+    "Blue Bean",
+    "Red Bean",
+    "Fire Bean",
+    "Chili Bean"
+   ],
+   "my_fields": {
+    "field1": {
+     "cards": [
+      "Chili Bean",
+      "Chili Bean"
+     ],
+     "value": 0
+    },
+    "field2": {
+     "cards": [
+      "Runner Bean"
+     ],
+     "value": 0
+    },
+    "field3": {
+     "cards": [
+      "Black-eyed Bean"
+     ],
+     "value": 0
+    }
+   },
+   "their_fields": {
+    "field1": {
+     "cards": [],
+     "value": 0
+    },
+    "field2": {
+     "cards": [
+      "Runner Bean",
+      "Runner Bean",
+      "Runner Bean",
+      "Runner Bean"
+     ],
+     "value": 1
+    },
+    "field3": {
+     "cards": [],
+     "value": 0
+    }
+   },
+   "penalty": 25
+  },
+  "peers": {
+   "player1_ip": "http://localhost:8767",
+   "player2_ip": "http://localhost:8768"
+  },
+  "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Thanks, glad you could use the Red and Wax. Chili's are just what I needed!\"}"
+ },
+ {
+  "id": "train-considering-097",
+  "slice": "training",
+  "state": {
+   "phase": "CONSIDERING",
+   "my_offers": [
+    "Runner Bean"
+   ],
+   "my_reason": "Runner for Chili?",
+   "their_offers": [
+    "Chili Bean"
+   ],
+   "their_reason": "Here's a Chili, enjoy!",
+   "from_player": "0",
+   "hand": [
+    "Wax Bean",
+    "Runner Bean",
+    "Chili Bean",
+    "Black-eyed Bean",
+    "Soy Bean",
+    "Wax Bean",
+    "Black-eyed Bean",
+    "Fire Bean",
+    "Red Bean",
+    "Runner Bean",
+    "Broad Bean",
+    "Coffee Bean",
+    "Garden Bean",
+    "Wax Bean",
+    "Coffee Bean",
+    "Black-eyed Bean",
+    "Wax Bean",
+    "Black-eyed Bean",
+    "Runner Bean",
+    "Chili Bean",
+    "Broad Bean",
+    "Chili Bean",
+    "Blue Bean",
+    "Fire Bean",
+    "Red Bean",
+    "Chili Bean",
+    "Wax Bean",
+    "Blue Bean",
+    "Red Bean",
+    "Runner Bean",
+    "Coffee Bean",
+    "Coffee Bean",
+    "Blue Bean"
+   ],
+   "new_cards": [
+    "Blue Bean",
+    "Black-eyed Bean",
+    "Coffee Bean",
+    "Coffee Bean",
+    "Runner Bean"
+   ],
+   "my_fields": {
+    "field1": {
+     "cards": [
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean"
+     ],
+     "value": 1
+    },
+    "field2": {
+     "cards": [],
+     "value": 0
+    },
+    "field3": {
+     "cards": [
+      "Runner Bean",
+      "Runner Bean",
+      "Runner Bean",
+      "Runner Bean"
+     ],
+     "value": 1
+    }
+   },
+   "their_fields": {
+    "field1": {
+     "cards": [],
+     "value": 0
+    },
+    "field2": {
+     "cards": [
+      "Garden Bean",
+      "Garden Bean",
+      "Garden Bean",
+      "Garden Bean"
+     ],
+     "value": 2
+    },
+    "field3": {
+     "cards": [],
+     "value": 0
+    }
+   },
+   "penalty": 71
+  },
+  "peers": {
+   "player1_ip": "http://localhost:8767",
+   "player2_ip": "http://localhost:8768"
+  },
+  "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Great, let's swap Runner Bean for Chili Bean!\"}"
+ },
+ {
+  "id": "train-considering-098",
+  "slice": "training",
+  "state": {
+   "phase": "CONSIDERING",
+   "my_offers": [
+    "Garden Bean"
+   ],
+   "my_reason": "Excited about these Garden Beans! Can you trade me a Wax Bean in return?",
+   "their_offers": [
+    "Blue Bean"
+   ],
+   "their_reason": "I'll take that Garden Bean, trading you a Blue for it!",
+   "from_player": "0",
+   "hand": [
+    "Runner Bean",
+    "Coffee Bean",
+    "Blue Bean",
+    "Coffee Bean",
+    "Runner Bean",
+    "Soy Bean",
+    "Runner Bean",
+    "Broad Bean",
+    "Blue Bean",
+    "Runner Bean",
+    "Soy Bean",
+    "Soy Bean",
+    "Runner Bean",
+    "Blue Bean",
+    "Garden Bean",
+    "Black-eyed Bean",
+    "Runner Bean",
+    "Runner Bean",
+    "Wax Bean",
+    "Chili Bean",
+    "Soy Bean"
+   ],
+   "new_cards": [],
+   "my_fields": {
+    "field1": {
+     "cards": [
+      "Blue Bean",
+      "Blue Bean",
+      "Blue Bean"
+     ],
+     "value": 0
+    },
+    "field2": {
+     "cards": [
+      "Coffee Bean",
+      "Coffee Bean"
+     ],
+     "value": 0
+    },
+    "field3": {
+     "cards": [
+      "Wax Bean",
+      "Wax Bean",
+      "Wax Bean",
+      "Wax Bean"
+     ],
+     "value": 1
+    }
+   },
+   "their_fields": {
+    "field1": {
+     "cards": [
+      "Red Bean",
+      "Red Bean"
+     ],
+     "value": 1
+    },
+    "field2": {
+     "cards": [],
+     "value": 0
+    },
+    "field3": {
+     "cards": [
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean"
+     ],
+     "value": 1
+    }
+   },
+   "penalty": 37
+  },
+  "peers": {
+   "player1_ip": "http://localhost:8767",
+   "player2_ip": "http://localhost:8768"
+  },
+  "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Great, let's make it happen. I'll take the Blue Bean.\"}"
+ },
+ {
+  "id": "train-considering-099",
+  "slice": "training",
+  "state": {
+   "phase": "CONSIDERING",
+   "my_offers": [
+    "Coffee Bean",
+    "Chili Bean"
+   ],
+   "my_reason": "Coffee and Chili for Wax.",
+   "their_offers": [
+    "Wax Bean"
+   ],
+   "their_reason": "Taking your Coffee and Chili, here's a Wax for you.",
+   "from_player": "0",
+   "hand": [
+    "Runner Bean",
+    "Chili Bean",
+    "Wax Bean",
+    "Chili Bean",
+    "Broad Bean",
+    "Chili Bean",
+    "Fire Bean",
+    "Runner Bean",
+    "Blue Bean",
+    "Blue Bean",
+    "Chili Bean",
+    "Wax Bean",
+    "Broad Bean",
+    "Soy Bean",
+    "Blue Bean",
+    "Wax Bean",
+    "Chili Bean",
+    "Soy Bean",
+    "Chili Bean",
+    "Blue Bean",
+    "Chili Bean",
+    "Garden Bean",
+    "Fire Bean",
+    "Coffee Bean",
+    "Red Bean",
+    "Soy Bean",
+    "Coffee Bean",
+    "Coffee Bean",
+    "Wax Bean",
+    "Red Bean",
+    "Blue Bean",
+    "Red Bean",
+    "Red Bean"
+   ],
+   "new_cards": [
+    "Coffee Bean"
+   ],
+   "my_fields": {
+    "field1": {
+     "cards": [
+      "Wax Bean",
+      "Wax Bean",
+      "Wax Bean"
+     ],
+     "value": 0
+    },
+    "field2": {
+     "cards": [],
+     "value": 0
+    },
+    "field3": {
+     "cards": [
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean"
+     ],
+     "value": 1
+    }
+   },
+   "their_fields": {
+    "field1": {
+     "cards": [],
+     "value": 0
+    },
+    "field2": {
+     "cards": [
+      "Coffee Bean",
+      "Coffee Bean"
+     ],
+     "value": 0
+    },
+    "field3": {
+     "cards": [],
+     "value": 0
+    }
+   },
+   "penalty": 75
+  },
+  "peers": {
+   "player1_ip": "http://localhost:8767",
+   "player2_ip": "http://localhost:8768"
+  },
+  "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Deal, I'll take the Wax bean in exchange for Coffee and Chili!\"}"
+ },
+ {
+  "id": "train-considering-100",
+  "slice": "training",
+  "state": {
+   "phase": "CONSIDERING",
+   "my_offers": [
+    "Chili Bean"
+   ],
+   "my_reason": "Chili Bean for Red, got some growing!",
+   "their_offers": [
+    "Wax Bean",
+    "Blue Bean"
+   ],
+   "their_reason": "Chili for Wax and Blue.",
+   "from_player": "1",
+   "hand": [
+    "Chili Bean"
+   ],
+   "new_cards": [],
+   "my_fields": {
+    "field1": {
+     "cards": [
+      "Chili Bean",
+      "Chili Bean",
+      "Chili Bean"
+     ],
+     "value": 1
+    },
+    "field2": {
+     "cards": [
+      "Red Bean",
+      "Red Bean"
+     ],
+     "value": 1
+    },
+    "field3": {
+     "cards": [
+      "Blue Bean",
+      "Blue Bean",
+      "Blue Bean",
+      "Blue Bean",
+      "Blue Bean",
+      "Blue Bean",
+      "Blue Bean",
+      "Blue Bean"
+     ],
+     "value": 3
+    }
+   },
+   "their_fields": {
+    "field1": {
+     "cards": [
+      "Coffee Bean",
+      "Coffee Bean",
+      "Coffee Bean",
+      "Coffee Bean",
+      "Coffee Bean",
+      "Coffee Bean",
+      "Coffee Bean",
+      "Coffee Bean"
+     ],
+     "value": 2
+    },
+    "field2": {
+     "cards": [
+      "Runner Bean",
+      "Runner Bean",
+      "Runner Bean"
+     ],
+     "value": 1
+    },
+    "field3": {
+     "cards": [],
+     "value": 0
+    }
+   },
+   "penalty": 177
+  },
+  "peers": {
+   "player1_ip": "http://localhost:8767",
+   "player2_ip": "http://localhost:8768"
+  },
+  "teacher": "{\"accepted\": true, \"offer\": [], \"reason\": \"Let's do this - Chili for Wax and Blue!\"}"
  }
 ]

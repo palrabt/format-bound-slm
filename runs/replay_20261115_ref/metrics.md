@@ -1,6 +1,6 @@
 # replay_20261115_ref: game states
 
-replay run, backend gpu; 500 answers per model and condition; training corpus `training/corpus/training_data_reference_15000.txt`; evaluated 2026-11-16 15:28. Shares in brackets are 95% Wilson intervals.
+replay run, backend gpu; 500 answers per model and condition; training corpus `training/corpus/training_data_reference_15000.txt`; evaluated 2026-11-17 09:25. Shares in brackets are 95% Wilson intervals.
 
 ## Overview
 
@@ -406,36 +406,36 @@ Same decision on the same item (95% CI; compared items in brackets).
 
 # replay_20261115_ref: held-out training states
 
-replay run, backend gpu; 492 answers per model and condition; training corpus `training/corpus/training_data_reference_15000.txt`; evaluated 2026-11-16 15:28. Shares in brackets are 95% Wilson intervals.
+replay run, backend gpu; 500 answers per model and condition; training corpus `training/corpus/training_data_reference_15000.txt`; evaluated 2026-11-17 09:25. Shares in brackets are 95% Wilson intervals.
 
 ## Overview
 
 | condition | model | answers | schema-valid | legal | valid play | reference-correct | accept gap useful−useless | avoidable harvests |
 |---|---|---|---|---|---|---|---|---|
-| base_verbose | LFM2.5-1.2B | 492 | 51% [47–56] | 66% [62–70] | 30% [26–34] | 8% [6–11] | -2 | 73% |
-| base_verbose | granite-4.2-3b | 492 | 99% [98–100] | 78% [74–82] | 43% [39–48] | 16% [13–20] | -6 | 43% |
-| base_verbose | gemma-4-E2B | 492 | 95% [93–97] | 86% [82–88] | 39% [34–43] | 7% [5–9] | +7 | 39% |
-| lora_verbose | LFM2.5-1.2B | 492 | 100% [99–100] | 92% [90–94] | 48% [43–52] | 29% [25–33] | +1 | 57% |
-| lora_verbose | granite-4.2-3b | 492 | 99% [98–100] | 90% [87–92] | 71% [67–75] | 50% [45–54] | +49 | 20% |
-| lora_verbose | gemma-4-E2B | 492 | 100% [99–100] | 88% [84–90] | 47% [42–51] | 38% [33–42] | +1 | 30% |
-| base_verbose2 | LFM2.5-1.2B | 492 | 92% [89–94] | 65% [61–70] | 35% [31–40] | 24% [21–28] | +0 | 32% |
-| base_verbose2 | granite-4.2-3b | 492 | 97% [95–98] | 82% [78–85] | 41% [37–45] | 6% [4–8] | +0 | 39% |
-| base_verbose2 | gemma-4-E2B | 492 | 99% [97–99] | 82% [78–85] | 48% [44–52] | 17% [14–20] | -2 | 37% |
-| lora_verbose2 | LFM2.5-1.2B | 492 | 100% [99–100] | 94% [91–96] | 49% [44–53] | 32% [28–36] | +0 | 56% |
-| lora_verbose2 | granite-4.2-3b | 492 | 97% [95–98] | 85% [82–88] | 69% [64–73] | 48% [43–52] | +52 | 11% |
-| lora_verbose2 | gemma-4-E2B | 492 | 93% [91–95] | 78% [75–82] | 43% [39–48] | 23% [20–27] | +4 | 30% |
-| base_compact | LFM2.5-1.2B | 492 | 0% [0–1] | 0% [0–1] | 0% [0–1] | 0% [0–1] | – | – |
-| base_compact | granite-4.2-3b | 492 | 0% [0–1] | 0% [0–1] | 0% [0–1] | 0% [0–1] | – | – |
-| base_compact | gemma-4-E2B | 492 | 0% [0–1] | 11% [9–14] | 6% [4–8] | 6% [4–8] | +0 | – |
-| lora_compact | LFM2.5-1.2B | 492 | 100% [99–100] | 98% [96–99] | 90% [87–92] | 88% [85–90] | +76 | 1% |
-| lora_compact | granite-4.2-3b | 492 | 100% [99–100] | 100% [99–100] | 97% [95–98] | 95% [93–97] | +100 | 1% |
-| lora_compact | gemma-4-E2B | 492 | 100% [99–100] | 100% [99–100] | 96% [94–98] | 94% [91–96] | +98 | 1% |
-| base_grammar | LFM2.5-1.2B | 492 | 100% [99–100] | 76% [72–80] | 23% [20–27] | 7% [5–9] | -2 | 63% |
-| base_grammar | granite-4.2-3b | 492 | 100% [99–100] | 90% [87–92] | 42% [38–47] | 16% [13–19] | -3 | 62% |
-| base_grammar | gemma-4-E2B | 492 | 100% [99–100] | 93% [90–95] | 38% [34–42] | 12% [10–16] | +6 | 56% |
-| lora_grammar | LFM2.5-1.2B | 492 | 87% [84–89] | 83% [80–86] | 39% [35–44] | 34% [30–39] | +0 | 52% |
-| lora_grammar | granite-4.2-3b | 492 | 90% [88–93] | 90% [87–92] | 71% [67–75] | 58% [54–62] | +71 | 24% |
-| lora_grammar | gemma-4-E2B | 492 | 81% [78–84] | 79% [75–82] | 42% [38–47] | 37% [32–41] | +24 | 40% |
+| base_verbose | LFM2.5-1.2B | 500 | 51% [47–56] | 66% [61–70] | 30% [27–35] | 8% [6–11] | +0 | 73% |
+| base_verbose | granite-4.2-3b | 500 | 99% [98–100] | 78% [74–81] | 43% [38–47] | 16% [13–19] | -6 | 43% |
+| base_verbose | gemma-4-E2B | 500 | 95% [93–97] | 86% [82–89] | 38% [34–43] | 7% [5–9] | +5 | 39% |
+| lora_verbose | LFM2.5-1.2B | 500 | 100% [99–100] | 92% [90–94] | 47% [43–51] | 28% [25–33] | +1 | 57% |
+| lora_verbose | granite-4.2-3b | 500 | 99% [98–100] | 90% [87–93] | 71% [66–74] | 50% [46–54] | +51 | 20% |
+| lora_verbose | gemma-4-E2B | 500 | 100% [99–100] | 88% [85–90] | 46% [42–50] | 37% [33–41] | +1 | 30% |
+| base_verbose2 | LFM2.5-1.2B | 500 | 92% [89–94] | 66% [62–70] | 35% [31–39] | 24% [20–28] | +0 | 32% |
+| base_verbose2 | granite-4.2-3b | 500 | 97% [95–98] | 82% [78–85] | 40% [36–45] | 6% [4–8] | +0 | 39% |
+| base_verbose2 | gemma-4-E2B | 500 | 99% [97–99] | 82% [78–85] | 47% [43–52] | 16% [13–20] | -2 | 37% |
+| lora_verbose2 | LFM2.5-1.2B | 500 | 100% [99–100] | 94% [91–96] | 48% [44–52] | 31% [27–36] | +0 | 56% |
+| lora_verbose2 | granite-4.2-3b | 500 | 97% [95–98] | 85% [82–88] | 68% [64–72] | 48% [43–52] | +52 | 11% |
+| lora_verbose2 | gemma-4-E2B | 500 | 93% [91–95] | 79% [75–82] | 43% [38–47] | 23% [20–27] | +4 | 30% |
+| base_compact | LFM2.5-1.2B | 500 | 0% [0–1] | 0% [0–1] | 0% [0–1] | 0% [0–1] | – | – |
+| base_compact | granite-4.2-3b | 500 | 0% [0–1] | 0% [0–1] | 0% [0–1] | 0% [0–1] | – | – |
+| base_compact | gemma-4-E2B | 500 | 0% [0–1] | 11% [9–14] | 6% [4–8] | 6% [4–8] | +0 | – |
+| lora_compact | LFM2.5-1.2B | 500 | 100% [99–100] | 98% [96–99] | 89% [86–91] | 87% [84–90] | +72 | 1% |
+| lora_compact | granite-4.2-3b | 500 | 100% [99–100] | 100% [99–100] | 97% [95–98] | 95% [93–97] | +100 | 1% |
+| lora_compact | gemma-4-E2B | 500 | 100% [99–100] | 100% [99–100] | 96% [94–98] | 94% [91–96] | +98 | 1% |
+| base_grammar | LFM2.5-1.2B | 500 | 100% [99–100] | 76% [72–79] | 24% [20–28] | 6% [5–9] | -2 | 63% |
+| base_grammar | granite-4.2-3b | 500 | 100% [99–100] | 90% [87–92] | 42% [38–46] | 16% [13–19] | -2 | 62% |
+| base_grammar | gemma-4-E2B | 500 | 100% [99–100] | 93% [91–95] | 37% [33–42] | 12% [10–15] | +5 | 56% |
+| lora_grammar | LFM2.5-1.2B | 500 | 87% [84–90] | 84% [80–87] | 39% [35–43] | 34% [30–38] | +0 | 52% |
+| lora_grammar | granite-4.2-3b | 500 | 91% [88–93] | 90% [87–93] | 71% [67–75] | 58% [54–62] | +71 | 24% |
+| lora_grammar | gemma-4-E2B | 500 | 82% [78–85] | 79% [76–83] | 42% [37–46] | 36% [32–40] | +22 | 40% |
 
 ## Effects
 
@@ -447,141 +447,141 @@ Rows marked * stay significant after the Holm correction.
 
 | model | effect | items | A | B | B − A in points [95% CI] | only A / only B | McNemar p | Holm p |
 |---|---|---|---|---|---|---|---|---|
-| LFM2.5-1.2B | adapter at verbose | 492 | 51% | 100% | +49 [+45, +53] | 0 / 240 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at verbose2 | 492 | 92% | 100% | +8 [+6, +11] | 1 / 41 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at compact | 492 | 0% | 100% | +100 [+100, +100] | 0 / 492 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at grammar | 492 | 100% | 87% | -13 [-16, -10] | 64 / 0 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: verbose2 vs verbose | 492 | 51% | 92% | +40 [+35, +46] | 35 / 234 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: compact vs verbose | 492 | 51% | 0% | -51 [-55, -47] | 252 / 0 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: grammar vs verbose | 492 | 51% | 100% | +49 [+44, +53] | 0 / 239 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | lora: verbose2 vs verbose | 492 | 100% | 100% | -0 [-1, +0] | 1 / 0 | 1.000 | 1.000 |
-| LFM2.5-1.2B | lora: compact vs verbose | 492 | 100% | 100% | +0 [+0, +0] | 0 / 0 | 1.000 | 1.000 |
-| LFM2.5-1.2B | lora: grammar vs verbose | 492 | 100% | 87% | -13 [-16, -10] | 65 / 0 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at verbose | 492 | 99% | 99% | +0 [-1, +1] | 4 / 5 | 1.000 | 1.000 |
-| granite-4.2-3b | adapter at verbose2 | 492 | 97% | 97% | +0 [-2, +2] | 13 / 13 | 1.000 | 1.000 |
-| granite-4.2-3b | adapter at compact | 492 | 0% | 100% | +100 [+100, +100] | 0 / 492 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at grammar | 492 | 100% | 90% | -9 [-12, -7] | 47 / 1 | <0.001 | <0.001 * |
-| granite-4.2-3b | base: verbose2 vs verbose | 492 | 99% | 97% | -2 [-4, -1] | 13 / 3 | 0.021 | 0.170 |
-| granite-4.2-3b | base: compact vs verbose | 492 | 99% | 0% | -99 [-100, -98] | 487 / 0 | <0.001 | <0.001 * |
-| granite-4.2-3b | base: grammar vs verbose | 492 | 99% | 100% | +1 [-0, +2] | 1 / 5 | 0.219 | 1.000 |
-| granite-4.2-3b | lora: verbose2 vs verbose | 492 | 99% | 97% | -2 [-4, -1] | 14 / 3 | 0.013 | 0.115 |
-| granite-4.2-3b | lora: compact vs verbose | 492 | 99% | 100% | +1 [+0, +2] | 0 / 4 | 0.125 | 0.875 |
-| granite-4.2-3b | lora: grammar vs verbose | 492 | 99% | 90% | -9 [-11, -6] | 45 / 2 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at verbose | 492 | 95% | 100% | +5 [+3, +7] | 0 / 23 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at verbose2 | 492 | 99% | 93% | -5 [-8, -3] | 32 / 6 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at compact | 492 | 0% | 100% | +100 [+100, +100] | 0 / 492 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at grammar | 492 | 100% | 81% | -18 [-22, -15] | 90 / 0 | <0.001 | <0.001 * |
-| gemma-4-E2B | base: verbose2 vs verbose | 492 | 95% | 99% | +3 [+1, +5] | 4 / 20 | 0.002 | 0.015 * |
-| gemma-4-E2B | base: compact vs verbose | 492 | 95% | 0% | -95 [-97, -93] | 469 / 0 | <0.001 | <0.001 * |
-| gemma-4-E2B | base: grammar vs verbose | 492 | 95% | 100% | +4 [+2, +6] | 2 / 23 | <0.001 | <0.001 * |
-| gemma-4-E2B | lora: verbose2 vs verbose | 492 | 100% | 93% | -7 [-9, -5] | 33 / 0 | <0.001 | <0.001 * |
-| gemma-4-E2B | lora: compact vs verbose | 492 | 100% | 100% | +0 [+0, +0] | 0 / 0 | 1.000 | 1.000 |
-| gemma-4-E2B | lora: grammar vs verbose | 492 | 100% | 81% | -19 [-22, -15] | 92 / 0 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at verbose | 500 | 51% | 100% | +49 [+44, +53] | 0 / 244 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at verbose2 | 500 | 92% | 100% | +8 [+6, +11] | 1 / 41 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at compact | 500 | 0% | 100% | +100 [+100, +100] | 0 / 500 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at grammar | 500 | 100% | 87% | -13 [-16, -10] | 64 / 0 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: verbose2 vs verbose | 500 | 51% | 92% | +41 [+35, +46] | 35 / 238 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: compact vs verbose | 500 | 51% | 0% | -51 [-56, -47] | 256 / 0 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: grammar vs verbose | 500 | 51% | 100% | +49 [+44, +53] | 0 / 243 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | lora: verbose2 vs verbose | 500 | 100% | 100% | -0 [-1, +0] | 1 / 0 | 1.000 | 1.000 |
+| LFM2.5-1.2B | lora: compact vs verbose | 500 | 100% | 100% | +0 [+0, +0] | 0 / 0 | 1.000 | 1.000 |
+| LFM2.5-1.2B | lora: grammar vs verbose | 500 | 100% | 87% | -13 [-16, -10] | 65 / 0 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at verbose | 500 | 99% | 99% | +0 [-1, +1] | 4 / 5 | 1.000 | 1.000 |
+| granite-4.2-3b | adapter at verbose2 | 500 | 97% | 97% | +0 [-2, +2] | 13 / 13 | 1.000 | 1.000 |
+| granite-4.2-3b | adapter at compact | 500 | 0% | 100% | +100 [+100, +100] | 0 / 500 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at grammar | 500 | 100% | 91% | -9 [-12, -7] | 47 / 1 | <0.001 | <0.001 * |
+| granite-4.2-3b | base: verbose2 vs verbose | 500 | 99% | 97% | -2 [-4, -1] | 13 / 3 | 0.021 | 0.170 |
+| granite-4.2-3b | base: compact vs verbose | 500 | 99% | 0% | -99 [-100, -98] | 495 / 0 | <0.001 | <0.001 * |
+| granite-4.2-3b | base: grammar vs verbose | 500 | 99% | 100% | +1 [+0, +2] | 1 / 5 | 0.219 | 1.000 |
+| granite-4.2-3b | lora: verbose2 vs verbose | 500 | 99% | 97% | -2 [-4, -1] | 14 / 3 | 0.013 | 0.115 |
+| granite-4.2-3b | lora: compact vs verbose | 500 | 99% | 100% | +1 [+0, +2] | 0 / 4 | 0.125 | 0.875 |
+| granite-4.2-3b | lora: grammar vs verbose | 500 | 99% | 91% | -9 [-11, -6] | 45 / 2 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at verbose | 500 | 95% | 100% | +5 [+3, +7] | 0 / 23 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at verbose2 | 500 | 99% | 93% | -5 [-8, -3] | 32 / 6 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at compact | 500 | 0% | 100% | +100 [+100, +100] | 0 / 500 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at grammar | 500 | 100% | 82% | -18 [-21, -15] | 90 / 0 | <0.001 | <0.001 * |
+| gemma-4-E2B | base: verbose2 vs verbose | 500 | 95% | 99% | +3 [+1, +5] | 4 / 20 | 0.002 | 0.015 * |
+| gemma-4-E2B | base: compact vs verbose | 500 | 95% | 0% | -95 [-97, -93] | 477 / 0 | <0.001 | <0.001 * |
+| gemma-4-E2B | base: grammar vs verbose | 500 | 95% | 100% | +4 [+2, +6] | 2 / 23 | <0.001 | <0.001 * |
+| gemma-4-E2B | lora: verbose2 vs verbose | 500 | 100% | 93% | -7 [-9, -4] | 33 / 0 | <0.001 | <0.001 * |
+| gemma-4-E2B | lora: compact vs verbose | 500 | 100% | 100% | +0 [+0, +0] | 0 / 0 | 1.000 | 1.000 |
+| gemma-4-E2B | lora: grammar vs verbose | 500 | 100% | 82% | -18 [-22, -15] | 92 / 0 | <0.001 | <0.001 * |
 
 ### legal
 
 | model | effect | items | A | B | B − A in points [95% CI] | only A / only B | McNemar p | Holm p |
 |---|---|---|---|---|---|---|---|---|
-| LFM2.5-1.2B | adapter at verbose | 492 | 66% | 92% | +26 [+22, +30] | 5 / 135 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at verbose2 | 492 | 65% | 94% | +28 [+24, +33] | 9 / 148 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at compact | 492 | 0% | 98% | +98 [+96, +99] | 0 / 481 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at grammar | 492 | 76% | 83% | +7 [+2, +12] | 56 / 92 | 0.004 | 0.043 * |
-| LFM2.5-1.2B | base: verbose2 vs verbose | 492 | 66% | 65% | -0 [-6, +4] | 82 / 80 | 0.937 | 1.000 |
-| LFM2.5-1.2B | base: compact vs verbose | 492 | 66% | 0% | -66 [-70, -62] | 324 / 0 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: grammar vs verbose | 492 | 66% | 76% | +10 [+5, +15] | 43 / 93 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | lora: verbose2 vs verbose | 492 | 92% | 94% | +1 [-1, +4] | 18 / 25 | 0.360 | 1.000 |
-| LFM2.5-1.2B | lora: compact vs verbose | 492 | 92% | 98% | +5 [+3, +8] | 6 / 33 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | lora: grammar vs verbose | 492 | 92% | 83% | -9 [-13, -5] | 74 / 30 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at verbose | 492 | 78% | 90% | +12 [+8, +16] | 36 / 94 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at verbose2 | 492 | 82% | 85% | +3 [-1, +8] | 52 / 69 | 0.145 | 1.000 |
-| granite-4.2-3b | adapter at compact | 492 | 0% | 100% | +100 [+99, +100] | 0 / 491 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at grammar | 492 | 90% | 90% | +0 [-3, +4] | 48 / 49 | 1.000 | 1.000 |
-| granite-4.2-3b | base: verbose2 vs verbose | 492 | 78% | 82% | +3 [-1, +8] | 46 / 63 | 0.125 | 1.000 |
-| granite-4.2-3b | base: compact vs verbose | 492 | 78% | 0% | -78 [-82, -75] | 385 / 0 | <0.001 | <0.001 * |
-| granite-4.2-3b | base: grammar vs verbose | 492 | 78% | 90% | +12 [+8, +15] | 23 / 80 | <0.001 | <0.001 * |
-| granite-4.2-3b | lora: verbose2 vs verbose | 492 | 90% | 85% | -5 [-8, -2] | 48 / 24 | 0.006 | 0.063 |
-| granite-4.2-3b | lora: compact vs verbose | 492 | 90% | 100% | +10 [+7, +13] | 1 / 49 | <0.001 | <0.001 * |
-| granite-4.2-3b | lora: grammar vs verbose | 492 | 90% | 90% | +0 [-4, +4] | 45 / 45 | 1.000 | 1.000 |
-| gemma-4-E2B | adapter at verbose | 492 | 86% | 88% | +2 [-2, +6] | 42 / 52 | 0.353 | 1.000 |
-| gemma-4-E2B | adapter at verbose2 | 492 | 82% | 78% | -3 [-7, +1] | 56 / 41 | 0.155 | 1.000 |
-| gemma-4-E2B | adapter at compact | 492 | 11% | 100% | +89 [+86, +92] | 0 / 437 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at grammar | 492 | 93% | 79% | -14 [-18, -10] | 97 / 28 | <0.001 | <0.001 * |
-| gemma-4-E2B | base: verbose2 vs verbose | 492 | 86% | 82% | -4 [-8, +0] | 60 / 40 | 0.057 | 0.512 |
-| gemma-4-E2B | base: compact vs verbose | 492 | 86% | 11% | -74 [-78, -70] | 373 / 7 | <0.001 | <0.001 * |
-| gemma-4-E2B | base: grammar vs verbose | 492 | 86% | 93% | +8 [+4, +11] | 26 / 63 | <0.001 | 0.001 * |
-| gemma-4-E2B | lora: verbose2 vs verbose | 492 | 88% | 78% | -9 [-13, -5] | 80 / 35 | <0.001 | <0.001 * |
-| gemma-4-E2B | lora: compact vs verbose | 492 | 88% | 100% | +12 [+9, +15] | 0 / 61 | <0.001 | <0.001 * |
-| gemma-4-E2B | lora: grammar vs verbose | 492 | 88% | 79% | -9 [-13, -4] | 86 / 44 | <0.001 | 0.003 * |
+| LFM2.5-1.2B | adapter at verbose | 500 | 66% | 92% | +27 [+23, +31] | 5 / 139 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at verbose2 | 500 | 66% | 94% | +28 [+24, +32] | 9 / 148 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at compact | 500 | 0% | 98% | +98 [+96, +99] | 0 / 489 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at grammar | 500 | 76% | 84% | +8 [+3, +12] | 56 / 95 | 0.002 | 0.021 * |
+| LFM2.5-1.2B | base: verbose2 vs verbose | 500 | 66% | 66% | +0 [-5, +5] | 82 / 84 | 0.938 | 1.000 |
+| LFM2.5-1.2B | base: compact vs verbose | 500 | 66% | 0% | -66 [-70, -61] | 328 / 0 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: grammar vs verbose | 500 | 66% | 76% | +10 [+6, +15] | 43 / 94 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | lora: verbose2 vs verbose | 500 | 92% | 94% | +1 [-1, +4] | 18 / 25 | 0.360 | 1.000 |
+| LFM2.5-1.2B | lora: compact vs verbose | 500 | 92% | 98% | +5 [+3, +8] | 6 / 33 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | lora: grammar vs verbose | 500 | 92% | 84% | -9 [-13, -5] | 74 / 30 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at verbose | 500 | 78% | 90% | +12 [+8, +17] | 36 / 98 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at verbose2 | 500 | 82% | 85% | +3 [-1, +8] | 52 / 69 | 0.145 | 1.000 |
+| granite-4.2-3b | adapter at compact | 500 | 0% | 100% | +100 [+99, +100] | 0 / 499 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at grammar | 500 | 90% | 90% | +1 [-3, +4] | 48 / 51 | 0.841 | 1.000 |
+| granite-4.2-3b | base: verbose2 vs verbose | 500 | 78% | 82% | +4 [+0, +8] | 46 / 67 | 0.059 | 0.512 |
+| granite-4.2-3b | base: compact vs verbose | 500 | 78% | 0% | -78 [-81, -74] | 389 / 0 | <0.001 | <0.001 * |
+| granite-4.2-3b | base: grammar vs verbose | 500 | 78% | 90% | +12 [+8, +16] | 23 / 82 | <0.001 | <0.001 * |
+| granite-4.2-3b | lora: verbose2 vs verbose | 500 | 90% | 85% | -5 [-8, -1] | 48 / 24 | 0.006 | 0.063 |
+| granite-4.2-3b | lora: compact vs verbose | 500 | 90% | 100% | +10 [+7, +12] | 1 / 49 | <0.001 | <0.001 * |
+| granite-4.2-3b | lora: grammar vs verbose | 500 | 90% | 90% | +0 [-4, +4] | 45 / 45 | 1.000 | 1.000 |
+| gemma-4-E2B | adapter at verbose | 500 | 86% | 88% | +2 [-2, +6] | 42 / 52 | 0.353 | 1.000 |
+| gemma-4-E2B | adapter at verbose2 | 500 | 82% | 79% | -3 [-7, +1] | 56 / 41 | 0.155 | 1.000 |
+| gemma-4-E2B | adapter at compact | 500 | 11% | 100% | +89 [+86, +92] | 0 / 445 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at grammar | 500 | 93% | 79% | -14 [-18, -10] | 97 / 28 | <0.001 | <0.001 * |
+| gemma-4-E2B | base: verbose2 vs verbose | 500 | 86% | 82% | -4 [-8, +0] | 60 / 40 | 0.057 | 0.512 |
+| gemma-4-E2B | base: compact vs verbose | 500 | 86% | 11% | -75 [-79, -71] | 381 / 7 | <0.001 | <0.001 * |
+| gemma-4-E2B | base: grammar vs verbose | 500 | 86% | 93% | +7 [+4, +11] | 26 / 63 | <0.001 | 0.001 * |
+| gemma-4-E2B | lora: verbose2 vs verbose | 500 | 88% | 79% | -9 [-13, -5] | 80 / 35 | <0.001 | <0.001 * |
+| gemma-4-E2B | lora: compact vs verbose | 500 | 88% | 100% | +12 [+9, +15] | 0 / 61 | <0.001 | <0.001 * |
+| gemma-4-E2B | lora: grammar vs verbose | 500 | 88% | 79% | -8 [-13, -4] | 86 / 44 | <0.001 | 0.003 * |
 
 ### valid-play
 
 | model | effect | items | A | B | B − A in points [95% CI] | only A / only B | McNemar p | Holm p |
 |---|---|---|---|---|---|---|---|---|
-| LFM2.5-1.2B | adapter at verbose | 492 | 30% | 48% | +18 [+13, +22] | 32 / 119 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at verbose2 | 492 | 35% | 49% | +13 [+10, +17] | 3 / 69 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at compact | 492 | 0% | 90% | +90 [+87, +92] | 0 / 441 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at grammar | 492 | 23% | 39% | +16 [+11, +22] | 67 / 147 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: verbose2 vs verbose | 492 | 30% | 35% | +5 [+0, +10] | 71 / 97 | 0.053 | 0.481 |
-| LFM2.5-1.2B | base: compact vs verbose | 492 | 30% | 0% | -30 [-34, -26] | 148 / 0 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: grammar vs verbose | 492 | 30% | 23% | -7 [-11, -3] | 62 / 28 | <0.001 | 0.005 * |
-| LFM2.5-1.2B | lora: verbose2 vs verbose | 492 | 48% | 49% | +1 [-2, +4] | 23 / 28 | 0.576 | 1.000 |
-| LFM2.5-1.2B | lora: compact vs verbose | 492 | 48% | 90% | +42 [+37, +47] | 14 / 220 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | lora: grammar vs verbose | 492 | 48% | 39% | -8 [-12, -4] | 71 / 30 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at verbose | 492 | 43% | 71% | +27 [+22, +32] | 30 / 165 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at verbose2 | 492 | 41% | 69% | +28 [+23, +32] | 17 / 153 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at compact | 492 | 0% | 97% | +97 [+95, +98] | 0 / 476 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at grammar | 492 | 42% | 71% | +29 [+23, +34] | 53 / 194 | <0.001 | <0.001 * |
-| granite-4.2-3b | base: verbose2 vs verbose | 492 | 43% | 41% | -2 [-6, +2] | 58 / 47 | 0.329 | 1.000 |
-| granite-4.2-3b | base: compact vs verbose | 492 | 43% | 0% | -43 [-48, -39] | 213 / 0 | <0.001 | <0.001 * |
-| granite-4.2-3b | base: grammar vs verbose | 492 | 43% | 42% | -1 [-5, +3] | 54 / 49 | 0.694 | 1.000 |
-| granite-4.2-3b | lora: verbose2 vs verbose | 492 | 71% | 69% | -2 [-6, +2] | 52 / 42 | 0.353 | 1.000 |
-| granite-4.2-3b | lora: compact vs verbose | 492 | 71% | 97% | +26 [+22, +30] | 1 / 129 | <0.001 | <0.001 * |
-| granite-4.2-3b | lora: grammar vs verbose | 492 | 71% | 71% | +0 [-4, +4] | 50 / 51 | 1.000 | 1.000 |
-| gemma-4-E2B | adapter at verbose | 492 | 39% | 47% | +8 [+4, +12] | 35 / 75 | <0.001 | 0.002 * |
-| gemma-4-E2B | adapter at verbose2 | 492 | 48% | 43% | -5 [-9, -1] | 63 / 39 | 0.022 | 0.245 |
-| gemma-4-E2B | adapter at compact | 492 | 6% | 96% | +90 [+88, +93] | 0 / 445 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at grammar | 492 | 38% | 42% | +4 [-0, +9] | 63 / 84 | 0.099 | 0.691 |
-| gemma-4-E2B | base: verbose2 vs verbose | 492 | 39% | 48% | +9 [+5, +14] | 41 / 87 | <0.001 | <0.001 * |
-| gemma-4-E2B | base: compact vs verbose | 492 | 39% | 6% | -33 [-37, -29] | 166 / 5 | <0.001 | <0.001 * |
-| gemma-4-E2B | base: grammar vs verbose | 492 | 39% | 38% | -1 [-5, +3] | 54 / 51 | 0.845 | 1.000 |
-| gemma-4-E2B | lora: verbose2 vs verbose | 492 | 47% | 43% | -4 [-7, +0] | 51 / 33 | 0.063 | 0.504 |
-| gemma-4-E2B | lora: compact vs verbose | 492 | 47% | 96% | +50 [+45, +54] | 6 / 250 | <0.001 | <0.001 * |
-| gemma-4-E2B | lora: grammar vs verbose | 492 | 47% | 42% | -4 [-9, -0] | 65 / 43 | 0.043 | 0.428 |
+| LFM2.5-1.2B | adapter at verbose | 500 | 30% | 47% | +17 [+12, +21] | 36 / 119 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at verbose2 | 500 | 35% | 48% | +13 [+10, +16] | 3 / 69 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at compact | 500 | 0% | 89% | +89 [+86, +92] | 0 / 445 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at grammar | 500 | 24% | 39% | +15 [+9, +21] | 72 / 147 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: verbose2 vs verbose | 500 | 30% | 35% | +4 [-1, +9] | 75 / 97 | 0.109 | 0.790 |
+| LFM2.5-1.2B | base: compact vs verbose | 500 | 30% | 0% | -30 [-35, -26] | 152 / 0 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: grammar vs verbose | 500 | 30% | 24% | -7 [-10, -3] | 62 / 29 | <0.001 | 0.008 * |
+| LFM2.5-1.2B | lora: verbose2 vs verbose | 500 | 47% | 48% | +1 [-2, +4] | 23 / 28 | 0.576 | 1.000 |
+| LFM2.5-1.2B | lora: compact vs verbose | 500 | 47% | 89% | +42 [+37, +47] | 14 / 224 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | lora: grammar vs verbose | 500 | 47% | 39% | -8 [-12, -4] | 71 / 30 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at verbose | 500 | 43% | 71% | +28 [+23, +33] | 30 / 170 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at verbose2 | 500 | 40% | 68% | +28 [+24, +33] | 17 / 157 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at compact | 500 | 0% | 97% | +97 [+95, +98] | 0 / 484 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at grammar | 500 | 42% | 71% | +29 [+24, +35] | 54 / 200 | <0.001 | <0.001 * |
+| granite-4.2-3b | base: verbose2 vs verbose | 500 | 43% | 40% | -2 [-6, +2] | 58 / 47 | 0.329 | 1.000 |
+| granite-4.2-3b | base: compact vs verbose | 500 | 43% | 0% | -43 [-47, -38] | 213 / 0 | <0.001 | <0.001 * |
+| granite-4.2-3b | base: grammar vs verbose | 500 | 43% | 42% | -1 [-5, +3] | 54 / 50 | 0.769 | 1.000 |
+| granite-4.2-3b | lora: verbose2 vs verbose | 500 | 71% | 68% | -2 [-6, +2] | 54 / 43 | 0.310 | 1.000 |
+| granite-4.2-3b | lora: compact vs verbose | 500 | 71% | 97% | +26 [+22, +30] | 1 / 132 | <0.001 | <0.001 * |
+| granite-4.2-3b | lora: grammar vs verbose | 500 | 71% | 71% | +0 [-4, +4] | 50 / 52 | 0.921 | 1.000 |
+| gemma-4-E2B | adapter at verbose | 500 | 38% | 46% | +8 [+4, +12] | 36 / 75 | <0.001 | 0.004 * |
+| gemma-4-E2B | adapter at verbose2 | 500 | 47% | 43% | -5 [-9, -1] | 63 / 40 | 0.030 | 0.327 |
+| gemma-4-E2B | adapter at compact | 500 | 6% | 96% | +91 [+88, +93] | 0 / 453 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at grammar | 500 | 37% | 42% | +4 [-1, +9] | 63 / 84 | 0.099 | 0.790 |
+| gemma-4-E2B | base: verbose2 vs verbose | 500 | 38% | 47% | +9 [+5, +14] | 42 / 87 | <0.001 | 0.001 * |
+| gemma-4-E2B | base: compact vs verbose | 500 | 38% | 6% | -32 [-37, -28] | 167 / 5 | <0.001 | <0.001 * |
+| gemma-4-E2B | base: grammar vs verbose | 500 | 38% | 37% | -1 [-5, +3] | 55 / 51 | 0.771 | 1.000 |
+| gemma-4-E2B | lora: verbose2 vs verbose | 500 | 46% | 43% | -3 [-7, +0] | 51 / 34 | 0.082 | 0.738 |
+| gemma-4-E2B | lora: compact vs verbose | 500 | 46% | 96% | +50 [+46, +55] | 6 / 258 | <0.001 | <0.001 * |
+| gemma-4-E2B | lora: grammar vs verbose | 500 | 46% | 42% | -4 [-8, -0] | 65 / 43 | 0.043 | 0.428 |
 
 ### reference-correct
 
 | model | effect | items | A | B | B − A in points [95% CI] | only A / only B | McNemar p | Holm p |
 |---|---|---|---|---|---|---|---|---|
-| LFM2.5-1.2B | adapter at verbose | 492 | 8% | 29% | +21 [+17, +25] | 8 / 110 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at verbose2 | 492 | 24% | 32% | +8 [+5, +10] | 1 / 39 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at compact | 492 | 0% | 88% | +88 [+85, +90] | 0 / 432 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | adapter at grammar | 492 | 7% | 34% | +28 [+23, +32] | 11 / 148 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: verbose2 vs verbose | 492 | 8% | 24% | +16 [+12, +20] | 16 / 95 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: compact vs verbose | 492 | 8% | 0% | -8 [-11, -6] | 40 / 0 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | base: grammar vs verbose | 492 | 8% | 7% | -2 [-5, +1] | 35 / 27 | 0.374 | 1.000 |
-| LFM2.5-1.2B | lora: verbose2 vs verbose | 492 | 29% | 32% | +3 [+1, +5] | 10 / 25 | 0.017 | 0.100 |
-| LFM2.5-1.2B | lora: compact vs verbose | 492 | 29% | 88% | +59 [+54, +64] | 11 / 301 | <0.001 | <0.001 * |
-| LFM2.5-1.2B | lora: grammar vs verbose | 492 | 29% | 34% | +5 [+3, +8] | 11 / 38 | <0.001 | 0.001 * |
-| granite-4.2-3b | adapter at verbose | 492 | 16% | 50% | +34 [+27, +40] | 62 / 228 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at verbose2 | 492 | 6% | 48% | +42 [+37, +46] | 8 / 213 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at compact | 492 | 0% | 95% | +95 [+93, +97] | 0 / 467 | <0.001 | <0.001 * |
-| granite-4.2-3b | adapter at grammar | 492 | 16% | 58% | +42 [+36, +48] | 49 / 256 | <0.001 | <0.001 * |
-| granite-4.2-3b | base: verbose2 vs verbose | 492 | 16% | 6% | -10 [-14, -7] | 64 / 14 | <0.001 | <0.001 * |
-| granite-4.2-3b | base: compact vs verbose | 492 | 16% | 0% | -16 [-19, -13] | 79 / 0 | <0.001 | <0.001 * |
-| granite-4.2-3b | base: grammar vs verbose | 492 | 16% | 16% | -0 [-3, +2] | 23 / 22 | 1.000 | 1.000 |
-| granite-4.2-3b | lora: verbose2 vs verbose | 492 | 50% | 48% | -2 [-7, +2] | 57 / 46 | 0.324 | 1.000 |
-| granite-4.2-3b | lora: compact vs verbose | 492 | 50% | 95% | +45 [+41, +50] | 1 / 223 | <0.001 | <0.001 * |
-| granite-4.2-3b | lora: grammar vs verbose | 492 | 50% | 58% | +8 [+5, +12] | 15 / 55 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at verbose | 492 | 7% | 38% | +31 [+26, +35] | 6 / 158 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at verbose2 | 492 | 17% | 23% | +7 [+2, +11] | 47 / 80 | 0.004 | 0.030 * |
-| gemma-4-E2B | adapter at compact | 492 | 6% | 94% | +88 [+85, +91] | 0 / 432 | <0.001 | <0.001 * |
-| gemma-4-E2B | adapter at grammar | 492 | 12% | 37% | +24 [+20, +28] | 4 / 123 | <0.001 | <0.001 * |
-| gemma-4-E2B | base: verbose2 vs verbose | 492 | 7% | 17% | +10 [+6, +13] | 17 / 66 | <0.001 | <0.001 * |
-| gemma-4-E2B | base: compact vs verbose | 492 | 7% | 6% | -1 [-4, +2] | 30 / 26 | 0.689 | 1.000 |
-| gemma-4-E2B | base: grammar vs verbose | 492 | 7% | 12% | +6 [+3, +9] | 16 / 44 | <0.001 | 0.003 * |
-| gemma-4-E2B | lora: verbose2 vs verbose | 492 | 38% | 23% | -14 [-18, -10] | 86 / 16 | <0.001 | <0.001 * |
-| gemma-4-E2B | lora: compact vs verbose | 492 | 38% | 94% | +56 [+52, +61] | 4 / 280 | <0.001 | <0.001 * |
-| gemma-4-E2B | lora: grammar vs verbose | 492 | 38% | 37% | -1 [-4, +2] | 34 / 29 | 0.615 | 1.000 |
+| LFM2.5-1.2B | adapter at verbose | 500 | 8% | 28% | +20 [+17, +24] | 8 / 110 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at verbose2 | 500 | 24% | 31% | +8 [+5, +10] | 1 / 39 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at compact | 500 | 0% | 87% | +87 [+84, +90] | 0 / 436 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | adapter at grammar | 500 | 6% | 34% | +27 [+23, +32] | 11 / 148 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: verbose2 vs verbose | 500 | 8% | 24% | +16 [+12, +20] | 16 / 95 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: compact vs verbose | 500 | 8% | 0% | -8 [-10, -6] | 40 / 0 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | base: grammar vs verbose | 500 | 8% | 6% | -2 [-5, +1] | 35 / 27 | 0.374 | 1.000 |
+| LFM2.5-1.2B | lora: verbose2 vs verbose | 500 | 28% | 31% | +3 [+1, +5] | 10 / 25 | 0.017 | 0.100 |
+| LFM2.5-1.2B | lora: compact vs verbose | 500 | 28% | 87% | +59 [+54, +63] | 11 / 305 | <0.001 | <0.001 * |
+| LFM2.5-1.2B | lora: grammar vs verbose | 500 | 28% | 34% | +5 [+3, +8] | 11 / 38 | <0.001 | 0.001 * |
+| granite-4.2-3b | adapter at verbose | 500 | 16% | 50% | +34 [+28, +40] | 62 / 233 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at verbose2 | 500 | 6% | 48% | +42 [+37, +46] | 8 / 217 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at compact | 500 | 0% | 95% | +95 [+93, +97] | 0 / 475 | <0.001 | <0.001 * |
+| granite-4.2-3b | adapter at grammar | 500 | 16% | 58% | +43 [+37, +48] | 49 / 262 | <0.001 | <0.001 * |
+| granite-4.2-3b | base: verbose2 vs verbose | 500 | 16% | 6% | -10 [-13, -7] | 64 / 14 | <0.001 | <0.001 * |
+| granite-4.2-3b | base: compact vs verbose | 500 | 16% | 0% | -16 [-19, -12] | 79 / 0 | <0.001 | <0.001 * |
+| granite-4.2-3b | base: grammar vs verbose | 500 | 16% | 16% | -0 [-3, +2] | 23 / 22 | 1.000 | 1.000 |
+| granite-4.2-3b | lora: verbose2 vs verbose | 500 | 50% | 48% | -2 [-7, +2] | 59 / 47 | 0.285 | 1.000 |
+| granite-4.2-3b | lora: compact vs verbose | 500 | 50% | 95% | +45 [+41, +50] | 1 / 226 | <0.001 | <0.001 * |
+| granite-4.2-3b | lora: grammar vs verbose | 500 | 50% | 58% | +8 [+5, +11] | 15 / 56 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at verbose | 500 | 7% | 37% | +30 [+26, +35] | 6 / 158 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at verbose2 | 500 | 16% | 23% | +7 [+2, +11] | 47 / 81 | 0.003 | 0.024 * |
+| gemma-4-E2B | adapter at compact | 500 | 6% | 94% | +88 [+85, +91] | 0 / 440 | <0.001 | <0.001 * |
+| gemma-4-E2B | adapter at grammar | 500 | 12% | 36% | +24 [+20, +28] | 4 / 123 | <0.001 | <0.001 * |
+| gemma-4-E2B | base: verbose2 vs verbose | 500 | 7% | 16% | +10 [+6, +13] | 17 / 66 | <0.001 | <0.001 * |
+| gemma-4-E2B | base: compact vs verbose | 500 | 7% | 6% | -1 [-4, +2] | 30 / 26 | 0.689 | 1.000 |
+| gemma-4-E2B | base: grammar vs verbose | 500 | 7% | 12% | +6 [+3, +9] | 16 / 44 | <0.001 | 0.003 * |
+| gemma-4-E2B | lora: verbose2 vs verbose | 500 | 37% | 23% | -14 [-18, -10] | 86 / 17 | <0.001 | <0.001 * |
+| gemma-4-E2B | lora: compact vs verbose | 500 | 37% | 94% | +57 [+52, +61] | 4 / 288 | <0.001 | <0.001 * |
+| gemma-4-E2B | lora: grammar vs verbose | 500 | 37% | 36% | -1 [-4, +2] | 34 / 29 | 0.615 | 1.000 |
 
 ## Schema validity (valid@1)
 
@@ -589,30 +589,30 @@ Is the whole answer one JSON value that matches its message type's schema, game/
 
 | condition | model | valid | PLANTING | FORCED | TRADING | REPLY | CONSIDERING | main failures |
 |---|---|---|---|---|---|---|---|---|
-| base_verbose | LFM2.5-1.2B | 252/492 (51%) | 87% | 90% | 11% | 31% | 36% | wrapped 213, schema:type 11, schema:maxItems 8 |
-| base_verbose | granite-4.2-3b | 487/492 (99%) | 96% | 100% | 100% | 99% | 100% | schema:maxItems 4, schema:enum 1 |
-| base_verbose | gemma-4-E2B | 469/492 (95%) | 77% | 100% | 100% | 100% | 100% | schema:maxItems 23 |
-| lora_verbose | LFM2.5-1.2B | 492/492 (100%) | 100% | 100% | 100% | 100% | 100% | – |
-| lora_verbose | granite-4.2-3b | 488/492 (99%) | 98% | 100% | 98% | 100% | 100% | schema:maxItems 2, schema:type 2 |
-| lora_verbose | gemma-4-E2B | 492/492 (100%) | 100% | 100% | 100% | 100% | 100% | – |
-| base_verbose2 | LFM2.5-1.2B | 451/492 (92%) | 94% | 65% | 100% | 100% | 100% | schema:additionalProperties 35, schema:maxItems 6 |
-| base_verbose2 | granite-4.2-3b | 477/492 (97%) | 85% | 100% | 100% | 100% | 100% | schema:maxItems 15 |
-| base_verbose2 | gemma-4-E2B | 485/492 (99%) | 93% | 100% | 100% | 100% | 100% | schema:maxItems 7 |
-| lora_verbose2 | LFM2.5-1.2B | 491/492 (100%) | 99% | 100% | 100% | 100% | 100% | schema:additionalProperties 1 |
-| lora_verbose2 | granite-4.2-3b | 477/492 (97%) | 85% | 100% | 100% | 100% | 100% | schema:maxItems 15 |
-| lora_verbose2 | gemma-4-E2B | 459/492 (93%) | 94% | 100% | 73% | 100% | 100% | schema:type 27, schema:maxItems 6 |
-| base_compact | LFM2.5-1.2B | 0/492 (0%) | 0% | 0% | 0% | 0% | 0% | not_json 492 |
-| base_compact | granite-4.2-3b | 0/492 (0%) | 0% | 0% | 0% | 0% | 0% | not_json 492 |
-| base_compact | gemma-4-E2B | 0/492 (0%) | 0% | 0% | 0% | 0% | 0% | not_json 430, schema:additionalProperties 61, schema:type 1 |
-| lora_compact | LFM2.5-1.2B | 492/492 (100%) | 100% | 100% | 100% | 100% | 100% | – |
-| lora_compact | granite-4.2-3b | 492/492 (100%) | 100% | 100% | 100% | 100% | 100% | – |
-| lora_compact | gemma-4-E2B | 492/492 (100%) | 100% | 100% | 100% | 100% | 100% | – |
-| base_grammar | LFM2.5-1.2B | 491/492 (100%) | 100% | 100% | 99% | 100% | 100% | schema:minItems 1 |
-| base_grammar | granite-4.2-3b | 491/492 (100%) | 100% | 100% | 100% | 99% | 100% | not_json 1 |
-| base_grammar | gemma-4-E2B | 490/492 (100%) | 100% | 100% | 98% | 100% | 100% | schema:minItems 2 |
-| lora_grammar | LFM2.5-1.2B | 427/492 (87%) | 100% | 100% | 35% | 100% | 100% | schema:minItems 65 |
-| lora_grammar | granite-4.2-3b | 445/492 (90%) | 100% | 100% | 53% | 100% | 100% | schema:minItems 47 |
-| lora_grammar | gemma-4-E2B | 400/492 (81%) | 100% | 100% | 8% | 100% | 100% | schema:minItems 92 |
+| base_verbose | LFM2.5-1.2B | 256/500 (51%) | 87% | 90% | 11% | 31% | 37% | wrapped 217, schema:type 11, schema:maxItems 8 |
+| base_verbose | granite-4.2-3b | 495/500 (99%) | 96% | 100% | 100% | 99% | 100% | schema:maxItems 4, schema:enum 1 |
+| base_verbose | gemma-4-E2B | 477/500 (95%) | 77% | 100% | 100% | 100% | 100% | schema:maxItems 23 |
+| lora_verbose | LFM2.5-1.2B | 500/500 (100%) | 100% | 100% | 100% | 100% | 100% | – |
+| lora_verbose | granite-4.2-3b | 496/500 (99%) | 98% | 100% | 98% | 100% | 100% | schema:maxItems 2, schema:type 2 |
+| lora_verbose | gemma-4-E2B | 500/500 (100%) | 100% | 100% | 100% | 100% | 100% | – |
+| base_verbose2 | LFM2.5-1.2B | 459/500 (92%) | 94% | 65% | 100% | 100% | 100% | schema:additionalProperties 35, schema:maxItems 6 |
+| base_verbose2 | granite-4.2-3b | 485/500 (97%) | 85% | 100% | 100% | 100% | 100% | schema:maxItems 15 |
+| base_verbose2 | gemma-4-E2B | 493/500 (99%) | 93% | 100% | 100% | 100% | 100% | schema:maxItems 7 |
+| lora_verbose2 | LFM2.5-1.2B | 499/500 (100%) | 99% | 100% | 100% | 100% | 100% | schema:additionalProperties 1 |
+| lora_verbose2 | granite-4.2-3b | 485/500 (97%) | 85% | 100% | 100% | 100% | 100% | schema:maxItems 15 |
+| lora_verbose2 | gemma-4-E2B | 467/500 (93%) | 94% | 100% | 73% | 100% | 100% | schema:type 27, schema:maxItems 6 |
+| base_compact | LFM2.5-1.2B | 0/500 (0%) | 0% | 0% | 0% | 0% | 0% | not_json 500 |
+| base_compact | granite-4.2-3b | 0/500 (0%) | 0% | 0% | 0% | 0% | 0% | not_json 500 |
+| base_compact | gemma-4-E2B | 0/500 (0%) | 0% | 0% | 0% | 0% | 0% | not_json 438, schema:additionalProperties 61, schema:type 1 |
+| lora_compact | LFM2.5-1.2B | 500/500 (100%) | 100% | 100% | 100% | 100% | 100% | – |
+| lora_compact | granite-4.2-3b | 500/500 (100%) | 100% | 100% | 100% | 100% | 100% | – |
+| lora_compact | gemma-4-E2B | 500/500 (100%) | 100% | 100% | 100% | 100% | 100% | – |
+| base_grammar | LFM2.5-1.2B | 499/500 (100%) | 100% | 100% | 99% | 100% | 100% | schema:minItems 1 |
+| base_grammar | granite-4.2-3b | 499/500 (100%) | 100% | 100% | 100% | 99% | 100% | not_json 1 |
+| base_grammar | gemma-4-E2B | 498/500 (100%) | 100% | 100% | 98% | 100% | 100% | schema:minItems 2 |
+| lora_grammar | LFM2.5-1.2B | 435/500 (87%) | 100% | 100% | 35% | 100% | 100% | schema:minItems 65 |
+| lora_grammar | granite-4.2-3b | 453/500 (91%) | 100% | 100% | 53% | 100% | 100% | schema:minItems 47 |
+| lora_grammar | gemma-4-E2B | 408/500 (82%) | 100% | 100% | 8% | 100% | 100% | schema:minItems 92 |
 
 ## Legality
 
@@ -620,30 +620,30 @@ Would the game carry out the answer as the model wrote it?
 
 | condition | model | legal | valid & legal | PLANTING | FORCED | TRADING | REPLY | CONSIDERING | why not legal |
 |---|---|---|---|---|---|---|---|---|---|
-| base_verbose | LFM2.5-1.2B | 324/492 (66%) | 32% | 63% | 36% | 99% | 74% | 57% | rules 86, cards_not_held 62, parser 14, no_json 6 |
-| base_verbose | granite-4.2-3b | 385/492 (78%) | 78% | 95% | 52% | 99% | 74% | 71% | rules 53, cards_not_held 53, parser 1 |
-| base_verbose | gemma-4-E2B | 421/492 (86%) | 86% | 67% | 82% | 100% | 91% | 88% | rules 51, cards_not_held 20 |
-| lora_verbose | LFM2.5-1.2B | 454/492 (92%) | 92% | 86% | 76% | 100% | 100% | 100% | rules 38 |
-| lora_verbose | granite-4.2-3b | 443/492 (90%) | 90% | 74% | 81% | 96% | 100% | 100% | rules 45, cards_not_held 2, unknown_player 2 |
-| lora_verbose | gemma-4-E2B | 431/492 (88%) | 88% | 80% | 71% | 88% | 100% | 100% | rules 49, cards_not_held 12 |
-| base_verbose2 | LFM2.5-1.2B | 322/492 (65%) | 65% | 9% | 22% | 99% | 100% | 100% | rules 169, cards_not_held 1 |
-| base_verbose2 | granite-4.2-3b | 402/492 (82%) | 82% | 74% | 69% | 100% | 73% | 93% | rules 57, cards_not_held 33 |
-| base_verbose2 | gemma-4-E2B | 401/492 (82%) | 82% | 45% | 86% | 100% | 79% | 99% | rules 69, cards_not_held 22 |
-| lora_verbose2 | LFM2.5-1.2B | 461/492 (94%) | 94% | 86% | 83% | 100% | 100% | 100% | rules 31 |
-| lora_verbose2 | granite-4.2-3b | 419/492 (85%) | 85% | 33% | 96% | 98% | 100% | 100% | rules 71, cards_not_held 2 |
-| lora_verbose2 | gemma-4-E2B | 386/492 (78%) | 78% | 37% | 93% | 69% | 95% | 100% | rules 70, unknown_player 27, cards_not_held 9 |
-| base_compact | LFM2.5-1.2B | 0/492 (0%) | 0% | 0% | 0% | 0% | 0% | 0% | no_json 492 |
-| base_compact | granite-4.2-3b | 0/492 (0%) | 0% | 0% | 0% | 0% | 0% | 0% | no_json 492 |
-| base_compact | gemma-4-E2B | 55/492 (11%) | 0% | 0% | 0% | 0% | 55% | 0% | no_json 430, rules 6, parser 1 |
-| lora_compact | LFM2.5-1.2B | 481/492 (98%) | 98% | 100% | 89% | 100% | 100% | 100% | rules 11 |
-| lora_compact | granite-4.2-3b | 491/492 (100%) | 100% | 100% | 99% | 100% | 100% | 100% | rules 1 |
-| lora_compact | gemma-4-E2B | 492/492 (100%) | 100% | 100% | 100% | 100% | 100% | 100% | – |
-| base_grammar | LFM2.5-1.2B | 374/492 (76%) | 76% | 100% | 84% | 88% | 50% | 57% | cards_not_held 101, rules 16, no_cards 1 |
-| base_grammar | granite-4.2-3b | 442/492 (90%) | 90% | 100% | 88% | 100% | 72% | 89% | cards_not_held 37, rules 12, no_json 1 |
-| base_grammar | gemma-4-E2B | 458/492 (93%) | 93% | 100% | 94% | 98% | 87% | 86% | cards_not_held 26, rules 6, no_cards 2 |
-| lora_grammar | LFM2.5-1.2B | 410/492 (83%) | 83% | 100% | 85% | 33% | 100% | 100% | no_cards 65, rules 15, cards_not_held 2 |
-| lora_grammar | granite-4.2-3b | 443/492 (90%) | 90% | 100% | 99% | 52% | 100% | 100% | no_cards 47, rules 1, cards_not_held 1 |
-| lora_grammar | gemma-4-E2B | 389/492 (79%) | 79% | 100% | 89% | 8% | 100% | 100% | no_cards 92, rules 11 |
+| base_verbose | LFM2.5-1.2B | 328/500 (66%) | 32% | 63% | 36% | 99% | 74% | 56% | rules 86, cards_not_held 66, parser 14, no_json 6 |
+| base_verbose | granite-4.2-3b | 389/500 (78%) | 78% | 95% | 52% | 99% | 74% | 69% | cards_not_held 57, rules 53, parser 1 |
+| base_verbose | gemma-4-E2B | 429/500 (86%) | 86% | 67% | 82% | 100% | 91% | 89% | rules 51, cards_not_held 20 |
+| lora_verbose | LFM2.5-1.2B | 462/500 (92%) | 92% | 86% | 76% | 100% | 100% | 100% | rules 38 |
+| lora_verbose | granite-4.2-3b | 451/500 (90%) | 90% | 74% | 81% | 96% | 100% | 100% | rules 45, cards_not_held 2, unknown_player 2 |
+| lora_verbose | gemma-4-E2B | 439/500 (88%) | 88% | 80% | 71% | 88% | 100% | 100% | rules 49, cards_not_held 12 |
+| base_verbose2 | LFM2.5-1.2B | 330/500 (66%) | 65% | 9% | 22% | 99% | 100% | 100% | rules 169, cards_not_held 1 |
+| base_verbose2 | granite-4.2-3b | 410/500 (82%) | 82% | 74% | 69% | 100% | 73% | 94% | rules 57, cards_not_held 33 |
+| base_verbose2 | gemma-4-E2B | 409/500 (82%) | 82% | 45% | 86% | 100% | 79% | 99% | rules 69, cards_not_held 22 |
+| lora_verbose2 | LFM2.5-1.2B | 469/500 (94%) | 94% | 86% | 83% | 100% | 100% | 100% | rules 31 |
+| lora_verbose2 | granite-4.2-3b | 427/500 (85%) | 85% | 33% | 96% | 98% | 100% | 100% | rules 71, cards_not_held 2 |
+| lora_verbose2 | gemma-4-E2B | 394/500 (79%) | 79% | 37% | 93% | 69% | 95% | 100% | rules 70, unknown_player 27, cards_not_held 9 |
+| base_compact | LFM2.5-1.2B | 0/500 (0%) | 0% | 0% | 0% | 0% | 0% | 0% | no_json 500 |
+| base_compact | granite-4.2-3b | 0/500 (0%) | 0% | 0% | 0% | 0% | 0% | 0% | no_json 500 |
+| base_compact | gemma-4-E2B | 55/500 (11%) | 0% | 0% | 0% | 0% | 55% | 0% | no_json 438, rules 6, parser 1 |
+| lora_compact | LFM2.5-1.2B | 489/500 (98%) | 98% | 100% | 89% | 100% | 100% | 100% | rules 11 |
+| lora_compact | granite-4.2-3b | 499/500 (100%) | 100% | 100% | 99% | 100% | 100% | 100% | rules 1 |
+| lora_compact | gemma-4-E2B | 500/500 (100%) | 100% | 100% | 100% | 100% | 100% | 100% | – |
+| base_grammar | LFM2.5-1.2B | 379/500 (76%) | 76% | 100% | 84% | 88% | 50% | 57% | cards_not_held 104, rules 16, no_cards 1 |
+| base_grammar | granite-4.2-3b | 448/500 (90%) | 90% | 100% | 88% | 100% | 72% | 88% | cards_not_held 39, rules 12, no_json 1 |
+| base_grammar | gemma-4-E2B | 466/500 (93%) | 93% | 100% | 94% | 98% | 87% | 87% | cards_not_held 26, rules 6, no_cards 2 |
+| lora_grammar | LFM2.5-1.2B | 418/500 (84%) | 84% | 100% | 85% | 33% | 100% | 100% | no_cards 65, rules 15, cards_not_held 2 |
+| lora_grammar | granite-4.2-3b | 451/500 (90%) | 90% | 100% | 99% | 52% | 100% | 100% | no_cards 47, rules 1, cards_not_held 1 |
+| lora_grammar | gemma-4-E2B | 397/500 (79%) | 79% | 100% | 89% | 8% | 100% | 100% | no_cards 92, rules 11 |
 
 ## Valid play
 
@@ -651,60 +651,60 @@ Does the answer keep every rule the teacher plays by?
 
 | condition | model | valid play (95% CI) | PLANTING | FORCED | TRADING | REPLY | CONSIDERING |
 |---|---|---|---|---|---|---|---|
-| base_verbose | LFM2.5-1.2B | 30% [26–34] | 10% | 8% | 79% | 32% | 21% |
-| base_verbose | granite-4.2-3b | 43% [39–48] | 29% | 16% | 95% | 32% | 45% |
-| base_verbose | gemma-4-E2B | 39% [34–43] | 13% | 18% | 59% | 51% | 53% |
-| lora_verbose | LFM2.5-1.2B | 48% [43–52] | 17% | 23% | 79% | 51% | 71% |
-| lora_verbose | granite-4.2-3b | 71% [67–75] | 41% | 70% | 84% | 75% | 85% |
-| lora_verbose | gemma-4-E2B | 47% [42–51] | 26% | 33% | 55% | 51% | 71% |
-| base_verbose2 | LFM2.5-1.2B | 35% [31–40] | 4% | 3% | 52% | 50% | 71% |
-| base_verbose2 | granite-4.2-3b | 41% [37–45] | 19% | 21% | 69% | 33% | 65% |
-| base_verbose2 | gemma-4-E2B | 48% [44–52] | 10% | 30% | 100% | 34% | 67% |
-| lora_verbose2 | LFM2.5-1.2B | 49% [44–53] | 13% | 26% | 86% | 50% | 71% |
-| lora_verbose2 | granite-4.2-3b | 69% [64–73] | 26% | 69% | 88% | 83% | 78% |
-| lora_verbose2 | gemma-4-E2B | 43% [39–48] | 18% | 34% | 53% | 40% | 73% |
+| base_verbose | LFM2.5-1.2B | 30% [27–35] | 10% | 8% | 79% | 32% | 23% |
+| base_verbose | granite-4.2-3b | 43% [38–47] | 29% | 16% | 95% | 32% | 41% |
+| base_verbose | gemma-4-E2B | 38% [34–43] | 13% | 18% | 59% | 51% | 50% |
+| lora_verbose | LFM2.5-1.2B | 47% [43–51] | 17% | 23% | 79% | 51% | 65% |
+| lora_verbose | granite-4.2-3b | 71% [66–74] | 41% | 70% | 84% | 75% | 83% |
+| lora_verbose | gemma-4-E2B | 46% [42–50] | 26% | 33% | 55% | 51% | 65% |
+| base_verbose2 | LFM2.5-1.2B | 35% [31–39] | 4% | 3% | 52% | 50% | 65% |
+| base_verbose2 | granite-4.2-3b | 40% [36–45] | 19% | 21% | 69% | 33% | 60% |
+| base_verbose2 | gemma-4-E2B | 47% [43–52] | 10% | 30% | 100% | 34% | 62% |
+| lora_verbose2 | LFM2.5-1.2B | 48% [44–52] | 13% | 26% | 86% | 50% | 65% |
+| lora_verbose2 | granite-4.2-3b | 68% [64–72] | 26% | 69% | 88% | 83% | 76% |
+| lora_verbose2 | gemma-4-E2B | 43% [38–47] | 18% | 34% | 53% | 40% | 68% |
 | base_compact | LFM2.5-1.2B | 0% [0–1] | 0% | 0% | 0% | 0% | 0% |
 | base_compact | granite-4.2-3b | 0% [0–1] | 0% | 0% | 0% | 0% | 0% |
 | base_compact | gemma-4-E2B | 6% [4–8] | 0% | 0% | 0% | 29% | 0% |
-| lora_compact | LFM2.5-1.2B | 90% [87–92] | 89% | 84% | 100% | 98% | 76% |
+| lora_compact | LFM2.5-1.2B | 89% [86–91] | 89% | 84% | 100% | 98% | 74% |
 | lora_compact | granite-4.2-3b | 97% [95–98] | 92% | 92% | 100% | 100% | 100% |
 | lora_compact | gemma-4-E2B | 96% [94–98] | 93% | 91% | 100% | 100% | 98% |
-| base_grammar | LFM2.5-1.2B | 23% [20–27] | 12% | 22% | 58% | 5% | 18% |
-| base_grammar | granite-4.2-3b | 42% [38–47] | 11% | 24% | 100% | 19% | 59% |
-| base_grammar | gemma-4-E2B | 38% [34–42] | 9% | 28% | 63% | 30% | 62% |
-| lora_grammar | LFM2.5-1.2B | 39% [35–44] | 16% | 39% | 24% | 50% | 71% |
-| lora_grammar | granite-4.2-3b | 71% [67–75] | 48% | 82% | 50% | 83% | 93% |
-| lora_grammar | gemma-4-E2B | 42% [38–47] | 27% | 40% | 8% | 68% | 71% |
+| base_grammar | LFM2.5-1.2B | 24% [20–28] | 12% | 22% | 58% | 5% | 22% |
+| base_grammar | granite-4.2-3b | 42% [38–46] | 11% | 24% | 100% | 19% | 55% |
+| base_grammar | gemma-4-E2B | 37% [33–42] | 9% | 28% | 63% | 30% | 57% |
+| lora_grammar | LFM2.5-1.2B | 39% [35–43] | 16% | 39% | 24% | 50% | 65% |
+| lora_grammar | granite-4.2-3b | 71% [67–75] | 48% | 82% | 50% | 83% | 92% |
+| lora_grammar | gemma-4-E2B | 42% [37–46] | 27% | 40% | 8% | 68% | 65% |
 | teacher | training corpus | 100% [100–100] | 100% | 100% | 100% | 100% | 100% |
 
 Each rule on its own (partial credit):
 
 | condition | model | PLANT: first card placed | PLANT: second card without harvest | FORCE: no avoidable harvest | FORCE: least valuable stack lost | TRADI: keeps growing beans | REPLY: accepts iff useful | REPLY: keeps growing beans | CONSI: accepts iff useful |
 |---|---|---|---|---|---|---|---|---|---|
-| base_verbose | LFM2.5-1.2B | 15% | 45% | 14% | 30% | 79% | 41% | 63% | 21% |
-| base_verbose | granite-4.2-3b | 29% | 95% | 32% | 36% | 95% | 35% | 60% | 45% |
-| base_verbose | gemma-4-E2B | 13% | 62% | 56% | 44% | 59% | 52% | 86% | 53% |
-| lora_verbose | LFM2.5-1.2B | 33% | 50% | 50% | 49% | 79% | 51% | 100% | 71% |
-| lora_verbose | granite-4.2-3b | 60% | 51% | 77% | 74% | 84% | 75% | 100% | 85% |
-| lora_verbose | gemma-4-E2B | 28% | 78% | 56% | 48% | 55% | 51% | 100% | 71% |
-| base_verbose2 | LFM2.5-1.2B | 5% | 7% | 16% | 9% | 52% | 50% | 100% | 71% |
-| base_verbose2 | granite-4.2-3b | 21% | 71% | 50% | 40% | 69% | 37% | 56% | 65% |
-| base_verbose2 | gemma-4-E2B | 13% | 29% | 64% | 52% | 100% | 38% | 68% | 67% |
-| lora_verbose2 | LFM2.5-1.2B | 29% | 44% | 57% | 52% | 86% | 50% | 100% | 71% |
-| lora_verbose2 | granite-4.2-3b | 29% | 28% | 87% | 78% | 88% | 83% | 100% | 78% |
-| lora_verbose2 | gemma-4-E2B | 26% | 25% | 69% | 58% | 53% | 49% | 71% | 73% |
+| base_verbose | LFM2.5-1.2B | 15% | 45% | 14% | 30% | 79% | 41% | 63% | 23% |
+| base_verbose | granite-4.2-3b | 29% | 95% | 32% | 36% | 95% | 35% | 60% | 41% |
+| base_verbose | gemma-4-E2B | 13% | 62% | 56% | 44% | 59% | 52% | 86% | 50% |
+| lora_verbose | LFM2.5-1.2B | 33% | 50% | 50% | 49% | 79% | 51% | 100% | 65% |
+| lora_verbose | granite-4.2-3b | 60% | 51% | 77% | 74% | 84% | 75% | 100% | 83% |
+| lora_verbose | gemma-4-E2B | 28% | 78% | 56% | 48% | 55% | 51% | 100% | 65% |
+| base_verbose2 | LFM2.5-1.2B | 5% | 7% | 16% | 9% | 52% | 50% | 100% | 65% |
+| base_verbose2 | granite-4.2-3b | 21% | 71% | 50% | 40% | 69% | 37% | 56% | 60% |
+| base_verbose2 | gemma-4-E2B | 13% | 29% | 64% | 52% | 100% | 38% | 68% | 62% |
+| lora_verbose2 | LFM2.5-1.2B | 29% | 44% | 57% | 52% | 86% | 50% | 100% | 65% |
+| lora_verbose2 | granite-4.2-3b | 29% | 28% | 87% | 78% | 88% | 83% | 100% | 76% |
+| lora_verbose2 | gemma-4-E2B | 26% | 25% | 69% | 58% | 53% | 49% | 71% | 68% |
 | base_compact | LFM2.5-1.2B | 0% | 0% | 0% | 0% | 0% | 0% | 0% | 0% |
 | base_compact | granite-4.2-3b | 0% | 0% | 0% | 0% | 0% | 0% | 0% | 0% |
 | base_compact | gemma-4-E2B | 0% | 0% | 0% | 0% | 0% | 29% | 55% | 0% |
-| lora_compact | LFM2.5-1.2B | 89% | 100% | 88% | 85% | 100% | 100% | 98% | 76% |
+| lora_compact | LFM2.5-1.2B | 89% | 100% | 88% | 85% | 100% | 100% | 98% | 74% |
 | lora_compact | granite-4.2-3b | 92% | 100% | 98% | 93% | 100% | 100% | 100% | 100% |
 | lora_compact | gemma-4-E2B | 93% | 100% | 98% | 93% | 100% | 100% | 100% | 98% |
-| base_grammar | LFM2.5-1.2B | 33% | 29% | 50% | 56% | 58% | 26% | 27% | 18% |
-| base_grammar | granite-4.2-3b | 33% | 27% | 56% | 56% | 100% | 32% | 45% | 59% |
-| base_grammar | gemma-4-E2B | 29% | 37% | 66% | 56% | 63% | 49% | 55% | 62% |
-| lora_grammar | LFM2.5-1.2B | 32% | 47% | 66% | 58% | 24% | 50% | 100% | 71% |
-| lora_grammar | granite-4.2-3b | 79% | 60% | 98% | 83% | 50% | 83% | 100% | 93% |
-| lora_grammar | gemma-4-E2B | 41% | 70% | 72% | 57% | 8% | 68% | 100% | 71% |
+| base_grammar | LFM2.5-1.2B | 33% | 29% | 50% | 56% | 58% | 26% | 27% | 22% |
+| base_grammar | granite-4.2-3b | 33% | 27% | 56% | 56% | 100% | 32% | 45% | 55% |
+| base_grammar | gemma-4-E2B | 29% | 37% | 66% | 56% | 63% | 49% | 55% | 57% |
+| lora_grammar | LFM2.5-1.2B | 32% | 47% | 66% | 58% | 24% | 50% | 100% | 65% |
+| lora_grammar | granite-4.2-3b | 79% | 60% | 98% | 83% | 50% | 83% | 100% | 92% |
+| lora_grammar | gemma-4-E2B | 41% | 70% | 72% | 57% | 8% | 68% | 100% | 65% |
 | teacher | training corpus | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 
 ## Reference-correctness
@@ -714,29 +714,29 @@ Does the answer make the decision the reference bot makes in the same state?
 | condition | model | correct (95% CI) | PLANTING | FORCED | TRADING | REPLY | CONSIDERING |
 |---|---|---|---|---|---|---|---|
 | base_verbose | LFM2.5-1.2B | 8% [6–11] | 7% | 7% | 0% | 26% | 0% |
-| base_verbose | granite-4.2-3b | 16% [13–20] | 23% | 11% | 44% | 0% | 1% |
+| base_verbose | granite-4.2-3b | 16% [13–19] | 23% | 11% | 44% | 0% | 1% |
 | base_verbose | gemma-4-E2B | 7% [5–9] | 9% | 17% | 1% | 6% | 0% |
-| lora_verbose | LFM2.5-1.2B | 29% [25–33] | 8% | 18% | 1% | 50% | 71% |
-| lora_verbose | granite-4.2-3b | 50% [45–54] | 28% | 60% | 29% | 50% | 85% |
-| lora_verbose | gemma-4-E2B | 38% [33–42] | 21% | 27% | 22% | 50% | 71% |
-| base_verbose2 | LFM2.5-1.2B | 24% [21–28] | 3% | 1% | 0% | 50% | 71% |
+| lora_verbose | LFM2.5-1.2B | 28% [25–33] | 8% | 18% | 1% | 50% | 65% |
+| lora_verbose | granite-4.2-3b | 50% [46–54] | 28% | 60% | 29% | 50% | 83% |
+| lora_verbose | gemma-4-E2B | 37% [33–41] | 21% | 27% | 22% | 50% | 65% |
+| base_verbose2 | LFM2.5-1.2B | 24% [20–28] | 3% | 1% | 0% | 50% | 65% |
 | base_verbose2 | granite-4.2-3b | 6% [4–8] | 13% | 16% | 0% | 0% | 0% |
-| base_verbose2 | gemma-4-E2B | 17% [14–20] | 3% | 26% | 42% | 0% | 12% |
-| lora_verbose2 | LFM2.5-1.2B | 32% [28–36] | 4% | 23% | 15% | 50% | 71% |
-| lora_verbose2 | granite-4.2-3b | 48% [43–52] | 20% | 58% | 34% | 50% | 78% |
-| lora_verbose2 | gemma-4-E2B | 23% [20–27] | 9% | 27% | 3% | 11% | 71% |
+| base_verbose2 | gemma-4-E2B | 16% [13–20] | 3% | 26% | 42% | 0% | 11% |
+| lora_verbose2 | LFM2.5-1.2B | 31% [27–36] | 4% | 23% | 15% | 50% | 65% |
+| lora_verbose2 | granite-4.2-3b | 48% [43–52] | 20% | 58% | 34% | 50% | 76% |
+| lora_verbose2 | gemma-4-E2B | 23% [20–27] | 9% | 27% | 3% | 11% | 66% |
 | base_compact | LFM2.5-1.2B | 0% [0–1] | 0% | 0% | 0% | 0% | 0% |
 | base_compact | granite-4.2-3b | 0% [0–1] | 0% | 0% | 0% | 0% | 0% |
 | base_compact | gemma-4-E2B | 6% [4–8] | 0% | 0% | 0% | 29% | 0% |
-| lora_compact | LFM2.5-1.2B | 88% [85–90] | 89% | 82% | 96% | 95% | 76% |
+| lora_compact | LFM2.5-1.2B | 87% [84–90] | 89% | 82% | 96% | 95% | 74% |
 | lora_compact | granite-4.2-3b | 95% [93–97] | 92% | 88% | 95% | 100% | 100% |
 | lora_compact | gemma-4-E2B | 94% [91–96] | 93% | 84% | 96% | 98% | 98% |
-| base_grammar | LFM2.5-1.2B | 7% [5–9] | 9% | 20% | 1% | 2% | 0% |
+| base_grammar | LFM2.5-1.2B | 6% [5–9] | 9% | 20% | 1% | 2% | 0% |
 | base_grammar | granite-4.2-3b | 16% [13–19] | 11% | 20% | 47% | 0% | 0% |
-| base_grammar | gemma-4-E2B | 12% [10–16] | 6% | 24% | 1% | 1% | 32% |
-| lora_grammar | LFM2.5-1.2B | 34% [30–39] | 8% | 36% | 10% | 50% | 71% |
-| lora_grammar | granite-4.2-3b | 58% [54–62] | 34% | 72% | 40% | 53% | 93% |
-| lora_grammar | gemma-4-E2B | 37% [32–41] | 24% | 37% | 4% | 50% | 71% |
+| base_grammar | gemma-4-E2B | 12% [10–15] | 6% | 24% | 1% | 1% | 29% |
+| lora_grammar | LFM2.5-1.2B | 34% [30–38] | 8% | 36% | 10% | 50% | 65% |
+| lora_grammar | granite-4.2-3b | 58% [54–62] | 34% | 72% | 40% | 53% | 92% |
+| lora_grammar | gemma-4-E2B | 36% [32–40] | 24% | 37% | 4% | 50% | 65% |
 | teacher | training corpus | 100% [100–100] | 100% | 100% | 100% | 100% | 100% |
 
 ## State sensitivity
@@ -746,28 +746,28 @@ Does the decision depend on the game state?
 | condition | model | REPLY accepts useful / useless | gap | CONSIDERING accepts useful / useless | gap | PLANTING avoidable harvests | FORCED avoidable harvests | TRADING passes | offers giving away a growing bean |
 |---|---|---|---|---|---|---|---|---|---|
 | base_verbose | LFM2.5-1.2B | 41% / 30% | +11 | 100% / 100% | +0 | 50/63 (79%) | 22/36 (61%) | 0% | 23/99 (23%) |
-| base_verbose | granite-4.2-3b | 6% / 15% | -10 | 5% / 7% | -2 | 43/95 (45%) | 20/52 (38%) | 95% | 4/5 (80%) |
-| base_verbose | gemma-4-E2B | 30% / 19% | +11 | 29% / 26% | +3 | 32/67 (48%) | 26/82 (32%) | 0% | 44/100 (44%) |
+| base_verbose | granite-4.2-3b | 6% / 15% | -10 | 4% / 7% | -3 | 43/95 (45%) | 20/52 (38%) | 95% | 4/5 (80%) |
+| base_verbose | gemma-4-E2B | 30% / 19% | +11 | 25% / 26% | -1 | 32/67 (48%) | 26/82 (32%) | 0% | 44/100 (44%) |
 | lora_verbose | LFM2.5-1.2B | 2% / 0% | +2 | 0% / 0% | +0 | 66/86 (77%) | 26/76 (34%) | 0% | 24/100 (24%) |
-| lora_verbose | granite-4.2-3b | 50% / 0% | +50 | 48% / 0% | +48 | 27/74 (36%) | 4/81 (5%) | 1% | 15/95 (16%) |
+| lora_verbose | granite-4.2-3b | 50% / 0% | +50 | 51% / 0% | +51 | 27/74 (36%) | 4/81 (5%) | 1% | 15/95 (16%) |
 | lora_verbose | gemma-4-E2B | 2% / 0% | +2 | 0% / 0% | +0 | 30/80 (38%) | 15/71 (21%) | 1% | 36/87 (41%) |
 | base_verbose2 | LFM2.5-1.2B | 0% / 0% | +0 | 0% / 0% | +0 | 4/9 (44%) | 6/22 (27%) | 0% | 50/99 (51%) |
 | base_verbose2 | granite-4.2-3b | 0% / 0% | +0 | 0% / 0% | +0 | 37/74 (50%) | 19/69 (28%) | 0% | 34/100 (34%) |
 | base_verbose2 | gemma-4-E2B | 5% / 5% | -0 | 0% / 5% | -5 | 27/45 (60%) | 22/86 (26%) | 91% | 1/9 (11%) |
 | lora_verbose2 | LFM2.5-1.2B | 0% / 0% | +0 | 0% / 0% | +0 | 68/86 (79%) | 26/83 (31%) | 26% | 15/74 (20%) |
-| lora_verbose2 | granite-4.2-3b | 66% / 0% | +66 | 30% / 2% | +28 | 5/33 (15%) | 9/96 (9%) | 31% | 11/68 (16%) |
-| lora_verbose2 | gemma-4-E2B | 0% / 0% | +0 | 15% / 3% | +12 | 15/37 (41%) | 24/93 (26%) | 0% | 19/69 (28%) |
+| lora_verbose2 | granite-4.2-3b | 66% / 0% | +66 | 34% / 2% | +33 | 5/33 (15%) | 9/96 (9%) | 31% | 11/68 (16%) |
+| lora_verbose2 | gemma-4-E2B | 0% / 0% | +0 | 14% / 3% | +11 | 15/37 (41%) | 24/93 (26%) | 0% | 19/69 (28%) |
 | base_compact | LFM2.5-1.2B | – / – | – | – / – | – | – | – | – | – |
 | base_compact | granite-4.2-3b | – / – | – | – / – | – | – | – | – | – |
 | base_compact | gemma-4-E2B | 0% / 0% | +0 | – / – | – | – | – | – | – |
-| lora_compact | LFM2.5-1.2B | 100% / 0% | +100 | 56% / 15% | +40 | 0/100 (0%) | 1/89 (1%) | 47% | 0/53 (0%) |
+| lora_compact | LFM2.5-1.2B | 100% / 0% | +100 | 54% / 15% | +39 | 0/100 (0%) | 1/89 (1%) | 47% | 0/53 (0%) |
 | lora_compact | granite-4.2-3b | 100% / 0% | +100 | 100% / 0% | +100 | 0/100 (0%) | 1/99 (1%) | 47% | 0/53 (0%) |
-| lora_compact | gemma-4-E2B | 100% / 0% | +100 | 96% / 2% | +95 | 0/100 (0%) | 2/100 (2%) | 47% | 0/53 (0%) |
-| base_grammar | LFM2.5-1.2B | 100% / 100% | +0 | 94% / 100% | -6 | 82/100 (82%) | 34/84 (40%) | 0% | 33/88 (38%) |
-| base_grammar | granite-4.2-3b | 3% / 9% | -6 | 25% / 17% | +8 | 84/100 (84%) | 32/88 (36%) | 100% | – |
+| lora_compact | gemma-4-E2B | 100% / 0% | +100 | 97% / 2% | +96 | 0/100 (0%) | 2/100 (2%) | 47% | 0/53 (0%) |
+| base_grammar | LFM2.5-1.2B | 100% / 100% | +0 | 96% / 100% | -4 | 82/100 (82%) | 34/84 (40%) | 0% | 33/88 (38%) |
+| base_grammar | granite-4.2-3b | 3% / 9% | -6 | 23% / 17% | +6 | 84/100 (84%) | 32/88 (36%) | 100% | – |
 | base_grammar | gemma-4-E2B | 12% / 4% | +8 | 0% / 0% | +0 | 81/100 (81%) | 28/94 (30%) | 0% | 37/98 (38%) |
 | lora_grammar | LFM2.5-1.2B | 0% / 0% | +0 | 0% / 0% | +0 | 77/100 (77%) | 19/85 (22%) | 0% | 9/33 (27%) |
-| lora_grammar | granite-4.2-3b | 68% / 2% | +66 | 78% / 0% | +78 | 46/100 (46%) | 1/99 (1%) | 0% | 2/52 (4%) |
+| lora_grammar | granite-4.2-3b | 68% / 2% | +66 | 77% / 0% | +77 | 46/100 (46%) | 1/99 (1%) | 0% | 2/52 (4%) |
 | lora_grammar | gemma-4-E2B | 40% / 4% | +36 | 0% / 0% | +0 | 59/100 (59%) | 17/89 (19%) | 0% | 0/8 (0%) |
 | teacher | training corpus | 100% / 0% | +100 | 100% / 0% | +100 | 0/3000 (0%) | 0/3000 (0%) | 43% | 0/1712 (0%) |
 
@@ -779,34 +779,34 @@ Same decision on the same item (95% CI; compared items in brackets).
 
 | LFM2.5-1.2B | base_verbose | lora_verbose | base_verbose2 | lora_verbose2 | base_compact | lora_compact | base_grammar | lora_grammar |
 |---|---|---|---|---|---|---|---|---|
-| base_verbose | · | 42% [38–47] (472) | 13% [10–16] (472) | 19% [16–23] (472) | – (0) | 9% [6–12] (472) | 31% [27–35] (472) | 14% [11–17] (472) |
-| lora_verbose | 42% [38–47] (472) | · | 43% [38–47] (492) | 58% [54–62] (492) | – (0) | 29% [26–34] (492) | 15% [13–19] (492) | 50% [46–54] (492) |
-| base_verbose2 | 13% [10–16] (472) | 43% [38–47] (492) | · | 45% [40–49] (492) | – (0) | 25% [21–29] (492) | 6% [4–9] (492) | 42% [38–46] (492) |
-| lora_verbose2 | 19% [16–23] (472) | 58% [54–62] (492) | 45% [40–49] (492) | · | – (0) | 33% [29–37] (492) | 13% [11–17] (492) | 55% [51–60] (492) |
+| base_verbose | · | 41% [37–46] (480) | 13% [10–16] (480) | 19% [16–22] (480) | – (0) | 9% [6–11] (480) | 31% [27–36] (480) | 14% [11–17] (480) |
+| lora_verbose | 41% [37–46] (480) | · | 44% [39–48] (500) | 59% [54–63] (500) | – (0) | 30% [26–34] (500) | 15% [12–19] (500) | 51% [46–55] (500) |
+| base_verbose2 | 13% [10–16] (480) | 44% [39–48] (500) | · | 46% [41–50] (500) | – (0) | 25% [22–29] (500) | 6% [4–9] (500) | 43% [39–47] (500) |
+| lora_verbose2 | 19% [16–22] (480) | 59% [54–63] (500) | 46% [41–50] (500) | · | – (0) | 33% [29–38] (500) | 13% [11–16] (500) | 56% [52–60] (500) |
 | base_compact | – (0) | – (0) | – (0) | – (0) | · | – (0) | – (0) | – (0) |
-| lora_compact | 9% [6–12] (472) | 29% [26–34] (492) | 25% [21–29] (492) | 33% [29–37] (492) | – (0) | · | 7% [5–10] (492) | 36% [31–40] (492) |
-| base_grammar | 31% [27–35] (472) | 15% [13–19] (492) | 6% [4–9] (492) | 13% [11–17] (492) | – (0) | 7% [5–10] (492) | · | 15% [12–18] (492) |
-| lora_grammar | 14% [11–17] (472) | 50% [46–54] (492) | 42% [38–46] (492) | 55% [51–60] (492) | – (0) | 36% [31–40] (492) | 15% [12–18] (492) | · |
+| lora_compact | 9% [6–11] (480) | 30% [26–34] (500) | 25% [22–29] (500) | 33% [29–38] (500) | – (0) | · | 7% [5–10] (500) | 36% [32–40] (500) |
+| base_grammar | 31% [27–36] (480) | 15% [12–19] (500) | 6% [4–9] (500) | 13% [11–16] (500) | – (0) | 7% [5–10] (500) | · | 15% [12–18] (500) |
+| lora_grammar | 14% [11–17] (480) | 51% [46–55] (500) | 43% [39–47] (500) | 56% [52–60] (500) | – (0) | 36% [32–40] (500) | 15% [12–18] (500) | · |
 
 | granite-4.2-3b | base_verbose | lora_verbose | base_verbose2 | lora_verbose2 | base_compact | lora_compact | base_grammar | lora_grammar |
 |---|---|---|---|---|---|---|---|---|
-| base_verbose | · | 5% [4–8] (491) | 31% [27–35] (491) | 11% [9–14] (491) | – (0) | 16% [13–19] (491) | 37% [33–41] (490) | 4% [2–6] (491) |
-| lora_verbose | 5% [4–8] (491) | · | 9% [7–12] (492) | 56% [51–60] (492) | – (0) | 51% [47–56] (492) | 7% [5–9] (491) | 65% [60–69] (492) |
-| base_verbose2 | 31% [27–35] (491) | 9% [7–12] (492) | · | 9% [7–12] (492) | – (0) | 5% [4–8] (492) | 8% [6–10] (491) | 5% [3–7] (492) |
-| lora_verbose2 | 11% [9–14] (491) | 56% [51–60] (492) | 9% [7–12] (492) | · | – (0) | 48% [44–52] (492) | 12% [9–15] (491) | 52% [48–57] (492) |
+| base_verbose | · | 5% [4–8] (499) | 31% [27–35] (499) | 11% [9–14] (499) | – (0) | 16% [13–19] (499) | 37% [33–41] (498) | 4% [2–6] (499) |
+| lora_verbose | 5% [4–8] (499) | · | 9% [7–12] (500) | 56% [51–60] (500) | – (0) | 51% [47–56] (500) | 7% [5–9] (499) | 65% [61–69] (500) |
+| base_verbose2 | 31% [27–35] (499) | 9% [7–12] (500) | · | 9% [7–12] (500) | – (0) | 5% [4–8] (500) | 8% [6–11] (499) | 5% [3–7] (500) |
+| lora_verbose2 | 11% [9–14] (499) | 56% [51–60] (500) | 9% [7–12] (500) | · | – (0) | 48% [44–52] (500) | 11% [9–15] (499) | 53% [48–57] (500) |
 | base_compact | – (0) | – (0) | – (0) | – (0) | · | – (0) | – (0) | – (0) |
-| lora_compact | 16% [13–19] (491) | 51% [47–56] (492) | 5% [4–8] (492) | 48% [44–52] (492) | – (0) | · | 16% [13–20] (491) | 58% [54–62] (492) |
-| base_grammar | 37% [33–41] (490) | 7% [5–9] (491) | 8% [6–10] (491) | 12% [9–15] (491) | – (0) | 16% [13–20] (491) | · | 9% [7–12] (491) |
-| lora_grammar | 4% [2–6] (491) | 65% [60–69] (492) | 5% [3–7] (492) | 52% [48–57] (492) | – (0) | 58% [54–62] (492) | 9% [7–12] (491) | · |
+| lora_compact | 16% [13–19] (499) | 51% [47–56] (500) | 5% [4–8] (500) | 48% [44–52] (500) | – (0) | · | 16% [13–20] (499) | 58% [54–63] (500) |
+| base_grammar | 37% [33–41] (498) | 7% [5–9] (499) | 8% [6–11] (499) | 11% [9–15] (499) | – (0) | 16% [13–20] (499) | · | 9% [7–12] (499) |
+| lora_grammar | 4% [2–6] (499) | 65% [61–69] (500) | 5% [3–7] (500) | 53% [48–57] (500) | – (0) | 58% [54–63] (500) | 9% [7–12] (499) | · |
 
 | gemma-4-E2B | base_verbose | lora_verbose | base_verbose2 | lora_verbose2 | base_compact | lora_compact | base_grammar | lora_grammar |
 |---|---|---|---|---|---|---|---|---|
-| base_verbose | · | 22% [18–25] (492) | 28% [24–32] (492) | 19% [16–22] (492) | 7% [3–16] (61) | 7% [5–10] (492) | 31% [27–35] (492) | 17% [14–20] (492) |
-| lora_verbose | 22% [18–25] (492) | · | 18% [15–22] (492) | 38% [34–42] (492) | 89% [78–94] (61) | 38% [33–42] (492) | 22% [19–26] (492) | 54% [50–58] (492) |
-| base_verbose2 | 28% [24–32] (492) | 18% [15–22] (492) | · | 25% [22–29] (492) | 0% [0–6] (61) | 17% [14–20] (492) | 26% [22–30] (492) | 17% [14–21] (492) |
-| lora_verbose2 | 19% [16–22] (492) | 38% [34–42] (492) | 25% [22–29] (492) | · | 21% [13–33] (61) | 24% [20–28] (492) | 25% [22–29] (492) | 34% [30–39] (492) |
+| base_verbose | · | 21% [18–25] (500) | 28% [24–32] (500) | 19% [15–22] (500) | 7% [3–16] (61) | 7% [5–9] (500) | 31% [27–35] (500) | 16% [13–20] (500) |
+| lora_verbose | 21% [18–25] (500) | · | 18% [15–22] (500) | 39% [34–43] (500) | 89% [78–94] (61) | 37% [33–41] (500) | 23% [20–27] (500) | 55% [50–59] (500) |
+| base_verbose2 | 28% [24–32] (500) | 18% [15–22] (500) | · | 25% [22–29] (500) | 0% [0–6] (61) | 17% [14–20] (500) | 26% [22–30] (500) | 17% [14–21] (500) |
+| lora_verbose2 | 19% [15–22] (500) | 39% [34–43] (500) | 25% [22–29] (500) | · | 21% [13–33] (61) | 24% [20–28] (500) | 26% [22–30] (500) | 35% [31–39] (500) |
 | base_compact | 7% [3–16] (61) | 89% [78–94] (61) | 0% [0–6] (61) | 21% [13–33] (61) | · | 48% [36–60] (61) | 0% [0–6] (61) | 77% [65–86] (61) |
-| lora_compact | 7% [5–10] (492) | 38% [33–42] (492) | 17% [14–20] (492) | 24% [20–28] (492) | 48% [36–60] (61) | · | 12% [10–16] (492) | 36% [32–41] (492) |
-| base_grammar | 31% [27–35] (492) | 22% [19–26] (492) | 26% [22–30] (492) | 25% [22–29] (492) | 0% [0–6] (61) | 12% [10–16] (492) | · | 25% [22–29] (492) |
-| lora_grammar | 17% [14–20] (492) | 54% [50–58] (492) | 17% [14–21] (492) | 34% [30–39] (492) | 77% [65–86] (61) | 36% [32–41] (492) | 25% [22–29] (492) | · |
+| lora_compact | 7% [5–9] (500) | 37% [33–41] (500) | 17% [14–20] (500) | 24% [20–28] (500) | 48% [36–60] (61) | · | 12% [10–15] (500) | 36% [32–40] (500) |
+| base_grammar | 31% [27–35] (500) | 23% [20–27] (500) | 26% [22–30] (500) | 26% [22–30] (500) | 0% [0–6] (61) | 12% [10–15] (500) | · | 26% [22–30] (500) |
+| lora_grammar | 16% [13–20] (500) | 55% [50–59] (500) | 17% [14–21] (500) | 35% [31–39] (500) | 77% [65–86] (61) | 36% [32–40] (500) | 26% [22–30] (500) | · |
 

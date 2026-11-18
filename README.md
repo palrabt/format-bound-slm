@@ -3,7 +3,7 @@
 Code, data and run logs behind the paper of the same title (submitted to *Pollack Periodica*). Three
 small language models (LFM2.5-1.2B, Granite-4.2-3B, Gemma-4-E2B), each with and without a LoRA
 adapter, play a simplified three-player Bohnanza under four prompt styles. The adapters are trained on
-the decisions of a deterministic rule-based teacher, the reference bot. The models are scored on 992
+the decisions of a deterministic rule-based teacher, the reference bot. The models are scored on 1,000
 fixed game states (the replay) and in 30 seeded games per player against reference bots and against
 random bots (the tournaments).
 
@@ -37,7 +37,7 @@ status is 0 when everything matches.
 | `train_adapters.py` | Trains the LoRA adapters and converts them to GGUF |
 | `run_experiment.py` | Runs the steps above in order, unattended, and evaluates the results |
 | `eval/` | Scoring: schema validity, legality, valid play (`valid_play.py`: the answer keeps every rule the teacher plays by), reference-correctness (`reference.py`: the reference bot's decision in the same state), avoidable harvests (`state_sensitivity.py`), agreement, paired tests (`effects.py`, `stats.py`), coins (`game_outcomes.py`); `evaluate.py` runs them all |
-| `eval/replay_corpus.json` | The 992 replay states: 500 from earlier games, balanced per message type on what the decision turns on, and 492 held-out states from the training corpus's generator. The file is the record. Its training-slice items also carry an earlier teacher's answers, which nothing here uses |
+| `eval/replay_corpus.json` | The 1,000 replay states: 500 from earlier games, balanced per message type on what the decision turns on, and 500 held-out states from the training corpus's generator, 100 per message type. The file is the record. Its training-slice items also carry an earlier teacher's answers, which nothing here uses |
 | `training/generate_data/` | `bot_corpus.py` answers a corpus's states with the reference bot; `synth.py` holds the states' generator, the answer templates and the earlier, partly random teacher whose rules the reference bot cleans up; `cli.py` its shared message rules |
 | `training/corpus/training_data_reference_15000.txt` | The training corpus: 15,000 states, 3,000 per message type, each answered by the reference bot |
 | `training/records/` | Each adapter's training record: configuration, loss curve, trainer state, final losses |
@@ -51,7 +51,7 @@ status is 0 when everything matches.
 
 | Run | What | Paper |
 |---|---|---|
-| `replay_20261115_ref` | Replay, 8 conditions × 3 models × 992 states | Tables 1, 2, 4 |
+| `replay_20261115_ref` | Replay, 8 conditions × 3 models × 1,000 states | Tables 1, 2, 4 |
 | `suite_20261115_ref` | Tournament against two reference bots | Table 3 |
 | `suite_20261115_ref_vsrandom` | Tournament against two random bots | Table 3 |
 
@@ -59,6 +59,14 @@ The conditions with the adapter were run on 2026-11-15. The conditions without i
 baseline bots in the tournaments, don't depend on the adapter. They were run once, on 2026-10-29/30,
 with the same code, models, prompts, states and seeds, and copied into these runs; each run's
 `run.json` names where every condition came from.
+
+The replay first had 992 states: the generator's held-out test file held only 92 CONSIDERING
+states that pose a decision. On 2026-11-17 eight more (`train-considering-093` to `-100`) were
+drawn from the same generator with a new seed (20261117), their free text reworded by Phi-4 as
+before, none of them in the training corpus. As the corpus builder does, they come from the
+short stratum, a counter-offer of a bean the player grows. Every condition answered them with the same
+code, models and llama.cpp build, and their answers were appended to the run's logs; `run.json`
+records this as each condition's `top_up`. The other 992 answers are unchanged.
 
 The `metrics.*` files were written by this repository's `eval/evaluate.py` from the raw logs.
 Reference-correctness compares every answer's decision with the one the reference bot, the adapters' teacher, makes in
