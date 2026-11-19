@@ -104,11 +104,15 @@ The training format is the best condition for every model. `lora_compact` is ref
 
 ## A well-formed answer is not a good decision
 
-Once the message schema is introduced to models either by the prompt or the adapter each condition can generate four schema-valid messages out of five. The only exceptions are the base models on the compact prompt and the `base_varbose` with the LMF2.5. The results show that schema-validty is not assossiated with the adapters. The legality results resembles to schema-validity results.
+Once a model is given the answer schema, by the prompt, the grammar or the adapter, at least four of its answers in five are schema-valid (81–100% of the game slice, Table @tab:replay). The one exception is LFM2.5's `base_verbose`, valid only 52% of the time, almost always because it wraps the JSON in prose (238 of its 242 failures). Under `base_compact`, which gives no schema, no answer is valid.
+
+ Legality follows schema validity but runs up to 25 points below it (`base_verbose2`), because a well-formed answer can still break a rule of the game or offer cards the player does not hold.
+
+ Eight condition–model pairs are schema-valid on all 500 game states. Their answers are 87–100% legal, yet only 37–97% of their moves are valid play and 6–91% of their decisions reference-correct. In the tournaments, the player with the most coins (Granite's `lora_compact`) and the one with the fewest (Gemma-4's `lora_verbose`) are both among the eight (Table @tab:coins).
 
 Eight condition-model pairing reached 100% schema-validity and their legality range 92-100%, while validity and reference-correctness vary most significantly 37-96.6% and 6.2-91%. Furthermore, in the tournaments both the best (`lora_compact` + Granite) and the worst (`lora_verbose` + Gemma-4) player is from these eight. 
 
-These observations indicating that neither proper formatting - which is easily acheivable - nor the presence of the adapters guarantee good decisions.
+Neither a well-formed answer, which almost every condition achieves, nor the adapter guarantees a good decision. This agrees with structured output degrading reasoning while the structure stays correct [@tam2024format]. The slight gains reported for grammar-constrained decoding [@geng2025jsonschemabench] do not appear here: against the verbose prompt, the grammar lowered the decisions of LFM2.5 and Granite by 7 and 3 points, significantly only for LFM2.5 (Holm p < 0.001), and left Gemma-4 unchanged.
 
 ## The prompt changes most decisions
 
