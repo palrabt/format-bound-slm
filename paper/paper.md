@@ -106,11 +106,9 @@ The training format is the best condition for every model. `lora_compact` is ref
 
 Once a model is given the answer schema, by the prompt, the grammar or the adapter, at least four of its answers in five are schema-valid (81–100% of the game slice, Table @tab:replay). The one exception is LFM2.5's `base_verbose`, valid only 52% of the time, almost always because it wraps the JSON in prose (238 of its 242 failures). Under `base_compact`, which gives no schema, no answer is valid.
 
- Legality follows schema validity but runs up to 25 points below it (`base_verbose2`), because a well-formed answer can still break a rule of the game or offer cards the player does not hold.
+Legality follows schema validity but runs up to 25 points below it (`base_verbose2`), because a well-formed answer can still break a rule of the game or offer cards the player does not hold.
 
- Eight condition–model pairs are schema-valid on all 500 game states. Their answers are 87–100% legal, yet only 37–97% of their moves are valid play and 6–91% of their decisions reference-correct. In the tournaments, the player with the most coins (Granite's `lora_compact`) and the one with the fewest (Gemma-4's `lora_verbose`) are both among the eight (Table @tab:coins).
-
-Eight condition-model pairing reached 100% schema-validity and their legality range 92-100%, while validity and reference-correctness vary most significantly 37-96.6% and 6.2-91%. Furthermore, in the tournaments both the best (`lora_compact` + Granite) and the worst (`lora_verbose` + Gemma-4) player is from these eight. 
+Eight condition–model pairs are schema-valid on all 500 game states. Their answers are 87–100% legal, yet only 37–97% of their moves are valid play and 6–91% of their decisions reference-correct. In the tournaments, the player with the most coins (Granite's `lora_compact`) and the one with the fewest (Gemma-4's `lora_verbose`) are both among the eight (Table @tab:coins).
 
 Neither a well-formed answer, which almost every condition achieves, nor the adapter guarantees a good decision. This agrees with structured output degrading reasoning while the structure stays correct [@tam2024format]. The slight gains reported for grammar-constrained decoding [@geng2025jsonschemabench] do not appear here: against the verbose prompt, the grammar lowered the decisions of LFM2.5 and Granite by 7 and 3 points, significantly only for LFM2.5 (Holm p < 0.001), and left Gemma-4 unchanged.
 
@@ -127,7 +125,7 @@ Table: Agreement by condition on the game slice: the share of states on which a 
 | `base_grammar` | 15 [2–26] | 16 [6–43] | 22 [5–45] |
 | `lora_grammar` | 36 [13–57] | 32 [6–65] | 29 [18–54] |
 
-On the game slice, two conditions of the same model agree on only 28/25/23% of the states on average, and pairs that include `lora_compact` on 18/31/16% (range 2–56%); the training slice gives 29/24/26%. Table @tab:agreement shows that the adapter does not make a model consistent across prompts in general: even Granite, the model that keeps most of its competence, reaches at most 65% between two conditions, and that only between the verbose and grammar prompts with the adapter. The prompt therefore changes which decision a model makes on an identical state, not only how the answer is phrased. This extends the finding that formatting moves accuracy [@sclar2024format] from an aggregate score to the individual decision, within a single fine-tuned model.
+On the game slice, two conditions of the same model agree on only 28/25/23% of the states on average, and pairs that include `lora_compact` on 18/31/16% (range 2–56%), the training slice gives 29/24/26%. Table @tab:agreement shows that the adapter does not make a model consistent across prompts in general. Even Granite, the model that keeps most of its competence, reaches at most 65% between two conditions, and that only between the verbose and grammar prompts with the adapter. The prompt therefore changes which decision a model makes on an identical state, not only how the answer is phrased. This extends the finding that formatting moves accuracy [@sclar2024format] from an aggregate score to the individual decision, within a single fine-tuned model.
 
 ## Coins and wins against bot opponents
 
@@ -145,6 +143,8 @@ Table: Mean coins per game (30 games each) and the share of games won, in %, by 
 `lora_compact` earns 7.43/8.37/8.00 coins per game against reference-bot opponents and 5.33/5.70/5.67 against random-bot opponents, while its teacher, the reference bot, earns 8.33 and 5.57 and the random bot 2.20 and 2.40 (Table @tab:coins). Paired by seed and seat, it does not differ significantly from the reference bot (pooled differences of −0.40 [−1.08, +0.31] and +0.00 [−0.66, +0.67] coins, Holm p = 0.70 and 1.0), so it is not shown to exceed its teacher. It wins 30% of its games against reference-bot opponents, against the reference bot's 23%, and 84% against random-bot opponents, against 83%.
 
 Every other player earns significantly less than the reference bot, and none of them earns significantly more than the random bot. Several earn significantly less than the random bot, among them Gemma-4's `lora_verbose` in both suites (−0.90 and −1.30 coins) and, against random-bot opponents, the pooled `lora_verbose` (−0.62 coins) and the pooled `base_verbose` (−0.71 coins). Granite's `lora_verbose`, the adapter that keeps most of its competence outside the training format, does not differ significantly from the random bot (+0.00 and +0.20 coins).
+
+The opponents set the level of coins a competent player can reach. The reference bot earns 8.33 coins per game against two reference bots but 5.57 against two random bots, 2.77 fewer in the same seeded games, and lora_compact loses about as much (2.10/2.67/2.33 coins; Wilcoxon p < 0.001 in all four cases). Players near the random bot's level change by at most 1.1 coins.
 
 ## The adapter follows its teacher
 
